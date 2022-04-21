@@ -1,4 +1,4 @@
-<%@include file="dynamic/header.jsp"%>
+<%@include file="dynamic/header.jspf"%>
     
     <div class="hero-wrap ftco-degree-bg" style="background-image: url('/resources/images/bg_1.jpg');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
@@ -7,15 +7,7 @@
           <div class="col-lg-8 ftco-animate">
           	<div class="text w-100 text-center mb-md-5 pb-md-5">
 	            <h1 class="mb-4">Fast &amp; Easy Way To Rent A Car</h1>
-	            <p style="font-size: 18px;">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts</p>
-	            <a href="https://vimeo.com/45830194" class="icon-wrap popup-vimeo d-flex align-items-center mt-4 justify-content-center">
-	            	<div class="icon d-flex align-items-center justify-content-center">
-	            		<span class="ion-ios-play"></span>
-	            	</div>
-	            	<div class="heading-title ml-5">
-		            	<span>Easy steps for renting a car</span>
-	            	</div>
-	            </a>
+	            <p style="font-size: 18px;">CHOOSE - RENT - ENJOY!</p>
             </div>
           </div>
         </div>
@@ -419,4 +411,4 @@
     	</div>
     </section>
 
-<%@include file="dynamic/footer.jsp"%>
+<%@include file="dynamic/footer.jspf"%>
