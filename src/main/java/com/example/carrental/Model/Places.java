@@ -15,10 +15,9 @@ import java.util.Set;
 @Table(name = "places")
 public class Places {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String pickUpCity;
-    private String dropOffCity;
+    private String city;
 
     @ManyToMany(mappedBy = "places")
     private Set<Rentals> rentals = new HashSet<>();

@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>carrental</artifactId>
+	<artifactId>carRental</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>carrental</name>
+	<name>carRental</name>
 	<description>Car rental project</description>
 	<properties>
 		<java.version>18</java.version>
@@ -43,6 +43,10 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
 		</dependency>
 	</dependencies>
 

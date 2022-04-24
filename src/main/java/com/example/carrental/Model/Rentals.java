@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Date;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,11 +16,13 @@ import java.util.Set;
 @Table(name = "rentals")
 public class Rentals {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Date startDate;
-    private Date endDate;
-
+    private String startDate;
+    private String endDate;
+    private String pickUpTime;
+    private String pickUpCity;
+    private String dropOffCity;
     @ManyToOne
     @JoinColumn(name = "client_id", nullable = false)
     private Clients client;
