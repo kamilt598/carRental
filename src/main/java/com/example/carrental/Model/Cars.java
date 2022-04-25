@@ -14,7 +14,7 @@ import java.util.Set;
 @Table(name = "cars")
 public class Cars {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String brand;
     private String model;
@@ -25,6 +25,7 @@ public class Cars {
     private boolean isRented;
     private String picture;
     private String price;
+    private String location;
 
     @OneToMany(mappedBy = "car")
     private Set<Rentals> rentals;

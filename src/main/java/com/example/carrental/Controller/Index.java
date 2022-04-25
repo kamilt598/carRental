@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
@@ -45,7 +46,9 @@ public class Index {
     }
 
     @RequestMapping(value = {"/", "/index"}, method = RequestMethod.POST)
-    public RedirectView postTrips(@ModelAttribute Rentals rentals) {
+    public RedirectView postTrips(@ModelAttribute Rentals rentals, Model model) {
+        rentals.setCar(carsRepository.getById(1L));
+        rentals.setClient(clientsRepository.getById(1L));
         rentalsRepository.save(rentals);
         return new RedirectView("/myTrips");
     }

@@ -69,8 +69,7 @@
                                     </d:forEach>
                                 </select>
                             </div>
-                            <input type="text" class="form-control" placeholder="${clientsList.get(0)}" name="client">
-                            <input type="text" class="form-control" placeholder="${carsList.get(0)}" name="car">
+
 <%--                            <select class="custom-select">--%>
 <%--                                <d:forEach items="${clientsList}" var="clientEach">--%>
 <%--                                    <option value="${clientEach.id}" name="client">${clientEach.id}</option>--%>
