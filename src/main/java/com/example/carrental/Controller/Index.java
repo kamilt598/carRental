@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import org.springframework.web.servlet.view.RedirectView;
 
-import javax.servlet.http.HttpServletRequest;
+
 import java.util.List;
 
 
@@ -46,7 +46,7 @@ public class Index {
     }
 
     @RequestMapping(value = {"/", "/index"}, method = RequestMethod.POST)
-    public RedirectView postTrips(@ModelAttribute Rentals rentals, @RequestParam Long carId) {
+    public RedirectView postTrips(@ModelAttribute Rentals rentals, @RequestParam("carId") Long carId) {
         rentals.setCar(carsRepository.getById(carId));
         rentals.setClient(clientsRepository.getById(1L));
         rentalsRepository.save(rentals);

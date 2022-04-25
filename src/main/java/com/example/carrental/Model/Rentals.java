@@ -16,7 +16,7 @@ import java.util.Set;
 @Table(name = "rentals")
 public class Rentals {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String startDate;
     private String endDate;
