@@ -25,19 +25,19 @@
                             <h2>Make your trip</h2>
                             <div class="form-group">
                                 <label class="label">Pick-up location</label>
-                                <select class="custom-select">
+                                <select class="custom-select" name="pickUpCity">
                                     <option selected>Choose...</option>
                                     <d:forEach items="${placesList}" var="placeEach">
-                                        <option value="${placeEach.id}" name="pickUpCity">${placeEach.city}</option>
+                                        <option value="${placeEach.city}">${placeEach.city}</option>
                                     </d:forEach>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label class="label">Drop-off location</label>
-                                <select class="custom-select">
+                                <select class="custom-select" name="dropOffCity">
                                     <option selected>Choose...</option>
                                     <d:forEach items="${placesList}" var="placeEach">
-                                        <<option value="${placeEach.id}" name="dropOffCity">${placeEach.city}</option>
+                                        <option value="${placeEach.city}">${placeEach.city}</option>
                                     </d:forEach>
                                 </select>
                             </div>
@@ -60,26 +60,15 @@
                             </div>
                             <div class="form-group">
                                 <label class="label">Car</label>
-                                <select class="custom-select">
+                                <select class="custom-select" name="carId">
                                     <option selected>Choose...</option>
                                     <d:forEach items="${carsList}" var="carEach">
-                                        <option value="${carEach}">${carEach.brand} ${carEach.model}
+                                        <option value="${carEach.id}">${carEach.brand} ${carEach.model}
                                             - ${carEach.price}$/day
                                         </option>
                                     </d:forEach>
                                 </select>
                             </div>
-
-<%--                            <select class="custom-select">--%>
-<%--                                <d:forEach items="${clientsList}" var="clientEach">--%>
-<%--                                    <option value="${clientEach.id}" name="client">${clientEach.id}</option>--%>
-<%--                                </d:forEach>--%>
-<%--                            </select>--%>
-<%--                            <select class="custom-select">--%>
-<%--                                <d:forEach items="${carsList}" var="carEach">--%>
-<%--                                    <option value="${carEach.id}" name="car">${carEach.id}</option>--%>
-<%--                                </d:forEach>--%>
-<%--                            </select>--%>
 
                             <div class="form-group">
                                 <input type="submit" value="Rent A Car Now" class="btn btn-secondary py-3 px-4">

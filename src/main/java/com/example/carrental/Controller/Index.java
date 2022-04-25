@@ -11,13 +11,13 @@ import com.example.carrental.Repository.PlacesRepository;
 import com.example.carrental.Repository.RentalsRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+
 
 @Controller
 public class Index {
@@ -46,8 +46,8 @@ public class Index {
     }
 
     @RequestMapping(value = {"/", "/index"}, method = RequestMethod.POST)
-    public RedirectView postTrips(@ModelAttribute Rentals rentals, Model model) {
-        rentals.setCar(carsRepository.getById(1L));
+    public RedirectView postTrips(@ModelAttribute Rentals rentals, @RequestParam Long carId) {
+        rentals.setCar(carsRepository.getById(carId));
         rentals.setClient(clientsRepository.getById(1L));
         rentalsRepository.save(rentals);
         return new RedirectView("/myTrips");
