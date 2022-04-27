@@ -1,5 +1,7 @@
 package com.example.carrental.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -26,6 +28,9 @@ public class Cars {
     private String picture;
     private String price;
     private String location;
+    @JsonProperty("rates")
+    private String rates;
+
 
     @OneToMany(mappedBy = "car")
     private Set<Rentals> rentals;
