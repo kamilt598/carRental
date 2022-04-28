@@ -52,12 +52,8 @@ public class Index {
                 = restTemplate.getForEntity(fooResourceUrl, String.class);
         ObjectMapper mapper = new ObjectMapper();
         JsonNode rates = mapper.readTree(response.getBody()).path("rates");
-        Double mid = 0.0;
-        for (JsonNode jsonNode : rates) {
-            mid = jsonNode.path("mid").asDouble();
-        }
         for (Cars cars : carsList) {
-            cars.setPriceUSD(cars.getPrice() / mid);
+            cars.setPriceUSD(cars.getPrice() / rates.get(0).path("mid").asDouble());
             carsRepository.save(cars);
         }
 
