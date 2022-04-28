@@ -1,3 +1,4 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@include file="dynamic/header.jspf" %>
 
 <div class="hero-wrap ftco-degree-bg" style="background-image: url('/resources/images/bg_1.jpg');"
@@ -64,7 +65,8 @@
                                     <option selected>Choose...</option>
                                     <d:forEach items="${carsList}" var="carEach">
                                         <option value="${carEach.id}">${carEach.brand} ${carEach.model}
-                                            - ${carEach.price}$/day
+                                            - <fmt:formatNumber type="number" maxFractionDigits="2" value="${carEach.price}"/>PLN/day /
+                                            <fmt:formatNumber type="number" maxFractionDigits="2" value="${carEach.priceUSD}"/>USD/day
                                         </option>
                                     </d:forEach>
                                 </select>

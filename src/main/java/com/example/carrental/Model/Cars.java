@@ -13,6 +13,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Table(name = "cars")
 public class Cars {
     @Id
@@ -26,10 +27,9 @@ public class Cars {
     private String color;
     private boolean isRented;
     private String picture;
-    private String price;
+    private Double price;
+    private Double priceUSD;
     private String location;
-    @JsonProperty("rates")
-    private String rates;
 
 
     @OneToMany(mappedBy = "car")
