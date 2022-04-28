@@ -12,7 +12,6 @@ import com.example.carrental.Repository.RentalsRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,10 +21,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.view.RedirectView;
 
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 @Controller
@@ -61,8 +57,10 @@ public class Index {
             mid = jsonNode.path("mid").asDouble();
         }
         for (Cars cars : carsList) {
-            cars.setPriceUSD(cars.getPrice()/mid);
+            cars.setPriceUSD(cars.getPrice() / mid);
+            carsRepository.save(cars);
         }
+
         model.addAttribute("carsList", carsList);
         model.addAttribute("placesList", placesList);
         model.addAttribute("clientsList", clientsList);
