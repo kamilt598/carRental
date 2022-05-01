@@ -23,57 +23,34 @@
             <div class="col-md-12	featured-top">
                 <div class="row no-gutters">
                     <div class="col-md-4 d-flex align-items-center">
-                        <form method="post" action='<c:url value="/index"/>' class="request-form ftco-animate bg-primary">
+                        <form method="post" action='<c:url value="/"/>' class="request-form ftco-animate bg-primary">
                             <h2>Make your trip</h2>
                             <div class="form-group">
                                 <label class="label">Pick-up location</label>
                                 <select class="custom-select" name="pickUpCity">
-                                    <option value="${choosenPickUpCity}">${choosenPickUpCity}</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label class="label">Drop-off location</label>
-                                <select class="custom-select" name="dropOffCity">
                                     <option selected>Choose...</option>
                                     <d:forEach items="${placesList}" var="placeEach">
                                         <option value="${placeEach.city}">${placeEach.city}</option>
                                     </d:forEach>
                                 </select>
-                            </div>
-                            <div class="d-flex">
-                                <div class="form-group mr-2">
-                                    <label class="label">Pick-up date</label>
-                                    <input type="text" class="form-control" id="book_pick_date" placeholder="Date"
-                                           name="startDate">
-                                </div>
-                                <div class="form-group ml-2">
-                                    <label class="label">Drop-off date</label>
-                                    <input type="text" class="form-control" id="book_off_date" placeholder="Date"
-                                           name="endDate">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="label">Pick-up time</label>
-                                <input type="text" class="form-control" id="time_pick" placeholder="Time"
-                                       name="pickUpTime">
-                            </div>
-                            <div class="form-group">
-                                <label class="label">Car</label>
-                                <select class="custom-select" name="carId">
-                                    <option selected>Choose...</option>
-                                    <d:forEach items="${carsFiltered}" var="carEach">
-                                        <option value="${carEach.id}">${carEach.brand} ${carEach.model}
-                                            - <fmt:formatNumber type="number" maxFractionDigits="2"
-                                                                value="${carEach.priceUSD}"/>$
-                                            (<fmt:formatNumber type="number" maxFractionDigits="2"
-                                                               value="${carEach.pricePLN}"/>PLN)/day
-                                        </option>
-                                    </d:forEach>
-                                </select>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
                             </div>
 
                             <div class="form-group">
-                                <input type="submit" value="Rent A Car Now" class="btn btn-secondary py-3 px-4">
+                                <input type="submit" value="Next" class="btn btn-secondary py-3 px-4">
                             </div>
                         </form>
                     </div>
@@ -143,10 +120,8 @@
                                     <h2 class="mb-0"><a href="#">${carEach.brand} ${carEach.model}</a></h2>
                                     <div class="d-flex mb-3">
                                         <span class="cat">${carEach.type}</span>
-                                        <p class="price ml-auto"><fmt:formatNumber type="number" maxFractionDigits="2"
-                                                                                   value="${carEach.priceUSD}"/>$
-                                            (<fmt:formatNumber type="number" maxFractionDigits="2"
-                                                               value="${carEach.pricePLN}"/>PLN)<span>/day</span></p>
+                                        <p class="price ml-auto"><fmt:formatNumber type="number" maxFractionDigits="2" value="${carEach.priceUSD}"/>$
+                                            (<fmt:formatNumber type="number" maxFractionDigits="2" value="${carEach.pricePLN}"/>PLN)<span>/day</span></p>
                                     </div>
                                     <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book
                                         now</a> <a href="#" class="btn btn-secondary py-2 ml-1">Details</a></p>

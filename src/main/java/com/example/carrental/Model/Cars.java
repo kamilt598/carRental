@@ -27,7 +27,7 @@ public class Cars {
     private String color;
     private boolean isRented;
     private String picture;
-    private Double price;
+    private Double pricePLN;
     private Double priceUSD;
     private String location;
 

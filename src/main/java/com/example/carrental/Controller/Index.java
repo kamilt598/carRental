@@ -39,12 +39,33 @@ public class Index {
         this.clientsRepository = clientsRepository;
     }
 
-    @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/index"}, method = RequestMethod.GET)
     public String getIndex(Model model) throws JsonProcessingException {
         List<Cars> carsList = carsRepository.findAll();
+        List<Cars> carsFiltered = carsList.stream()
+                .filter(cars -> cars.isRented() == false)
+                .filter(cars -> cars.getLocation().equals(IndexLocation.choosenPickUpCity))
+                .toList();
         List<Places> placesList = placesRepository.findAll();
         List<Clients> clientsList = clientsRepository.findAll();
+        exchangeToPLN(carsRepository, carsList);
+        model.addAttribute("choosenPickUpCity", IndexLocation.choosenPickUpCity);
+        model.addAttribute("carsFiltered", carsFiltered);
+        model.addAttribute("carsList", carsList);
+        model.addAttribute("placesList", placesList);
+        model.addAttribute("clientsList", clientsList);
+        return "index";
+    }
 
+    @RequestMapping(value = {"/index"}, method = RequestMethod.POST)
+    public RedirectView postTrips(@ModelAttribute Rentals rentals, @RequestParam("carId") Long carId) {
+        rentals.setCar(carsRepository.getById(carId));
+        rentals.setClient(clientsRepository.getById(1L));
+        rentalsRepository.save(rentals);
+        return new RedirectView("/myTrips");
+    }
+
+    public static void exchangeToPLN(CarsRepository repository, List<Cars> list) throws JsonProcessingException {
         RestTemplate restTemplate = new RestTemplate();
         String fooResourceUrl
                 = "https://api.nbp.pl/api/exchangerates/rates/a/usd?format=json";
@@ -52,23 +73,10 @@ public class Index {
                 = restTemplate.getForEntity(fooResourceUrl, String.class);
         ObjectMapper mapper = new ObjectMapper();
         JsonNode rates = mapper.readTree(response.getBody()).path("rates");
-        for (Cars cars : carsList) {
-            cars.setPriceUSD(cars.getPrice() / rates.get(0).path("mid").asDouble());
-            carsRepository.save(cars);
+        for (Cars cars : list) {
+            cars.setPricePLN(cars.getPriceUSD() * rates.get(0).path("mid").asDouble());
+            repository.save(cars);
         }
-
-        model.addAttribute("carsList", carsList);
-        model.addAttribute("placesList", placesList);
-        model.addAttribute("clientsList", clientsList);
-        return "index";
-    }
-
-    @RequestMapping(value = {"/", "/index"}, method = RequestMethod.POST)
-    public RedirectView postTrips(@ModelAttribute Rentals rentals, @RequestParam("carId") Long carId) {
-        rentals.setCar(carsRepository.getById(carId));
-        rentals.setClient(clientsRepository.getById(1L));
-        rentalsRepository.save(rentals);
-        return new RedirectView("/myTrips");
     }
 
 
