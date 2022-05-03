@@ -26,13 +26,20 @@
                         <form method="post" action='<c:url value="/"/>' class="request-form ftco-animate bg-primary">
                             <h2>Make your trip</h2>
                             <div class="form-group">
-                                <label class="label">Pick-up location</label>
-                                <select class="custom-select" name="pickUpCity">
-                                    <option selected>Choose...</option>
-                                    <d:forEach items="${placesList}" var="placeEach">
-                                        <option value="${placeEach.city}">${placeEach.city}</option>
-                                    </d:forEach>
-                                </select>
+                                <sec:authorize access="isAuthenticated()">
+                                    <label class="label">Pick-up location</label>
+                                    <select class="custom-select" name="pickUpCity">
+                                        <option selected>Choose...</option>
+                                        <d:forEach items="${placesList}" var="placeEach">
+                                            <option value="${placeEach.city}">${placeEach.city}</option>
+                                        </d:forEach>
+                                    </select>
+                                </sec:authorize>
+                                <sec:authorize access="!isAuthenticated()">
+                                    <label class="label">Sign in to rent a car</label>
+                                    <a href='<c:url value="/login"/>' role="button" class="btn btn-secondary px-4">Sign
+                                        In</a>
+                                </sec:authorize>
                                 <br>
                                 <br>
                                 <br>
@@ -50,7 +57,9 @@
                             </div>
 
                             <div class="form-group">
-                                <input type="submit" value="Next" class="btn btn-secondary py-3 px-4">
+                                <sec:authorize access="isAuthenticated()">
+                                    <input type="submit" value="Next" class="btn btn-secondary py-3 px-4">
+                                </sec:authorize>
                             </div>
                         </form>
                     </div>
@@ -120,8 +129,10 @@
                                     <h2 class="mb-0"><a href="#">${carEach.brand} ${carEach.model}</a></h2>
                                     <div class="d-flex mb-3">
                                         <span class="cat">${carEach.type}</span>
-                                        <p class="price ml-auto"><fmt:formatNumber type="number" maxFractionDigits="2" value="${carEach.priceUSD}"/>$
-                                            (<fmt:formatNumber type="number" maxFractionDigits="2" value="${carEach.pricePLN}"/>PLN)<span>/day</span></p>
+                                        <p class="price ml-auto"><fmt:formatNumber type="number" maxFractionDigits="2"
+                                                                                   value="${carEach.priceUSD}"/>$
+                                            (<fmt:formatNumber type="number" maxFractionDigits="2"
+                                                               value="${carEach.pricePLN}"/>PLN)<span>/day</span></p>
                                     </div>
                                     <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book
                                         now</a> <a href="#" class="btn btn-secondary py-2 ml-1">Details</a></p>

@@ -23,6 +23,7 @@ public class Clients {
     private String nick;
     private String password;
     private String roles = "ROLE_ADMIN";
+    private boolean enable = true;
 
     @OneToMany(mappedBy = "client")
     private Set<Rentals> rentals;

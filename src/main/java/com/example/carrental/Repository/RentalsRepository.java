@@ -10,6 +10,5 @@ import java.util.Optional;
 @Repository
 public interface RentalsRepository extends JpaRepository<Rentals, Long> {
     Rentals save(Rentals rentals);
-    Optional<Rentals> findById(Long id);
     List<Rentals> findAll();
 }

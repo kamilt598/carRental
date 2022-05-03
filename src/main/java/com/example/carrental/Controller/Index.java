@@ -13,6 +13,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.*;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -60,7 +63,8 @@ public class Index {
     @RequestMapping(value = {"/index"}, method = RequestMethod.POST)
     public RedirectView postTrips(@ModelAttribute Rentals rentals, @RequestParam("carId") Long carId) {
         rentals.setCar(carsRepository.getById(carId));
-        rentals.setClient(clientsRepository.getById(1L));
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        rentals.setClient(clientsRepository.findByNick(authentication.getName()));
         rentalsRepository.save(rentals);
         return new RedirectView("/myTrips");
     }
@@ -78,6 +82,8 @@ public class Index {
             repository.save(cars);
         }
     }
+
+
 
 
 }

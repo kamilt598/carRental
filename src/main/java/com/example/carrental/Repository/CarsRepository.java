@@ -10,7 +10,6 @@ import java.util.Optional;
 @Repository
 public interface CarsRepository extends JpaRepository<Cars, Long> {
     Cars save(Cars cars);
-    Optional<Cars> findById(Long id);
     List<Cars> findAll();
 
 }
