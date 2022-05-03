@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
 
+
+import java.sql.Date;
 import java.util.List;
 @Controller
 public class IndexLocation {
@@ -19,6 +21,9 @@ public class IndexLocation {
     private final CarsRepository carsRepository;
     private final PlacesRepository placesRepository;
     public static String choosenPickUpCity = "";
+    public static String choosenDropOffCity = "";
+    public static Date choosenStartDate;
+    public static Date choosenEndDate;
 
     public IndexLocation(CarsRepository carsRepository, PlacesRepository placesRepository) {
         this.carsRepository = carsRepository;
@@ -36,8 +41,14 @@ public class IndexLocation {
     }
 
     @RequestMapping(value = {"/"}, method = RequestMethod.POST)
-    public RedirectView postTrips(@RequestParam("pickUpCity") String pickUpCity) {
+    public RedirectView postTrips(@RequestParam("pickUpCity") String pickUpCity,
+                                  @RequestParam("dropOffCity") String dropOffCity,
+                                  @RequestParam("startDate") Date startDate,
+                                  @RequestParam("endDate") Date endDate) {
         choosenPickUpCity = pickUpCity;
+        choosenDropOffCity = dropOffCity;
+        choosenStartDate = startDate;
+        choosenEndDate = endDate;
         return new RedirectView("/index");
     }
 

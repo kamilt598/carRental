@@ -3,9 +3,12 @@ package com.example.carrental.Model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 
+
+import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,9 +21,10 @@ public class Rentals {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String startDate;
-    private String endDate;
-    private String pickUpTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date startDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date endDate;
     private String pickUpCity;
     private String dropOffCity;
     @ManyToOne

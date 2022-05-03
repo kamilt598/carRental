@@ -53,12 +53,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="label">Pick-up time</label>
-                                <input type="text" class="form-control" id="time_pick" placeholder="Time"
-                                       name="pickUpTime">
-                            </div>
-                            <div class="form-group">
-                                <label class="label">Car</label>
+                                <label class="label">Cars available</label>
                                 <select class="custom-select" name="carId">
                                     <option selected>Choose...</option>
                                     <d:forEach items="${carsFiltered}" var="carEach">

@@ -14,7 +14,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.*;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +22,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.view.RedirectView;
 
-
+import java.sql.Date;
 import java.util.List;
 
 
@@ -46,9 +45,10 @@ public class Index {
     public String getIndex(Model model) throws JsonProcessingException {
         List<Cars> carsList = carsRepository.findAll();
         List<Cars> carsFiltered = carsList.stream()
-                .filter(cars -> cars.isRented() == false)
+                .filter(cars -> !cars.isRented())
                 .filter(cars -> cars.getLocation().equals(IndexLocation.choosenPickUpCity))
                 .toList();
+        //System.out.println(isRented(carsList.get(0)));
         List<Places> placesList = placesRepository.findAll();
         List<Clients> clientsList = clientsRepository.findAll();
         exchangeToPLN(carsRepository, carsList);
@@ -83,7 +83,14 @@ public class Index {
         }
     }
 
-
-
+    public boolean isRented(Cars cars) {
+        for (Rentals rental : cars.getRentals()) {
+            if (!(rental.getStartDate().after(IndexLocation.choosenEndDate)) ||
+                    rental.getEndDate().before(IndexLocation.choosenStartDate)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 }
