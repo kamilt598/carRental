@@ -9,6 +9,5 @@ import java.util.Optional;
 @Repository
 public interface PlacesRepository extends JpaRepository<Places, Long> {
     Places save(Places places);
-    Optional<Places> findById(Long id);
     List<Places> findAll();
 }

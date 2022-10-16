@@ -67,23 +67,42 @@
 <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
 
-<script src='<c:url value="/resources/js/jquery.min.js"/>'></script>
-<script src='<c:url value="/resources/js/jquery-migrate-3.0.1.min.js"/>'></script>
-<script src='<c:url value="/resources/js/popper.min.js"/>'></script>
-<script src='<c:url value="/resources/js/bootstrap.min.js"/>'></script>
-<script src='<c:url value="/resources/js/jquery.easing.1.3.js"/>'></script>
-<script src='<c:url value="/resources/js/jquery.waypoints.min.js"/>'></script>
-<script src='<c:url value="/resources/js/jquery.stellar.min.js"/>'></script>
-<script src='<c:url value="/resources/js/owl.carousel.min.js"/>'></script>
-<script src='<c:url value="/resources/js/jquery.magnific-popup.min.js"/>'></script>
-<script src='<c:url value="/resources/js/aos.js"/>'></script>
-<script src='<c:url value="/resources/js/jquery.animateNumber.min.js"/>'></script>
-<script src='<c:url value="/resources/js/bootstrap-datepicker.js"/>'></script>
-<script src='<c:url value="/resources/js/jquery.timepicker.min.js"/>'></script>
-<script src='<c:url value="/resources/js/scrollax.min.js"/>'></script>
-<script src='<c:url value="/resources/https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"/>'></script>
-<script src='<c:url value="/resources/js/google-map.js"/>'></script>
-<script src='<c:url value="/resources/js/main.js"/>'></script>
+<%--<script src='<c:url value="../resources/js/jquery.min.js"/>'></script>--%>
+<%--<script src='<c:url value="../resources/js/jquery-migrate-3.0.1.min.js"/>'></script>--%>
+<%--<script src='<c:url value="../resources/js/popper.min.js"/>'></script>--%>
+<%--<script src='<c:url value="../resources/js/bootstrap.min.js"/>'></script>--%>
+<%--<script src='<c:url value="../resources/js/jquery.easing.1.3.js"/>'></script>--%>
+<%--<script src='<c:url value="../resources/js/jquery.waypoints.min.js"/>'></script>--%>
+<%--<script src='<c:url value="../resources/js/jquery.stellar.min.js"/>'></script>--%>
+<%--<script src='<c:url value="../resources/js/owl.carousel.min.js"/>'></script>--%>
+<%--<script src='<c:url value="../resources/js/jquery.magnific-popup.min.js"/>'></script>--%>
+<%--<script src='<c:url value="../resources/js/aos.js"/>'></script>--%>
+<%--<script src='<c:url value="../resources/js/jquery.animateNumber.min.js"/>'></script>--%>
+<%--<script src='<c:url value="../resources/js/bootstrap-datepicker.js"/>'></script>--%>
+<%--<script src='<c:url value="../resources/js/jquery.timepicker.min.js"/>'></script>--%>
+<%--<script src='<c:url value="../resources/js/scrollax.min.js"/>'></script>--%>
+<%--<script src='<c:url value="../resources/https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"/>'></script>--%>
+<%--<script src='<c:url value="../resources/js/google-map.js"/>'></script>--%>
+<%--<script src='<c:url value="../resources/js/main.js"/>'></script>--%>
+<script src="../resources/js/aos.js"></script>
+<script src="../resources/js/jquery.min.js"></script>
+<script src="../resources/js/jquery-migrate-3.0.1.min.js"></script>
+<script src="../resources/js/popper.min.js"></script>
+<script src="../resources/js/bootstrap.min.js"></script>
+<script src="../resources/js/jquery.easing.1.3.js"></script>
+<script src="../resources/js/jquery.waypoints.min.js"></script>
+<script src="../resources/js/jquery.stellar.min.js"></script>
+<script src="../resources/js/owl.carousel.min.js"></script>
+<script src="../resources/js/jquery.magnific-popup.min.js"></script>
+<script src="../resources/js/jquery.animateNumber.min.js"></script>
+<script src="../resources/js/bootstrap-datepicker.js"></script>
+<script src="../resources/js/jquery.timepicker.min.js"></script>
+<script src="../resources/js/scrollax.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+<script src="../resources/js/google-map.js"></script>
+<script src="../resources/js/main.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 
 </body>
 </html>
