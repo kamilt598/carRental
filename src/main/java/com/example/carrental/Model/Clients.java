@@ -5,7 +5,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @NoArgsConstructor
 @Getter
@@ -14,7 +13,6 @@ import java.util.Set;
 @Table(name = "clients")
 public class Clients {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String firstName;
     private String lastName;
@@ -22,9 +20,5 @@ public class Clients {
     private String email;
     private String nick;
     private String password;
-    private String roles = "ROLE_ADMIN";
-
-    @OneToMany(mappedBy = "client")
-    private Set<Rentals> rentals;
-
+    private String roles;
 }
