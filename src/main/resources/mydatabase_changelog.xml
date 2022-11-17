@@ -2,10 +2,13 @@
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
-    <changeSet author="Lenovo (generated)" id="1665829498689-3">
+    <changeSet author="Kamil" id="add columns">
         <preConditions onFail="MARK_RAN">
             <not>
                 <tableExists tableName="cars"/>
+                <tableExists tableName="clients"/>
+                <tableExists tableName="places"/>
+                <tableExists tableName="rentals"/>
             </not>
         </preConditions>
         <createTable tableName="cars">
@@ -15,7 +18,7 @@
             <column name="brand" type="VARCHAR(255)"/>
             <column name="color" type="VARCHAR(255)"/>
             <column name="engine" type="VARCHAR(255)"/>
-            <column name="is_rented" type="BOOLEAN">
+            <column name="is_rented" type="BOOLEAN" defaultValue="false">
                 <constraints nullable="false"/>
             </column>
             <column name="location" type="VARCHAR(255)"/>
@@ -27,13 +30,6 @@
             <column name="type" type="VARCHAR(255)"/>
             <column name="production_year" type="VARCHAR(4)"/>
         </createTable>
-    </changeSet>
-    <changeSet author="Lenovo (generated)" id="1665829498689-4">
-        <preConditions onFail="MARK_RAN">
-            <not>
-                <tableExists tableName="clients"/>
-            </not>
-        </preConditions>
         <createTable tableName="clients">
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="clients_pkey"/>
@@ -46,26 +42,12 @@
             <column name="phone_number" type="VARCHAR(255)"/>
             <column name="roles" type="VARCHAR(255)" defaultValue="ROLE_ADMIN"/>
         </createTable>
-    </changeSet>
-    <changeSet author="Lenovo (generated)" id="1665829498689-5">
-        <preConditions onFail="MARK_RAN">
-            <not>
-                <tableExists tableName="places"/>
-            </not>
-        </preConditions>
         <createTable tableName="places">
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="places_pkey"/>
             </column>
             <column name="city" type="VARCHAR(255)"/>
         </createTable>
-    </changeSet>
-    <changeSet author="Lenovo (generated)" id="1665829498689-1">
-        <preConditions onFail="MARK_RAN">
-            <not>
-                <tableExists tableName="rentals"/>
-            </not>
-        </preConditions>
         <createTable tableName="rentals">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="rentals_pkey"/>
@@ -75,18 +57,7 @@
             <column name="pick_up_city" type="VARCHAR(255)"/>
             <column name="pick_up_time" type="VARCHAR(255)"/>
             <column name="start_date" type="VARCHAR(255)"/>
-            <column name="car_id" type="BIGINT">
-                <constraints nullable="false" foreignKeyName="fk_rentals_cars" references="cars(id)"/>
-            </column>
-            <column name="client_id" type="BIGINT">
-                <constraints nullable="false" foreignKeyName="fk_rentals_clients" references="clients(id)"/>
-            </column>
-            <column name="place_id" type="BIGINT">
-                <constraints nullable="false" foreignKeyName="fk_rentals_places" references="places(id)"/>
-            </column>
         </createTable>
-    </changeSet>
-    <changeSet author="kamil" id="add records">
         <insert tableName="cars">
             <column name="id" value="1"/>
             <column name="brand" value="Mercedes"/>

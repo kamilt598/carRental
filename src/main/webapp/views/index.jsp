@@ -61,7 +61,7 @@
                                             - <fmt:formatNumber type="number" maxFractionDigits="2"
                                                                 value="${carEach.priceUSD}"/>$
                                             (<fmt:formatNumber type="number" maxFractionDigits="2"
-                                                               value="${carEach.pricePLN}"/>PLN)/day
+                                                               value="${carEach.price}"/>PLN)/day
                                         </option>
                                     </d:forEach>
                                 </select>
@@ -141,7 +141,7 @@
                                         <p class="price ml-auto"><fmt:formatNumber type="number" maxFractionDigits="2"
                                                                                    value="${carEach.priceUSD}"/>$
                                             (<fmt:formatNumber type="number" maxFractionDigits="2"
-                                                               value="${carEach.pricePLN}"/>PLN)<span>/day</span></p>
+                                                               value="${carEach.price}"/>PLN)<span>/day</span></p>
                                     </div>
                                     <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book
                                         now</a> <a href="#" class="btn btn-secondary py-2 ml-1">Details</a></p>

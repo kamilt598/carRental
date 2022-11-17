@@ -9,20 +9,17 @@ import com.example.carrental.Repository.CarsRepository;
 import com.example.carrental.Repository.ClientsRepository;
 import com.example.carrental.Repository.PlacesRepository;
 import com.example.carrental.Repository.RentalsRepository;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.http.*;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.sql.Date;
 import java.util.List;
 
 
@@ -41,56 +38,49 @@ public class Index {
         this.clientsRepository = clientsRepository;
     }
 
-    @RequestMapping(value = {"/index"}, method = RequestMethod.GET)
-    public String getIndex(Model model) throws JsonProcessingException {
-        List<Cars> carsList = carsRepository.findAll();
-        List<Cars> carsFiltered = carsList.stream()
-                .filter(cars -> !cars.isRented())
-                .filter(cars -> cars.getLocation().equals(IndexLocation.choosenPickUpCity))
-                .toList();
-        //System.out.println(isRented(carsList.get(0)));
-        List<Places> placesList = placesRepository.findAll();
-        List<Clients> clientsList = clientsRepository.findAll();
-        exchangeToPLN(carsRepository, carsList);
-        model.addAttribute("choosenPickUpCity", IndexLocation.choosenPickUpCity);
-        model.addAttribute("carsFiltered", carsFiltered);
-        model.addAttribute("carsList", carsList);
-        model.addAttribute("placesList", placesList);
-        model.addAttribute("clientsList", clientsList);
+    @GetMapping(value = "/index")
+    public String getIndex(Model model) {
+        try {
+            List<Cars> carsList = carsRepository.findAll();
+            List<Cars> carsFiltered = carsList.stream()
+                    .filter(cars -> !cars.getIsRented())
+                    .toList();
+            List<Places> placesList = placesRepository.findAll();
+            List<Clients> clientsList = clientsRepository.findAll();
+            exchangeToPLN(carsRepository, carsList);
+            model.addAttribute("choosenPickUpCity");
+            model.addAttribute("carsFiltered", carsFiltered);
+            model.addAttribute("carsList", carsList);
+            model.addAttribute("placesList", placesList);
+            model.addAttribute("clientsList", clientsList);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return "index";
     }
 
     @RequestMapping(value = {"/index"}, method = RequestMethod.POST)
     public RedirectView postTrips(@ModelAttribute Rentals rentals, @RequestParam("carId") Long carId) {
-        rentals.setCar(carsRepository.getById(carId));
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        rentals.setClient(clientsRepository.findByNick(authentication.getName()));
         rentalsRepository.save(rentals);
         return new RedirectView("/myTrips");
     }
 
-    public static void exchangeToPLN(CarsRepository repository, List<Cars> list) throws JsonProcessingException {
-        RestTemplate restTemplate = new RestTemplate();
-        String fooResourceUrl
-                = "https://api.nbp.pl/api/exchangerates/rates/a/usd?format=json";
-        ResponseEntity<String> response
-                = restTemplate.getForEntity(fooResourceUrl, String.class);
-        ObjectMapper mapper = new ObjectMapper();
-        JsonNode rates = mapper.readTree(response.getBody()).path("rates");
-        for (Cars cars : list) {
-            cars.setPricePLN(cars.getPriceUSD() * rates.get(0).path("mid").asDouble());
-            repository.save(cars);
-        }
-    }
-
-    public boolean isRented(Cars cars) {
-        for (Rentals rental : cars.getRentals()) {
-            if (!(rental.getStartDate().after(IndexLocation.choosenEndDate)) ||
-                    rental.getEndDate().before(IndexLocation.choosenStartDate)) {
-                return true;
+    public static void exchangeToPLN(CarsRepository repository, List<Cars> list) {
+        try {
+            RestTemplate restTemplate = new RestTemplate();
+            String fooResourceUrl
+                    = "https://api.nbp.pl/api/exchangerates/rates/a/usd?format=json";
+            ResponseEntity<String> response
+                    = restTemplate.getForEntity(fooResourceUrl, String.class);
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode rates = mapper.readTree(response.getBody()).path("rates");
+            for (Cars cars : list) {
+                cars.setPrice(cars.getPriceUSD().multiply(rates.get(0).path("mid").decimalValue()));
+                repository.save(cars);
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        return false;
     }
-
 }

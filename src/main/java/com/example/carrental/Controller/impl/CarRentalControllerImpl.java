@@ -40,11 +40,11 @@ public class CarRentalControllerImpl implements CarRentalController {
         List<Cars> carsList = carsRepository.findAll();
         List<Places> placesList = placesRepository.findAll();
         List<Clients> clientsList = clientsRepository.findAll();
-        for (Cars cars : carsList) {
-                cars.setPriceUSD(cars.getPrice().divide(BigDecimal.valueOf(getRates(USD_CURRENCY))));
-                cars.setPriceEUR(cars.getPrice().divide(BigDecimal.valueOf(getRates(EUR_CURRENCY))));
-                carsRepository.save(cars);
-            }
+//        for (Cars cars : carsList) {
+//                cars.setPriceUSD(cars.getPrice().divide(BigDecimal.valueOf(getRates(USD_CURRENCY))));
+//                cars.setPriceEUR(cars.getPrice().divide(BigDecimal.valueOf(getRates(EUR_CURRENCY))));
+//                carsRepository.save(cars);
+//            }
         model.addAttribute("carsList", carsList);
         model.addAttribute("placesList", placesList);
         model.addAttribute("clientsList", clientsList);
