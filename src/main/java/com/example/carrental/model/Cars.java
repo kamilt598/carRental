@@ -1,18 +1,17 @@
-package com.example.carrental.Model;
+package com.example.carrental.model;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.springframework.lang.Nullable;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.math.BigDecimal;
 
-@NoArgsConstructor
+@Builder
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "cars")
 public class Cars {
@@ -28,7 +27,5 @@ public class Cars {
     private Boolean isRented;
     private String picture;
     private BigDecimal price;
-    private BigDecimal priceUSD;
-    private BigDecimal priceEUR;
     private String location;
 }

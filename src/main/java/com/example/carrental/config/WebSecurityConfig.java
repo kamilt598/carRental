@@ -1,4 +1,4 @@
-package com.example.carrental.Config;
+package com.example.carrental.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

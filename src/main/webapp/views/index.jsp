@@ -27,9 +27,12 @@
                             <h2>Make your trip</h2>
                             <div class="form-group">
                                 <label class="label">Pick-up location</label>
-                                <select class="custom-select" name="pickUpCity">
-                                    <option value="${choosenPickUpCity}">${choosenPickUpCity}</option>
-                                </select>
+                                 <select class="custom-select" name="dropOffCity">
+                                    <option selected>Choose...</option>
+                                    <d:forEach items="${placesList}" var="placeEach">
+                                        <option value="${placeEach.city}">${placeEach.city}</option>
+                                    </d:forEach>
+                                 </select>
                             </div>
                             <div class="form-group">
                                 <label class="label">Drop-off location</label>
@@ -59,9 +62,9 @@
                                     <d:forEach items="${carsFiltered}" var="carEach">
                                         <option value="${carEach.id}">${carEach.brand} ${carEach.model}
                                             - <fmt:formatNumber type="number" maxFractionDigits="2"
-                                                                value="${carEach.priceUSD}"/>$
+                                                                value="${carEach.price}"/>PLN
                                             (<fmt:formatNumber type="number" maxFractionDigits="2"
-                                                               value="${carEach.price}"/>PLN)/day
+                                                               value="${carEach.priceUsd}"/>$)/day
                                         </option>
                                     </d:forEach>
                                 </select>
@@ -139,9 +142,9 @@
                                     <div class="d-flex mb-3">
                                         <span class="cat">${carEach.type}</span>
                                         <p class="price ml-auto"><fmt:formatNumber type="number" maxFractionDigits="2"
-                                                                                   value="${carEach.priceUSD}"/>$
+                                                                                   value="${carEach.price}"/>PLN
                                             (<fmt:formatNumber type="number" maxFractionDigits="2"
-                                                               value="${carEach.price}"/>PLN)<span>/day</span></p>
+                                                               value="${carEach.priceUsd}"/>$)<span>/day</span></p>
                                     </div>
                                     <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book
                                         now</a> <a href="#" class="btn btn-secondary py-2 ml-1">Details</a></p>

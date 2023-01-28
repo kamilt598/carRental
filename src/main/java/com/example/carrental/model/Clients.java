@@ -1,16 +1,18 @@
-package com.example.carrental.Model;
+package com.example.carrental.model;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Entity
 @Table(name = "clients")
+@Builder
 public class Clients {
     @Id
     private Long id;

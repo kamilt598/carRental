@@ -1,10 +1,11 @@
-package com.example.carrental.Controller;
+package com.example.carrental.controller;
 
 
-import com.example.carrental.Converter.ClientsConverter;
-import com.example.carrental.DTO.ClientsDTO;
-import com.example.carrental.Model.Clients;
-import com.example.carrental.Repository.ClientsRepository;
+import com.example.carrental.dto.ClientDto;
+import com.example.carrental.getter.ClientGetter;
+import com.example.carrental.model.Clients;
+import com.example.carrental.repository.ClientsRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,17 +16,11 @@ import org.springframework.web.servlet.view.RedirectView;
 
 
 @Controller
-public class Login {
+@RequiredArgsConstructor
+public class LoginController {
 
     private final ClientsRepository clientsRepository;
-    private final ClientsConverter clientsConverter;
     private final PasswordEncoder passwordEncoder;
-
-    public Login(ClientsRepository clientsRepository, ClientsConverter clientsConverter, PasswordEncoder passwordEncoder) {
-        this.clientsRepository = clientsRepository;
-        this.clientsConverter = clientsConverter;
-        this.passwordEncoder = passwordEncoder;
-    }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String getLogin(Model model) {
@@ -38,11 +33,13 @@ public class Login {
     }
 
     @RequestMapping(value = {"/register"}, method = RequestMethod.GET)
-    public String getRegister() { return "register"; }
+    public String getRegister() {
+        return "register";
+    }
 
     @RequestMapping(value = {"/register"}, method = RequestMethod.POST)
-    public RedirectView registerUser(@ModelAttribute ClientsDTO clientsDTO) {
-        Clients clients = clientsConverter.DTOToEntity(clientsDTO);
+    public RedirectView registerUser(@ModelAttribute ClientDto clientDTO) {
+        Clients clients = ClientGetter.DTOToEntity(clientDTO);
         clients.setPassword(passwordEncoder.encode(clients.getPassword()));
         clientsRepository.save(clients);
         return new RedirectView("/login");

@@ -1,4 +1,4 @@
-package com.example.carrental.Model;
+package com.example.carrental.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

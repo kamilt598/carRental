@@ -1,11 +1,12 @@
-package com.example.carrental.DTO;
+package com.example.carrental.dto;
 
+import lombok.Builder;
 import lombok.Data;
 
 @Data
-public class ClientsDTO {
+@Builder
+public class ClientDto {
 
-    private Long id;
     private String nick;
     private String password;
     private String firstName;
