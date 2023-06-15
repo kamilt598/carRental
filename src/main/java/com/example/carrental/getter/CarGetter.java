@@ -3,12 +3,10 @@ package com.example.carrental.getter;
 import com.example.carrental.dto.CarDto;
 import com.example.carrental.model.Cars;
 import com.example.carrental.repository.CarsRepository;
-import com.example.carrental.service.GetRatesService;
+import com.example.carrental.service.RateService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
-import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,21 +15,14 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class CarGetter {
 
-    private static BigDecimal EUR_RATE;
-    private static BigDecimal USD_RATE;
     private final CarsRepository carsRepository;
-
-    @PostConstruct
-    private void setRates() {
-        EUR_RATE = GetRatesService.getRates("EUR");
-        USD_RATE = GetRatesService.getRates("USD");
-    }
+    private final RateService rateService;
 
     public List<CarDto> getCars() {
-        return entityToDTO(carsRepository.findAll());
+        return mapToDto(carsRepository.findAll());
     }
 
-    public static CarDto entityToDTO(Cars cars) {
+    private CarDto mapToDto(Cars cars) {
         return CarDto.builder()
                 .id(cars.getId())
                 .brand(cars.getBrand())
@@ -44,35 +35,14 @@ public class CarGetter {
                 .picture(cars.getPicture())
                 .price(cars.getPrice())
                 .location(cars.getLocation())
-                .priceEur(cars.getPrice().divide(EUR_RATE, RoundingMode.HALF_UP))
-                .priceUsd(cars.getPrice().divide(USD_RATE, RoundingMode.HALF_UP))
+                .priceEur(cars.getPrice().divide(rateService.getRates("EUR"), RoundingMode.HALF_UP))
+                .priceUsd(cars.getPrice().divide(rateService.getRates("USD"), RoundingMode.HALF_UP))
                 .build();
     }
 
-    public static List<CarDto> entityToDTO(List<Cars> carsList) {
+    private List<CarDto> mapToDto(List<Cars> carsList) {
         return carsList.stream()
-                .map(CarGetter::entityToDTO)
-                .collect(Collectors.toList());
-    }
-
-    public static Cars DTOToEntity(CarDto carDto) {
-        return Cars.builder()
-                .brand(carDto.getBrand())
-                .model(carDto.getModel())
-                .type(carDto.getType())
-                .productionYear(carDto.getProductionYear())
-                .engine(carDto.getEngine())
-                .color(carDto.getColor())
-                .isRented(carDto.getIsRented())
-                .picture(carDto.getPicture())
-                .price(carDto.getPrice())
-                .location(carDto.getLocation())
-                .build();
-    }
-
-    public static List<Cars> DTOToEntity(List<CarDto> carDtos) {
-        return carDtos.stream()
-                .map(CarGetter::DTOToEntity)
+                .map(this::mapToDto)
                 .collect(Collectors.toList());
     }
 }

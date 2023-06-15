@@ -1,5 +1,6 @@
 package com.example.carrental.config;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,12 +15,10 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    private final DataSource dataSource;
 
-    public WebSecurityConfig(DataSource dataSource) {
-        this.dataSource = dataSource;
-    }
+    private final DataSource dataSource;
 
     @Bean
     protected PasswordEncoder passwordEncoder() {

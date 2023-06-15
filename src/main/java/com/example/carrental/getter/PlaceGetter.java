@@ -1,8 +1,6 @@
 package com.example.carrental.getter;
 
-import com.example.carrental.dto.CarDto;
 import com.example.carrental.dto.PlaceDto;
-import com.example.carrental.model.Cars;
 import com.example.carrental.model.Places;
 import com.example.carrental.repository.PlacesRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,30 +16,18 @@ public class PlaceGetter {
     private final PlacesRepository placesRepository;
 
     public List<PlaceDto> getPlaces() {
-        return entityToDTO(placesRepository.findAll());
+        return mapToDto(placesRepository.findAll());
     }
 
-    public static PlaceDto entityToDTO(Places places) {
+    private PlaceDto mapToDto(Places places) {
         return PlaceDto.builder()
                 .city(places.getCity())
                 .build();
     }
 
-    public static List<PlaceDto> entityToDTO(List<Places> placesList) {
+    private List<PlaceDto> mapToDto(List<Places> placesList) {
         return placesList.stream()
-                .map(PlaceGetter::entityToDTO)
-                .collect(Collectors.toList());
-    }
-
-    public static Places DTOToEntity(PlaceDto placeDto) {
-        return Places.builder()
-                .city(placeDto.getCity())
-                .build();
-    }
-
-    public static List<Places> DTOToEntity(List<PlaceDto> placeDtos) {
-        return placeDtos.stream()
-                .map(PlaceGetter::DTOToEntity)
+                .map(this::mapToDto)
                 .collect(Collectors.toList());
     }
 }

@@ -2,9 +2,7 @@ package com.example.carrental.model;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,6 +13,7 @@ import javax.persistence.Table;
 @Table(name = "places")
 public class Places {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String city;
 }

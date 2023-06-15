@@ -50,7 +50,6 @@
                 <li class="nav-item"><a href='<c:url value="car"/>' class="nav-link">Cars</a></li>
                 <li class="nav-item"><a href='<c:url value="blog"/>' class="nav-link">Blog</a></li>
                 <li class="nav-item"><a href='<c:url value="contact"/>' class="nav-link">Contact</a></li>
-                <li class="nav-item"><a href='<c:url value="myTrips"/>' class="nav-link">My Trips</a></li>
                 <sec:authorize access="!isAuthenticated()">
                     <li class="nav-item"><a href='<c:url value="/login"/>' class="nav-link" style="color: #01d28e"
                                             onmouseover="this.style.color='#fff'"
@@ -60,6 +59,7 @@
                                             onmouseleave="this.style.color='#01d28e'">Sign Up</a></li>
                 </sec:authorize>
                 <sec:authorize access="isAuthenticated()">
+                    <li class="nav-item"><a href='<c:url value="myRentals"/>' class="nav-link">My Rentals</a></li>
                     <li class="nav-item"><a href='<c:url value="/logout"/>' class="nav-link" style="color: #01d28e"
                                             onmouseover="this.style.color='#fff'"
                                             onmouseleave="this.style.color='#01d28e'">Log Out</a></li>

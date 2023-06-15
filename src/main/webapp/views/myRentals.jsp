@@ -18,13 +18,13 @@
     	<div class="container">
     		<div class="row justify-content-center">
           <div class="col-md-12 heading-section text-center ftco-animate mb-5">
-            <h2 class="mb-2">My trips</h2>
+            <h2 class="mb-2">My rentals</h2>
           </div>
         </div>
     		<div class="row">
     			<div class="col-md-12">
 						<d:forEach items="${rentalsList}" var="rentalsEach">
-    					${rentalsEach.car.brand}
+    					${rentalsEach.carId.brand}
                         </d:forEach>
     			</div>
     		</div>

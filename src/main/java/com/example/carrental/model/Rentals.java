@@ -13,13 +13,16 @@ import javax.persistence.*;
 @Table(name = "rentals")
 public class Rentals {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String startDate;
     private String endDate;
-    private String pickUpTime;
     private String pickUpCity;
     private String dropOffCity;
-    private Long clientId;
-    private Long carId;
-    private Long placeId;
+    @OneToOne
+    @JoinColumn(name = "car_id")
+    private Cars carId;
+    @ManyToOne
+    @JoinColumn(name = "client_id")
+    private Clients clientId;
 }

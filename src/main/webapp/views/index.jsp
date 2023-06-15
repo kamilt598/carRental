@@ -1,5 +1,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="e" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@include file="dynamic/header.jspf" %>
 
 <div class="hero-wrap ftco-degree-bg" style="background-image: url('/resources/images/bg_1.jpg');"
@@ -27,7 +28,7 @@
                             <h2>Make your trip</h2>
                             <div class="form-group">
                                 <label class="label">Pick-up location</label>
-                                 <select class="custom-select" name="dropOffCity">
+                                 <select class="custom-select" name="pickUpCity">
                                     <option selected>Choose...</option>
                                     <d:forEach items="${placesList}" var="placeEach">
                                         <option value="${placeEach.city}">${placeEach.city}</option>
@@ -69,10 +70,14 @@
                                     </d:forEach>
                                 </select>
                             </div>
-
-                            <div class="form-group">
-                                <input type="submit" value="Rent A Car Now" class="btn btn-secondary py-3 px-4">
-                            </div>
+                            <sec:authorize access="!isAuthenticated()">
+                                <p><a href='<c:url value="/login"/>' class="btn btn-secondary py-3 px-4">Please sign in to rent a car</a></p>
+                            </sec:authorize>
+                            <sec:authorize access="isAuthenticated()">
+                                <div class="form-group">
+                                    <input type="submit" value="Rent A Car Now" class="btn btn-secondary py-3 px-4">
+                                </div>
+                            </sec:authorize>
                         </form>
                     </div>
 

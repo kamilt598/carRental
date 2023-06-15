@@ -2,9 +2,7 @@ package com.example.carrental.model;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,6 +13,7 @@ import javax.persistence.Table;
 @Builder
 public class Clients {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String firstName;
     private String lastName;
@@ -22,5 +21,6 @@ public class Clients {
     private String email;
     private String nick;
     private String password;
-    private String roles;
+    private String roles = "ROLE_ADMIN";
+    private Boolean enable = true;
 }
