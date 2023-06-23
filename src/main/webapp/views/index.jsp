@@ -1,6 +1,5 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="e" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html; charset=UTF-8" %>
 <%@include file="dynamic/header.jspf" %>
 
 <div class="hero-wrap ftco-degree-bg" style="background-image: url('/resources/images/bg_1.jpg');"
@@ -56,26 +55,12 @@
                                            name="endDate">
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="label">Cars available</label>
-                                <select class="custom-select" name="carId">
-                                    <option selected>Choose...</option>
-                                    <d:forEach items="${carsFiltered}" var="carEach">
-                                        <option value="${carEach.id}">${carEach.brand} ${carEach.model}
-                                            - <fmt:formatNumber type="number" maxFractionDigits="2"
-                                                                value="${carEach.price}"/>PLN
-                                            (<fmt:formatNumber type="number" maxFractionDigits="2"
-                                                               value="${carEach.priceUsd}"/>$)/day
-                                        </option>
-                                    </d:forEach>
-                                </select>
-                            </div>
                             <sec:authorize access="!isAuthenticated()">
                                 <p><a href='<c:url value="/login"/>' class="btn btn-secondary py-3 px-4">Please sign in to rent a car</a></p>
                             </sec:authorize>
                             <sec:authorize access="isAuthenticated()">
                                 <div class="form-group">
-                                    <input type="submit" value="Rent A Car Now" class="btn btn-secondary py-3 px-4">
+                                    <input type="submit" value="Choose a car" class="btn btn-secondary py-3 px-4">
                                 </div>
                             </sec:authorize>
                         </form>
@@ -114,7 +99,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <p><a href="#" class="btn btn-primary py-3 px-4">Reserve Your Perfect Car</a></p>
                         </div>
                     </div>
                 </div>
@@ -122,47 +106,5 @@
         </div>
     </div>
 </section>
-
-
-<section class="ftco-section ftco-no-pt bg-light">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12 heading-section text-center ftco-animate mb-5">
-                <span class="subheading">What we offer</span>
-                <h2 class="mb-2">Featured Vehicles</h2>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="carousel-car owl-carousel">
-
-                    <d:forEach items="${carsList}" var="carEach">
-                        <div class="item">
-                            <div class="car-wrap rounded ftco-animate">
-                                <div class="img rounded d-flex align-items-end"
-                                     style="background-image: url(${carEach.picture});">
-                                </div>
-                                <div class="text">
-                                    <h2 class="mb-0"><a href="#">${carEach.brand} ${carEach.model}</a></h2>
-                                    <div class="d-flex mb-3">
-                                        <span class="cat">${carEach.type}</span>
-                                        <p class="price ml-auto"><fmt:formatNumber type="number" maxFractionDigits="2"
-                                                                                   value="${carEach.price}"/>PLN
-                                            (<fmt:formatNumber type="number" maxFractionDigits="2"
-                                                               value="${carEach.priceUsd}"/>$)<span>/day</span></p>
-                                    </div>
-                                    <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book
-                                        now</a> <a href="#" class="btn btn-secondary py-2 ml-1">Details</a></p>
-                                </div>
-                            </div>
-                        </div>
-                    </d:forEach>
-
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
 
 <%@include file="dynamic/footer.jspf" %>

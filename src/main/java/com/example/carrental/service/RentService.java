@@ -6,7 +6,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 public interface RentService {
 
-    RedirectView createRental(Rentals rentals, String nickname);
+    RedirectView createRental(Rentals rental, String nickname, Long carId);
 
     String getRentals(Model model, String nickname);
 }

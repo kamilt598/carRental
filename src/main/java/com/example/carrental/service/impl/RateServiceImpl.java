@@ -24,8 +24,7 @@ public class RateServiceImpl implements RateService {
         try {
             final RestTemplate restTemplate = new RestTemplate();
             final String url = nbpApiUrl + currency + JSON_FORMAT;
-            final ResponseEntity<String> response
-                    = restTemplate.getForEntity(url, String.class);
+            final ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
             final ObjectMapper mapper = new ObjectMapper();
             final JsonNode rates = mapper.readTree(response.getBody()).path("rates");
             return BigDecimal.valueOf(rates.get(0).path("mid").asDouble());

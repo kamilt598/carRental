@@ -22,6 +22,10 @@ public class CarGetter {
         return mapToDto(carsRepository.findAll());
     }
 
+    public List<CarDto> getCarsWithoutIds(List<Long> ids) {
+        return mapToDto(carsRepository.findByIdNotIn(ids));
+    }
+
     private CarDto mapToDto(Cars cars) {
         return CarDto.builder()
                 .id(cars.getId())
@@ -31,7 +35,6 @@ public class CarGetter {
                 .productionYear(cars.getProductionYear())
                 .engine(cars.getEngine())
                 .color(cars.getColor())
-                .isRented(cars.getIsRented())
                 .picture(cars.getPicture())
                 .price(cars.getPrice())
                 .location(cars.getLocation())

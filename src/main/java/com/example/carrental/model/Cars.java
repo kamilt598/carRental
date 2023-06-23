@@ -1,8 +1,7 @@
 package com.example.carrental.model;
 
-import lombok.*;
-
 import javax.persistence.*;
+import lombok.*;
 import java.math.BigDecimal;
 
 @Builder
@@ -23,7 +22,6 @@ public class Cars {
     private String productionYear;
     private String engine;
     private String color;
-    private Boolean isRented;
     private String picture;
     private BigDecimal price;
     private String location;

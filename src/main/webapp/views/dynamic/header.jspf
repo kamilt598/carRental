@@ -1,71 +1,61 @@
 <%@ taglib prefix="c" uri="http://www.springframework.org/tags" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="d" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <title>Car Rental</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <link href='<c:url value="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap"/>'
-          rel="stylesheet">
-
-    <link rel="stylesheet" href='<c:url value="/resources/css/open-iconic-bootstrap.min.css"/>'>
-    <link rel="stylesheet" href='<c:url value="/resources/css/animate.css"/>'>
-
-    <link rel="stylesheet" href='<c:url value="/resources/css/owl.carousel.min.css"/>'>
-    <link rel="stylesheet" href='<c:url value="/resources/css/owl.theme.default.min.css"/>'>
-    <link rel="stylesheet" href='<c:url value="/resources/css/magnific-popup.css"/>'>
-
-    <link rel="stylesheet" href='<c:url value="/resources/css/aos.css"/>'>
-
-    <link rel="stylesheet" href='<c:url value="/resources/css/ionicons.min.css"/>'>
-
-    <link rel="stylesheet" href='<c:url value="/resources/css/bootstrap-datepicker.css"/>'>
-    <link rel="stylesheet" href='<c:url value="/resources/css/jquery.timepicker.css"/>'>
-
-
-    <link rel="stylesheet" href='<c:url value="/resources/css/flaticon.css"/>'>
-    <link rel="stylesheet" href='<c:url value="/resources/css/icomoon.css"/>'>
-    <link rel="stylesheet" href='<c:url value="/resources/css/style.css"/>'>
-
-</head>
-<body>
-
-<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-    <div class="container">
-        <a class="navbar-brand" href='<c:url value="/"/>'>Car<span>Rental</span></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
-                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+   <head>
+      <title>Car Rental</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <link href='<c:url value="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap"/>'
+         rel="stylesheet">
+      <link rel="stylesheet" href='<c:url value="/resources/css/open-iconic-bootstrap.min.css"/>'>
+      <link rel="stylesheet" href='<c:url value="/resources/css/animate.css"/>'>
+      <link rel="stylesheet" href='<c:url value="/resources/css/owl.carousel.min.css"/>'>
+      <link rel="stylesheet" href='<c:url value="/resources/css/owl.theme.default.min.css"/>'>
+      <link rel="stylesheet" href='<c:url value="/resources/css/magnific-popup.css"/>'>
+      <link rel="stylesheet" href='<c:url value="/resources/css/aos.css"/>'>
+      <link rel="stylesheet" href='<c:url value="/resources/css/ionicons.min.css"/>'>
+      <link rel="stylesheet" href='<c:url value="/resources/css/bootstrap-datepicker.css"/>'>
+      <link rel="stylesheet" href='<c:url value="/resources/css/jquery.timepicker.css"/>'>
+      <link rel="stylesheet" href='<c:url value="/resources/css/flaticon.css"/>'>
+      <link rel="stylesheet" href='<c:url value="/resources/css/icomoon.css"/>'>
+      <link rel="stylesheet" href='<c:url value="/resources/css/style.css"/>'>
+   </head>
+   <body>
+      <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+         <div class="container">
+            <a class="navbar-brand" href='<c:url value="/"/>'>Car<span>Rental</span></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+               aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
-        </button>
-
-        <div class="collapse navbar-collapse" id="ftco-nav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a href='<c:url value="/"/>' class="nav-link">Home</a></li>
-                <li class="nav-item"><a href='<c:url value="about"/>' class="nav-link">About</a></li>
-                <li class="nav-item"><a href='<c:url value="services"/>' class="nav-link">Services</a></li>
-                <li class="nav-item"><a href='<c:url value="pricing"/>' class="nav-link">Pricing</a></li>
-                <li class="nav-item"><a href='<c:url value="car"/>' class="nav-link">Cars</a></li>
-                <li class="nav-item"><a href='<c:url value="blog"/>' class="nav-link">Blog</a></li>
-                <li class="nav-item"><a href='<c:url value="contact"/>' class="nav-link">Contact</a></li>
-                <sec:authorize access="!isAuthenticated()">
-                    <li class="nav-item"><a href='<c:url value="/login"/>' class="nav-link" style="color: #01d28e"
-                                            onmouseover="this.style.color='#fff'"
-                                            onmouseleave="this.style.color='#01d28e'">Sign In</a></li>
-                    <li class="nav-item"><a href='<c:url value="register"/>' class="nav-link" style="color: #01d28e"
-                                            onmouseover="this.style.color='#fff'"
-                                            onmouseleave="this.style.color='#01d28e'">Sign Up</a></li>
-                </sec:authorize>
-                <sec:authorize access="isAuthenticated()">
-                    <li class="nav-item"><a href='<c:url value="myRentals"/>' class="nav-link">My Rentals</a></li>
-                    <li class="nav-item"><a href='<c:url value="/logout"/>' class="nav-link" style="color: #01d28e"
-                                            onmouseover="this.style.color='#fff'"
-                                            onmouseleave="this.style.color='#01d28e'">Log Out</a></li>
-                </sec:authorize>
-            </ul>
-        </div>
-    </div>
-</nav>
-<!-- END nav -->
+            </button>
+            <div class="collapse navbar-collapse" id="ftco-nav">
+               <ul class="navbar-nav ml-auto">
+                  <li class="nav-item"><a href='<c:url value="/"/>' class="nav-link">Home</a></li>
+                  <li class="nav-item"><a href='<c:url value="about"/>' class="nav-link">About</a></li>
+                  <li class="nav-item"><a href='<c:url value="services"/>' class="nav-link">Services</a></li>
+                  <li class="nav-item"><a href='<c:url value="pricing"/>' class="nav-link">Pricing</a></li>
+                  <li class="nav-item"><a href='<c:url value="car"/>' class="nav-link">Cars</a></li>
+                  <li class="nav-item"><a href='<c:url value="blog"/>' class="nav-link">Blog</a></li>
+                  <li class="nav-item"><a href='<c:url value="contact"/>' class="nav-link">Contact</a></li>
+                  <sec:authorize access="!isAuthenticated()">
+                     <li class="nav-item"><a href='<c:url value="/login"/>' class="nav-link" style="color: #01d28e"
+                        onmouseover="this.style.color='#fff'"
+                        onmouseleave="this.style.color='#01d28e'">Sign In</a></li>
+                     <li class="nav-item"><a href='<c:url value="register"/>' class="nav-link" style="color: #01d28e"
+                        onmouseover="this.style.color='#fff'"
+                        onmouseleave="this.style.color='#01d28e'">Sign Up</a></li>
+                  </sec:authorize>
+                  <sec:authorize access="isAuthenticated()">
+                     <li class="nav-item"><a href='<c:url value="myRentals"/>' class="nav-link">My Rentals</a></li>
+                     <li class="nav-item"><a href='<c:url value="/logout"/>' class="nav-link" style="color: #01d28e"
+                        onmouseover="this.style.color='#fff'"
+                        onmouseleave="this.style.color='#01d28e'">Log Out</a></li>
+                  </sec:authorize>
+               </ul>
+            </div>
+         </div>
+      </nav>
+      <!-- END nav -->

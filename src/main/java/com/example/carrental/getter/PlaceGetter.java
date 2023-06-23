@@ -19,6 +19,10 @@ public class PlaceGetter {
         return mapToDto(placesRepository.findAll());
     }
 
+    public List<PlaceDto> getPlacesWithout(String place) {
+        return mapToDto(placesRepository.findByCityNotLike(place));
+    }
+
     private PlaceDto mapToDto(Places places) {
         return PlaceDto.builder()
                 .city(places.getCity())
