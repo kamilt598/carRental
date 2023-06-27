@@ -1,10 +1,9 @@
 package com.example.carrental.model;
 
-import javax.persistence.*;
-
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @NoArgsConstructor

@@ -36,10 +36,10 @@ public class CarGetter {
                 .engine(cars.getEngine())
                 .color(cars.getColor())
                 .picture(cars.getPicture())
-                .price(cars.getPrice())
+                .price(cars.getPrice().setScale(0, RoundingMode.HALF_UP))
                 .location(cars.getLocation())
-                .priceEur(cars.getPrice().divide(rateService.getRates("EUR"), RoundingMode.HALF_UP))
-                .priceUsd(cars.getPrice().divide(rateService.getRates("USD"), RoundingMode.HALF_UP))
+                .priceEur(cars.getPrice().divide(rateService.getRate("EUR"), 0, RoundingMode.HALF_UP))
+                .priceUsd(cars.getPrice().divide(rateService.getRate("USD"), 0, RoundingMode.HALF_UP))
                 .build();
     }
 

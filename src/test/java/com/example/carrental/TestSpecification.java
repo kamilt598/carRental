@@ -22,7 +22,6 @@ import java.util.List;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
-import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 
 @SpringBootTest
 public class TestSpecification {
@@ -30,7 +29,7 @@ public class TestSpecification {
     @Autowired
     private WebApplicationContext webApplicationContext;
     @MockBean
-    private RentalsRepository rentalsRepository;
+    protected RentalsRepository rentalsRepository;
     @MockBean
     private CarGetter carGetter;
     @MockBean
@@ -43,13 +42,12 @@ public class TestSpecification {
     public void setup() {
         this.mockMvc = MockMvcBuilders
                 .webAppContextSetup(webApplicationContext)
-                .apply(springSecurity())
                 .build();
         when(rentalsRepository.save(any(Rentals.class)))
                 .thenReturn(Rentals.builder()
                         .id(1L)
                         .build());
-        when(rentalsRepository.findByClientId_Nick(anyString()))
+        when(rentalsRepository.findByClientIdNick(anyString()))
                 .thenReturn(List.of(Rentals.builder()
                         .id(1L)
                         .build()));

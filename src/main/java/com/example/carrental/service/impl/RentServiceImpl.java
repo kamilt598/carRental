@@ -1,6 +1,5 @@
 package com.example.carrental.service.impl;
 
-import com.example.carrental.getter.CarGetter;
 import com.example.carrental.model.Rentals;
 import com.example.carrental.repository.CarsRepository;
 import com.example.carrental.repository.ClientsRepository;
@@ -34,7 +33,7 @@ public class RentServiceImpl implements RentService {
 
     @Override
     public String getRentals(Model model, String nickname) {
-        final List<Rentals> rentalsList = rentalsRepository.findByClientId_Nick(nickname);
+        final List<Rentals> rentalsList = rentalsRepository.findByClientIdNick(nickname);
         model.addAttribute("rentalsList", rentalsList);
         //TODO dodanie wyświetlania wypożyczeń
         return "myRentals";
