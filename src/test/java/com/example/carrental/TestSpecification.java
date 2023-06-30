@@ -21,6 +21,7 @@ import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
@@ -53,6 +54,7 @@ public class TestSpecification {
                         .build()));
         when(rentalsRepository.findInDateRange(any(), any()))
                 .thenReturn(Collections.emptyList());
+        doNothing().when(rentalsRepository).deleteById(any());
         when(carGetter.getCars())
                 .thenReturn(List.of(CarDto.builder()
                         .id(1L)

@@ -66,7 +66,7 @@ class CarControllerTest extends TestSpecification {
 
     @Test
     void getCars() throws Exception {
-        mockMvc.perform(get("/car-selection"))
+        mockMvc.perform(get("/car"))
                 .andExpect(status().isOk());
     }
 }

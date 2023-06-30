@@ -25,11 +25,11 @@
             <form method="post" action='<c:url value="/login"/>'>
                <div class="form-group">
                   <label class="label">Nickname</label>
-                  <input type="text" class="form-control" placeholder="nickname" name="nick">
+                  <input type="text" class="form-control" placeholder="nickname" name="nick" required>
                </div>
                <div class="form-group">
                   <label class="label">Password</label>
-                  <input type="password" class="form-control" placeholder="password" name="password">
+                  <input type="password" class="form-control" placeholder="password" name="password" required>
                </div>
                <div class="form-group">
                   <input type="submit" value="Sign in" class="btn btn-secondary px-4">

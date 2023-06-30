@@ -315,11 +315,23 @@ AOS.init({
 
     $('#book_pick_date,#book_off_date').datepicker({
         'format': 'yyyy-mm-dd',
-        'autoclose': true
+        'autoclose': true,
+        'startDate': "today"
     });
 
-    $('#time_pick').timepicker();
+    $('#book_pick_date').datepicker({
+        'todayHighlight': true,
+        'toggleActive': true
+    }).on('changeDate', function(selected){
+      updateDate(selected);
+    });
+    function updateDate(selected){
+       var minDate = new Date(selected.date.valueOf());
+       $('#book_off_date').datepicker('setStartDate', minDate);
+       $('#book_off_date').datepicker('setDate', minDate);
+    }
 
+    $('#time_pick').timepicker();
 
 })
 (jQuery);

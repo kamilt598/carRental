@@ -2,7 +2,6 @@ package com.example.carrental.dto;
 
 import lombok.Builder;
 import lombok.Data;
-import org.springframework.lang.Nullable;
 
 import java.math.BigDecimal;
 
@@ -20,8 +19,6 @@ public class CarDto {
     private String picture;
     private BigDecimal price;
     private String location;
-    @Nullable
     private BigDecimal priceEur;
-    @Nullable
     private BigDecimal priceUsd;
 }

@@ -28,7 +28,6 @@
                             <div class="form-group">
                                 <label class="label">Pick-up location</label>
                                  <select class="custom-select" name="pickUpCity">
-                                    <option selected>Choose...</option>
                                     <d:forEach items="${placesList}" var="placeEach">
                                         <option value="${placeEach.city}">${placeEach.city}</option>
                                     </d:forEach>
@@ -37,7 +36,6 @@
                             <div class="form-group">
                                 <label class="label">Drop-off location</label>
                                 <select class="custom-select" name="dropOffCity">
-                                    <option selected>Choose...</option>
                                     <d:forEach items="${placesList}" var="placeEach">
                                         <option value="${placeEach.city}">${placeEach.city}</option>
                                     </d:forEach>
@@ -47,12 +45,12 @@
                                 <div class="form-group mr-2">
                                     <label class="label">Pick-up date</label>
                                     <input type="text" class="form-control" id="book_pick_date" placeholder="Date"
-                                           name="startDate">
+                                           name="startDate" required>
                                 </div>
                                 <div class="form-group ml-2">
                                     <label class="label">Drop-off date</label>
                                     <input type="text" class="form-control" id="book_off_date" placeholder="Date"
-                                           name="endDate">
+                                           name="endDate" required>
                                 </div>
                             </div>
                             <sec:authorize access="!isAuthenticated()">

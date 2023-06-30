@@ -9,6 +9,7 @@ import com.example.carrental.repository.RentalsRepository;
 import com.example.carrental.service.CarService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -31,6 +32,12 @@ public class CarServiceImpl implements CarService {
         redirectAttributes.addFlashAttribute("pickUpCities", placeGetter.getPlacesWithout(rental.getPickUpCity()));
         redirectAttributes.addFlashAttribute("dropOffCities", placeGetter.getPlacesWithout(rental.getDropOffCity()));
         return new RedirectView("/car-selection", true);
+    }
+
+    @Override
+    public String getAllCars(Model model) {
+        model.addAttribute("cars", carGetter.getCars());
+        return "car";
     }
 
     private List<CarDto> getCars(List<Long> rentedCarsIds) {

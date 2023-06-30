@@ -19,13 +19,60 @@
             <h2 class="mb-2">My rentals</h2>
          </div>
       </div>
-      <div class="row">
-         <div class="col-md-12">
-            <d:forEach items="${rentalsList}" var="rentalsEach">
-               ${rentalsEach.carId.brand}
-            </d:forEach>
+      <div class="row" style="display: flex;justify-content: center;align-items: center;">
+         <div class="col-md-2">
+            <h4 align="center">Car</h4>
+         </div>
+         <div class="col-md-2">
+            <h4 align="center">Pick-up date</h4>
+         </div>
+         <div class="col-md-2">
+            <h4 align="center">Drop-off date</h4>
+         </div>
+         <div class="col-md-2">
+            <h4 align="center">Pick-up location</h4>
+         </div>
+         <div class="col-md-2">
+            <h4 align="center">Drop-off location</h4>
+         </div>
+         <div class="col-md-2">
          </div>
       </div>
+      <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+      <form method="post" action='<c:url value="/myRentals"/>'>
+         <input type="hidden" id="rentalId" name="rentalId">
+         <d:forEach items="${rentalsList}" var="rentalsEach">
+            <div class="row" style="display: flex;justify-content: center;align-items: center;">
+               <div class="col-md-2">
+                  <h5 align="center">${rentalsEach.carId.brand} ${rentalsEach.carId.model}</h5>
+               </div>
+               <div class="col-md-2">
+                  <h5 align="center">${rentalsEach.startDate}</h5>
+               </div>
+               <div class="col-md-2">
+                  <h5 align="center">${rentalsEach.endDate}</h5>
+               </div>
+               <div class="col-md-2">
+                  <h5 align="center">${rentalsEach.pickUpCity}</h5>
+               </div>
+               <div class="col-md-2">
+                  <h5 align="center">${rentalsEach.dropOffCity}</h5>
+               </div>
+               <div class="col-md-2">
+                  <div class="form-group" align="center">
+                     <input type="submit" value="Cancel the rental" class="btn btn-danger py-3 px-4" onclick="setvar('${rentalsEach.id}');">
+                  </div>
+               </div>
+            </div>
+            <hr>
+         </d:forEach>
+      </form>
    </div>
 </section>
 <%@include file="dynamic/footer.jspf"%>
+<script>
+   function setvar(id)
+   {
+   	rentalId.value=id;
+   }
+</script>

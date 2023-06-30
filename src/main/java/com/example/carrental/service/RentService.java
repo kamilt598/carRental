@@ -9,4 +9,6 @@ public interface RentService {
     RedirectView createRental(Rentals rental, String nickname, Long carId);
 
     String getRentals(Model model, String nickname);
+
+    void cancelRental(Long rentalId);
 }

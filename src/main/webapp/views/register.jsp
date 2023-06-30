@@ -25,27 +25,27 @@
             <form method="post" action='<c:url value="/register"/>'>
                <div class="form-group">
                   <label class="label">Nickname</label>
-                  <input type="text" class="form-control" placeholder="nickname" name="nick">
+                  <input type="text" class="form-control" placeholder="nickname" name="nick" required>
                </div>
                <div class="form-group">
                   <label class="label">Password</label>
-                  <input type="password" class="form-control" placeholder="password" name="password">
+                  <input type="password" class="form-control" placeholder="password" name="password" required>
                </div>
                <div class="form-group">
                   <label class="label">E-mail</label>
-                  <input type="text" class="form-control" placeholder="e-mail" name="email">
+                  <input type="text" class="form-control" placeholder="e-mail" name="email" required>
                </div>
                <div class="form-group">
                   <label class="label">First Name</label>
-                  <input type="text" class="form-control" placeholder="First Name" name="firstName">
+                  <input type="text" class="form-control" placeholder="First Name" name="firstName" required>
                </div>
                <div class="form-group">
                   <label class="label">Last Name</label>
-                  <input type="text" class="form-control" placeholder="Last Name" name="lastName">
+                  <input type="text" class="form-control" placeholder="Last Name" name="lastName" required>
                </div>
                <div class="form-group">
                   <label class="label">Phone number</label>
-                  <input type="text" class="form-control" placeholder="Phone number" name="phoneNumber">
+                  <input type="text" class="form-control" placeholder="Phone number" name="phoneNumber" required>
                </div>
                <div class="form-group">
                   <input type="submit" value="Sign up" class="btn btn-secondary px-4">

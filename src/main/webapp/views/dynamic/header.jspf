@@ -38,7 +38,6 @@
                   <li class="nav-item"><a href='<c:url value="services"/>' class="nav-link">Services</a></li>
                   <li class="nav-item"><a href='<c:url value="pricing"/>' class="nav-link">Pricing</a></li>
                   <li class="nav-item"><a href='<c:url value="car"/>' class="nav-link">Cars</a></li>
-                  <li class="nav-item"><a href='<c:url value="blog"/>' class="nav-link">Blog</a></li>
                   <li class="nav-item"><a href='<c:url value="contact"/>' class="nav-link">Contact</a></li>
                   <sec:authorize access="!isAuthenticated()">
                      <li class="nav-item"><a href='<c:url value="/login"/>' class="nav-link" style="color: #01d28e"

@@ -54,4 +54,15 @@ class RentControllerTest extends TestSpecification {
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("rentalsList", hasSize(notNullValue())));
     }
+
+    @Test
+    @WithMockUser("principal")
+    void cancelRental() throws Exception {
+        Principal principal = mock(Principal.class);
+        mockMvc.perform(post("/myRentals")
+                        .param("rentalId", "1")
+                        .principal(principal))
+                .andExpect(status().isOk())
+                .andExpect(model().attribute("rentalsList", hasSize(notNullValue())));
+    }
 }

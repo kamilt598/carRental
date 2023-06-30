@@ -35,7 +35,11 @@ public class RentServiceImpl implements RentService {
     public String getRentals(Model model, String nickname) {
         final List<Rentals> rentalsList = rentalsRepository.findByClientIdNick(nickname);
         model.addAttribute("rentalsList", rentalsList);
-        //TODO dodanie wyświetlania wypożyczeń
         return "myRentals";
+    }
+
+    @Override
+    public void cancelRental(Long rentalId) {
+        rentalsRepository.deleteById(rentalId);
     }
 }
