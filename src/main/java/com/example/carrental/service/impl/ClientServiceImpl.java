@@ -1,7 +1,5 @@
 package com.example.carrental.service.impl;
 
-import com.example.carrental.dto.ClientDto;
-import com.example.carrental.mapper.ClientMapper;
 import com.example.carrental.model.Clients;
 import com.example.carrental.repository.ClientsRepository;
 import com.example.carrental.service.ClientService;
@@ -18,10 +16,9 @@ public class ClientServiceImpl implements ClientService {
     private final PasswordEncoder passwordEncoder;
 
     @Override
-    public RedirectView registerClient(ClientDto clientDto) {
-        final Clients clients = ClientMapper.mapToEntity(clientDto);
-        clients.setPassword(passwordEncoder.encode(clients.getPassword()));
-        clientsRepository.save(clients);
+    public RedirectView registerClient(Clients client) {
+        client.setPassword(passwordEncoder.encode(client.getPassword()));
+        clientsRepository.save(client);
         return new RedirectView("/login");
     }
 }

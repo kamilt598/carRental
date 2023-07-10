@@ -29,9 +29,9 @@
             <div class="col-md-6">
                <div class="form-group">
                   <select class="custom-select" name="pickUpCity">
-                     <option selected>${rental.pickUpCity}</option>
+                     <option selected value="${rental.pickUpCity.id}">${rental.pickUpCity.city}</option>
                      <d:forEach items="${pickUpCities}" var="placeEach">
-                        <option value="${placeEach.city}">${placeEach.city}</option>
+                        <option value="${placeEach.id}">${placeEach.city}</option>
                      </d:forEach>
                   </select>
                </div>
@@ -39,9 +39,9 @@
             <div class="col-md-6">
                <div class="form-group">
                   <select class="custom-select" name="dropOffCity">
-                     <option selected>${rental.dropOffCity}</option>
+                     <option selected value="${rental.dropOffCity.id}">${rental.dropOffCity.city}</option>
                      <d:forEach items="${dropOffCities}" var="placeEach">
-                        <option value="${placeEach.city}">${placeEach.city}</option>
+                        <option value="${placeEach.id}">${placeEach.city}</option>
                      </d:forEach>
                   </select>
                </div>

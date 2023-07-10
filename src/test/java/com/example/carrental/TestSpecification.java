@@ -1,10 +1,10 @@
 package com.example.carrental;
 
 import com.example.carrental.dto.CarDto;
-import com.example.carrental.dto.PlaceDto;
 import com.example.carrental.getter.CarGetter;
 import com.example.carrental.getter.PlaceGetter;
 import com.example.carrental.model.Clients;
+import com.example.carrental.model.Places;
 import com.example.carrental.model.Rentals;
 import com.example.carrental.repository.ClientsRepository;
 import com.example.carrental.repository.RentalsRepository;
@@ -64,11 +64,13 @@ public class TestSpecification {
                         .id(1L)
                         .build()));
         when(placeGetter.getPlacesWithout(any()))
-                .thenReturn(List.of(PlaceDto.builder()
+                .thenReturn(List.of(Places.builder()
+                        .id(1L)
                         .city("City")
                         .build()));
         when(placeGetter.getPlaces())
-                .thenReturn(List.of(PlaceDto.builder()
+                .thenReturn(List.of(Places.builder()
+                        .id(1L)
                         .city("City")
                         .build()));
         when(clientsRepository.save(any(Clients.class)))

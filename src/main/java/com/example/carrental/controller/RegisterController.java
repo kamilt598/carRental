@@ -1,7 +1,7 @@
 package com.example.carrental.controller;
 
 
-import com.example.carrental.dto.ClientDto;
+import com.example.carrental.model.Clients;
 import com.example.carrental.service.ClientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -23,7 +23,7 @@ public class RegisterController {
     }
 
     @PostMapping(value = {"/register"})
-    public RedirectView register(@ModelAttribute ClientDto clientDto) {
-        return clientService.registerClient(clientDto);
+    public RedirectView register(@ModelAttribute Clients client) {
+        return clientService.registerClient(client);
     }
 }

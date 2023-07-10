@@ -25,5 +25,7 @@ public class Cars {
     private String color;
     private String picture;
     private BigDecimal price;
-    private String location;
+    @ManyToOne
+    @JoinColumn(name = "place_id")
+    private Places place;
 }

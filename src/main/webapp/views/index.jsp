@@ -29,7 +29,7 @@
                                 <label class="label">Pick-up location</label>
                                  <select class="custom-select" name="pickUpCity">
                                     <d:forEach items="${placesList}" var="placeEach">
-                                        <option value="${placeEach.city}">${placeEach.city}</option>
+                                        <option value="${placeEach.id}">${placeEach.city}</option>
                                     </d:forEach>
                                  </select>
                             </div>
@@ -37,7 +37,7 @@
                                 <label class="label">Drop-off location</label>
                                 <select class="custom-select" name="dropOffCity">
                                     <d:forEach items="${placesList}" var="placeEach">
-                                        <option value="${placeEach.city}">${placeEach.city}</option>
+                                        <option value="${placeEach.id}">${placeEach.city}</option>
                                     </d:forEach>
                                 </select>
                             </div>

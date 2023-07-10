@@ -20,8 +20,8 @@ class RentControllerTest extends TestSpecification {
     void createRental() throws Exception {
         Principal principal = mock(Principal.class);
         mockMvc.perform(post("/car-selection")
-                        .param("pickUpCity", "Rzeszow")
-                        .param("dropOffCity", "Krakow")
+                        .param("pickUpCity", "1", "Rzeszow")
+                        .param("dropOffCity", "2", "Krakow")
                         .param("startDate", "2023-01-01")
                         .param("endDate", "2023-01-02")
                         .param("carId", "1")
@@ -33,8 +33,8 @@ class RentControllerTest extends TestSpecification {
     @Test
     void selectCars() throws Exception {
         mockMvc.perform(post("/car-selection")
-                        .param("pickUpCity", "Rzeszow")
-                        .param("dropOffCity", "Krakow")
+                        .param("pickUpCity", "1", "Rzeszow")
+                        .param("dropOffCity", "2", "Krakow")
                         .param("startDate", "2023-01-01")
                         .param("endDate", "2023-01-02"))
                 .andExpect(status().is3xxRedirection())

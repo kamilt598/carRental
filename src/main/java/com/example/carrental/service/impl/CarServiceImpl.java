@@ -27,10 +27,11 @@ public class CarServiceImpl implements CarService {
     public RedirectView selectCars(Rentals rental, RedirectAttributes redirectAttributes) {
         final List<Long> rentedCarsIds = getRentedCarsIds(rental);
         final List<CarDto> cars = getCars(rentedCarsIds);
-        redirectAttributes.addFlashAttribute("cars", cars);
-        redirectAttributes.addFlashAttribute("rental", rental);
-        redirectAttributes.addFlashAttribute("pickUpCities", placeGetter.getPlacesWithout(rental.getPickUpCity()));
-        redirectAttributes.addFlashAttribute("dropOffCities", placeGetter.getPlacesWithout(rental.getDropOffCity()));
+        redirectAttributes
+                .addFlashAttribute("cars", cars)
+                .addFlashAttribute("rental", rental)
+                .addFlashAttribute("pickUpCities", placeGetter.getPlacesWithout(rental.getPickUpCity()))
+                .addFlashAttribute("dropOffCities", placeGetter.getPlacesWithout(rental.getDropOffCity()));
         return new RedirectView("/car-selection", true);
     }
 

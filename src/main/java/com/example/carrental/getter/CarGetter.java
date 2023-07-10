@@ -37,7 +37,7 @@ public class CarGetter {
                 .color(cars.getColor())
                 .picture(cars.getPicture())
                 .price(cars.getPrice().setScale(0, RoundingMode.HALF_UP))
-                .location(cars.getLocation())
+                .location(cars.getPlace().getCity())
                 .priceEur(cars.getPrice().divide(rateService.getRate("EUR"), 0, RoundingMode.HALF_UP))
                 .priceUsd(cars.getPrice().divide(rateService.getRate("USD"), 0, RoundingMode.HALF_UP))
                 .build();

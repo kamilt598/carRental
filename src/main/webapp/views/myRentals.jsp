@@ -53,10 +53,10 @@
                   <h5 align="center">${rentalsEach.endDate}</h5>
                </div>
                <div class="col-md-2">
-                  <h5 align="center">${rentalsEach.pickUpCity}</h5>
+                  <h5 align="center">${rentalsEach.pickUpCity.city}</h5>
                </div>
                <div class="col-md-2">
-                  <h5 align="center">${rentalsEach.dropOffCity}</h5>
+                  <h5 align="center">${rentalsEach.dropOffCity.city}</h5>
                </div>
                <div class="col-md-2">
                   <div class="form-group" align="center">

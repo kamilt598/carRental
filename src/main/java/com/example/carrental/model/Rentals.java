@@ -21,8 +21,12 @@ public class Rentals {
     private LocalDate startDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
-    private String pickUpCity;
-    private String dropOffCity;
+    @ManyToOne
+    @JoinColumn(name = "pick_up_place_id")
+    private Places pickUpCity;
+    @ManyToOne
+    @JoinColumn(name = "drop_off_place_id")
+    private Places dropOffCity;
     @OneToOne
     @JoinColumn(name = "car_id")
     private Cars carId;
