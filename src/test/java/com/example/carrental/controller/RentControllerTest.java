@@ -24,7 +24,7 @@ class RentControllerTest extends TestSpecification {
                         .param("dropOffCity", "2", "Krakow")
                         .param("startDate", "2023-01-01")
                         .param("endDate", "2023-01-02")
-                        .param("carId", "1")
+                        .param("carId", car.getId().toString())
                         .principal(principal))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/myRentals"));
@@ -60,7 +60,7 @@ class RentControllerTest extends TestSpecification {
     void cancelRental() throws Exception {
         Principal principal = mock(Principal.class);
         mockMvc.perform(post("/myRentals")
-                        .param("rentalId", "1")
+                        .param("rentalId", rental.getId().toString())
                         .principal(principal))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("rentalsList", hasSize(notNullValue())));

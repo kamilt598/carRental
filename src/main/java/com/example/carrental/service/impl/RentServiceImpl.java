@@ -35,7 +35,7 @@ public class RentServiceImpl implements RentService {
     public String getRentals(Model model, String nickname) {
         final List<Rentals> rentalsList = rentalsRepository.findByClientIdNick(nickname);
         model.addAttribute("rentalsList", rentalsList);
-        return "myRentals";
+        return "myRentalsView";
     }
 
     @Override

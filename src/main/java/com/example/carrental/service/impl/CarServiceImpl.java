@@ -38,7 +38,7 @@ public class CarServiceImpl implements CarService {
     @Override
     public String getAllCars(Model model) {
         model.addAttribute("cars", carGetter.getCars());
-        return "car";
+        return "carView";
     }
 
     private List<CarDto> getCars(List<Long> rentedCarsIds) {

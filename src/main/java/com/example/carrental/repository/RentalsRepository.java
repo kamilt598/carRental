@@ -8,6 +8,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface RentalsRepository extends JpaRepository<Rentals, Long> {
+    List<Rentals> findByEndDate(LocalDate endDate);
+
     List<Rentals> findByClientIdNick(String nick);
 
     @Query("""

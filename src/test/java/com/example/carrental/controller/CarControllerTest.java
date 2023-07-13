@@ -44,13 +44,6 @@ class CarControllerTest extends TestSpecification {
 
     @Test
     void selectCarsWhenRentalsExists() throws Exception {
-        when(rentalsRepository.findInDateRange(ArgumentMatchers.any(), ArgumentMatchers.any()))
-                .thenReturn(List.of(Rentals.builder()
-                        .id(1L)
-                        .carId(Cars.builder()
-                                .id(1L)
-                                .build())
-                        .build()));
         mockMvc.perform(post("/index")
                         .param("pickUpCity", "1", "Rzeszow")
                         .param("dropOffCity", "2", "Krakow")
@@ -67,6 +60,12 @@ class CarControllerTest extends TestSpecification {
     @Test
     void getCars() throws Exception {
         mockMvc.perform(get("/car"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void getCarSelection() throws Exception {
+        mockMvc.perform(get("/car-selection"))
                 .andExpect(status().isOk());
     }
 }

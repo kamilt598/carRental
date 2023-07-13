@@ -19,7 +19,7 @@ public class RegisterController {
 
     @GetMapping(value = {"/register"})
     public String getRegisterView() {
-        return "register";
+        return "registerView";
     }
 
     @PostMapping(value = {"/register"})
