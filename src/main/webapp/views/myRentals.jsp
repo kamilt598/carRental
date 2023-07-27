@@ -39,7 +39,7 @@
          </div>
       </div>
       <hr style="height:2px;border-width:0;color:gray;background-color:gray">
-      <form method="post" action='<c:url value="/myRentals"/>'>
+      <form method="post" action='<c:url value="/my-rentals"/>'>
          <input type="hidden" id="rentalId" name="rentalId">
          <d:forEach items="${rentalsList}" var="rentalsEach">
             <div class="row" style="display: flex;justify-content: center;align-items: center;">

@@ -30,12 +30,12 @@ public class RentController {
                 : carService.selectCars(rental, redirectAttributes);
     }
 
-    @GetMapping(value = "/myRentals")
+    @GetMapping(value = "/my-rentals")
     public String getRentals(Principal principal, Model model) {
         return rentService.getRentals(model, principal.getName());
     }
 
-    @PostMapping(value = "/myRentals")
+    @PostMapping(value = "/my-rentals")
     public String cancelRental(Principal principal, Model model, Long rentalId) {
         rentService.cancelRental(rentalId);
         return getRentals(principal, model);

@@ -1,5 +1,5 @@
 <%@include file="dynamic/header.jspf"%>
-<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('images/bg_3.jpg');" data-stellar-background-ratio="0.5">
+<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('/resources/images/bg_3.jpg');" data-stellar-background-ratio="0.5">
    <div class="overlay"></div>
    <div class="container">
       <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
@@ -15,10 +15,9 @@
       <div class="row justify-content-center">
          <div class="col-md-12">
             <div class="car-details">
-               <div class="img rounded" style="background-image: url(/resources/images/bg_1.jpg);"></div>
+               <div class="img rounded" style="background-image: url(${car.picture});"></div>
                <div class="text text-center">
-                  <span class="subheading">Cheverolet</span>
-                  <h2>Mercedes Grand Sedan</h2>
+                  <h2>${car.brand} ${car.model}</h2>
                </div>
             </div>
          </div>
@@ -28,11 +27,10 @@
             <div class="media block-6 services">
                <div class="media-body py-md-4">
                   <div class="d-flex mb-3 align-items-center">
-                     <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-dashboard"></span></div>
                      <div class="text">
                         <h3 class="heading mb-0 pl-3">
-                           Mileage
-                           <span>40,000</span>
+                           Engine
+                           <span>${car.engine}</span>
                         </h3>
                      </div>
                   </div>
@@ -43,11 +41,10 @@
             <div class="media block-6 services">
                <div class="media-body py-md-4">
                   <div class="d-flex mb-3 align-items-center">
-                     <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-pistons"></span></div>
                      <div class="text">
                         <h3 class="heading mb-0 pl-3">
-                           Transmission
-                           <span>Manual</span>
+                           Production Year
+                           <span>${car.productionYear}</span>
                         </h3>
                      </div>
                   </div>
@@ -58,11 +55,10 @@
             <div class="media block-6 services">
                <div class="media-body py-md-4">
                   <div class="d-flex mb-3 align-items-center">
-                     <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-car-seat"></span></div>
                      <div class="text">
                         <h3 class="heading mb-0 pl-3">
-                           Seats
-                           <span>5 Adults</span>
+                           Color
+                           <span>${car.color}</span>
                         </h3>
                      </div>
                   </div>
@@ -73,26 +69,10 @@
             <div class="media block-6 services">
                <div class="media-body py-md-4">
                   <div class="d-flex mb-3 align-items-center">
-                     <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-backpack"></span></div>
                      <div class="text">
                         <h3 class="heading mb-0 pl-3">
-                           Luggage
-                           <span>4 Bags</span>
-                        </h3>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="col-md d-flex align-self-stretch ftco-animate">
-            <div class="media block-6 services">
-               <div class="media-body py-md-4">
-                  <div class="d-flex mb-3 align-items-center">
-                     <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-diesel"></span></div>
-                     <div class="text">
-                        <h3 class="heading mb-0 pl-3">
-                           Fuel
-                           <span>Petrol</span>
+                           Type
+                           <span>${car.type}</span>
                         </h3>
                      </div>
                   </div>
@@ -295,50 +275,33 @@
             <h2 class="mb-2">Related Cars</h2>
          </div>
       </div>
-      <div class="row">
-         <div class="col-md-4">
-            <div class="car-wrap rounded ftco-animate">
-               <div class="img rounded d-flex align-items-end" style="background-image: url(/resources/images/car-1.jpg);">
-               </div>
-               <div class="text">
-                  <h2 class="mb-0"><a href="car-single.jsp">Mercedes Grand Sedan</a></h2>
-                  <div class="d-flex mb-3">
-                     <span class="cat">Cheverolet</span>
-                     <p class="price ml-auto">$500 <span>/day</span></p>
-                  </div>
-                  <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="car-single.jsp" class="btn btn-secondary py-2 ml-1">Details</a></p>
-               </div>
-            </div>
-         </div>
-         <div class="col-md-4">
-            <div class="car-wrap rounded ftco-animate">
-               <div class="img rounded d-flex align-items-end" style="background-image: url(/resources/images/car-2.jpg);">
-               </div>
-               <div class="text">
-                  <h2 class="mb-0"><a href="car-single.jsp">Range Rover</a></h2>
-                  <div class="d-flex mb-3">
-                     <span class="cat">Subaru</span>
-                     <p class="price ml-auto">$500 <span>/day</span></p>
-                  </div>
-                  <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="car-single.jsp" class="btn btn-secondary py-2 ml-1">Details</a></p>
-               </div>
-            </div>
-         </div>
-         <div class="col-md-4">
-            <div class="car-wrap rounded ftco-animate">
-               <div class="img rounded d-flex align-items-end" style="background-image: url(/resources/images/car-3.jpg);">
-               </div>
-               <div class="text">
-                  <h2 class="mb-0"><a href="car-single.jsp">Mercedes Grand Sedan</a></h2>
-                  <div class="d-flex mb-3">
-                     <span class="cat">Cheverolet</span>
-                     <p class="price ml-auto">$500 <span>/day</span></p>
-                  </div>
-                  <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="car-single.jsp" class="btn btn-secondary py-2 ml-1">Details</a></p>
-               </div>
-            </div>
-         </div>
-      </div>
+       <div class="row">
+          <div class="col-md-12">
+             <div class="carousel-car owl-carousel">
+                <d:forEach items="${cars}" var="carEach">
+                   <div class="item">
+                      <div class="car-wrap rounded ftco-animate">
+                         <div class="img rounded d-flex align-items-end"
+                            style="background-image: url(${carEach.picture});">
+                         </div>
+                         <div class="text">
+                            <h2 class="mb-0"><a href="#">${carEach.brand} ${carEach.model}</a></h2>
+                            <div class="d-flex mb-3">
+                                                       <span class="cat">${carEach.type}</span>
+                                                       <p class="price ml-auto">${carEach.price}PLN(${carEach.priceUsd}$)
+                                                          <span>/day</span>
+                                                       </p>
+                                                    </div>
+                            <p class="d-flex mb-0 d-block"><a href="/" class="btn btn-primary py-2 mr-1">Book
+                               now</a> <a href="/car-details/${carEach.id}" class="btn btn-secondary py-2 ml-1">Details</a>
+                            </p>
+                         </div>
+                      </div>
+                   </div>
+                </d:forEach>
+             </div>
+          </div>
+       </div>
    </div>
 </section>
 <%@include file="dynamic/footer.jspf"%>

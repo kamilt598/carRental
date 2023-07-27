@@ -27,7 +27,7 @@ class RentControllerTest extends TestSpecification {
                         .param("carId", car.getId().toString())
                         .principal(principal))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/myRentals"));
+                .andExpect(redirectedUrl("/my-rentals"));
     }
 
     @Test
@@ -49,7 +49,7 @@ class RentControllerTest extends TestSpecification {
     @WithMockUser("principal")
     void getRentals() throws Exception {
         Principal principal = mock(Principal.class);
-        mockMvc.perform(get("/myRentals")
+        mockMvc.perform(get("/my-rentals")
                         .principal(principal))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("rentalsList", hasSize(notNullValue())));
@@ -59,7 +59,7 @@ class RentControllerTest extends TestSpecification {
     @WithMockUser("principal")
     void cancelRental() throws Exception {
         Principal principal = mock(Principal.class);
-        mockMvc.perform(post("/myRentals")
+        mockMvc.perform(post("/my-rentals")
                         .param("rentalId", rental.getId().toString())
                         .principal(principal))
                 .andExpect(status().isOk())

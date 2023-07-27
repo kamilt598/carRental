@@ -6,7 +6,6 @@ import lombok.Data;
 @Data
 @Builder
 public class ClientDto {
-
     private String nick;
     private String firstName;
     private String lastName;

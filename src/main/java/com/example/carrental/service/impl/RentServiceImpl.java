@@ -28,14 +28,14 @@ public class RentServiceImpl implements RentService {
         rental.setClientId(clientsRepository.findByNick(authentication.getName()));
         rental.setCarId(carsRepository.findById(carId).orElseThrow());
         rentalsRepository.save(rental);
-        return new RedirectView("/myRentals");
+        return new RedirectView("/my-rentals");
     }
 
     @Override
     public String getRentals(Model model, String nickname) {
         final List<Rentals> rentalsList = rentalsRepository.findByClientIdNick(nickname);
         model.addAttribute("rentalsList", rentalsList);
-        return "myRentalsView";
+        return "myRentals";
     }
 
     @Override

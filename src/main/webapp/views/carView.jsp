@@ -12,7 +12,6 @@
    </div>
 </section>
 <section class="ftco-section bg-light">
-   <form method="post" action='<c:url value="/car-selection"/>'>
       <input type="hidden" id="carId" name="carId">
       <br>
       <div class="container">
@@ -31,36 +30,14 @@
                            </p>
                         </div>
                         <p class="d-flex mb-0 d-block">
-                           <input type="submit" value="Book now" class="btn btn-primary py-2 mr-1" onclick="setvar('${carEach.id}');">
-                           <a href="car-single.jsp" class="btn btn-secondary py-2 ml-1">Details</a>
+                            <p class="d-flex mb-0 d-block"><a href="/" class="btn btn-primary py-2 mr-1">Book now</a>
+                           <a href="/car-details/${carEach.id}" class="btn btn-secondary py-2 ml-1">Details</a>
                         </p>
                      </div>
                   </div>
                </div>
             </d:forEach>
          </div>
-         <div class="row mt-5">
-            <div class="col text-center">
-               <div class="block-27">
-                  <ul>
-                     <li><a href="#">&lt;</a></li>
-                     <li class="active"><span>1</span></li>
-                     <li><a href="#">2</a></li>
-                     <li><a href="#">3</a></li>
-                     <li><a href="#">4</a></li>
-                     <li><a href="#">5</a></li>
-                     <li><a href="#">&gt;</a></li>
-                  </ul>
-               </div>
-            </div>
-         </div>
       </div>
-   </form>
 </section>
 <%@include file="dynamic/footer.jspf"%>
-<script>
-   function setvar(id)
-   {
-   	carId.value=id;
-   }
-</script>

@@ -21,6 +21,6 @@ public class Clients {
     private String email;
     private String nick;
     private String password;
-    private String roles = "ROLE_ADMIN";
+    private String roles = "ROLE_USER";
     private Boolean enable = true;
 }

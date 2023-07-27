@@ -98,27 +98,12 @@
                         </div>
                         <p class="d-flex mb-0 d-block">
                            <input type="submit" value="Book now" class="btn btn-primary py-2 mr-1" onclick="setvar('${carEach.id}');">
-                           <a href="car-single.jsp" class="btn btn-secondary py-2 ml-1">Details</a>
+                           <input type="button" value="Details" class="btn btn-secondary py-2 ml-1" onclick="window.open('/car-details/${carEach.id}')">
                         </p>
                      </div>
                   </div>
                </div>
             </d:forEach>
-         </div>
-         <div class="row mt-5">
-            <div class="col text-center">
-               <div class="block-27">
-                  <ul>
-                     <li><a href="#">&lt;</a></li>
-                     <li class="active"><span>1</span></li>
-                     <li><a href="#">2</a></li>
-                     <li><a href="#">3</a></li>
-                     <li><a href="#">4</a></li>
-                     <li><a href="#">5</a></li>
-                     <li><a href="#">&gt;</a></li>
-                  </ul>
-               </div>
-            </div>
          </div>
       </div>
    </form>

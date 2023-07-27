@@ -10,4 +10,8 @@ public interface CarService {
     RedirectView selectCars(Rentals rental, RedirectAttributes redirectAttributes);
 
     String getAllCars(Model model);
+
+    String getCarDetails(Model model, Long carIdid);
+
+    String getCarSelection(Model model);
 }
