@@ -6,8 +6,6 @@ import com.example.carrental.repository.ClientsRepository;
 import com.example.carrental.repository.RentalsRepository;
 import com.example.carrental.service.RentService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.view.RedirectView;
@@ -24,8 +22,7 @@ public class RentServiceImpl implements RentService {
 
     @Override
     public RedirectView createRental(Rentals rental, String nickname, Long carId) {
-        final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        rental.setClientId(clientsRepository.findByNick(authentication.getName()));
+        rental.setClientId(clientsRepository.findByNick(nickname).orElseThrow());
         rental.setCarId(carsRepository.findById(carId).orElseThrow());
         rentalsRepository.save(rental);
         return new RedirectView("/my-rentals");

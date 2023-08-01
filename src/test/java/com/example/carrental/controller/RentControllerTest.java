@@ -2,13 +2,13 @@ package com.example.carrental.controller;
 
 import com.example.carrental.TestSpecification;
 import org.junit.jupiter.api.Test;
-import org.springframework.security.test.context.support.WithMockUser;
 
 import java.security.Principal;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -16,9 +16,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class RentControllerTest extends TestSpecification {
 
     @Test
-    @WithMockUser("principal")
     void createRental() throws Exception {
         Principal principal = mock(Principal.class);
+        when(principal.getName()).thenReturn("test");
         mockMvc.perform(post("/car-selection")
                         .param("pickUpCity", "1", "Rzeszow")
                         .param("dropOffCity", "2", "Krakow")
@@ -46,9 +46,9 @@ class RentControllerTest extends TestSpecification {
     }
 
     @Test
-    @WithMockUser("principal")
     void getRentals() throws Exception {
         Principal principal = mock(Principal.class);
+        when(principal.getName()).thenReturn("test");
         mockMvc.perform(get("/my-rentals")
                         .principal(principal))
                 .andExpect(status().isOk())
@@ -56,9 +56,9 @@ class RentControllerTest extends TestSpecification {
     }
 
     @Test
-    @WithMockUser("principal")
     void cancelRental() throws Exception {
         Principal principal = mock(Principal.class);
+        when(principal.getName()).thenReturn("test");
         mockMvc.perform(post("/my-rentals")
                         .param("rentalId", rental.getId().toString())
                         .principal(principal))

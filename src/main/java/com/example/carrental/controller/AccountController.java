@@ -30,8 +30,8 @@ public class AccountController {
     }
 
     @PostMapping(value = {"/edit-account"})
-    public String saveAccount(ClientDto client, String password, Model model) {
-        return clientService.saveAccount(client, password, model);
+    public String saveAccount(Principal principal, ClientDto client, String password, Model model) {
+        return clientService.saveAccount(principal.getName(), client, password, model);
     }
 
     @PostMapping(value = {"/account"})

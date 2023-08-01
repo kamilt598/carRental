@@ -8,6 +8,7 @@ import com.example.carrental.repository.CarsRepository;
 import com.example.carrental.repository.ClientsRepository;
 import com.example.carrental.repository.PlacesRepository;
 import com.example.carrental.repository.RentalsRepository;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -66,5 +67,13 @@ public class TestSpecification {
                 .endDate(LocalDate.now(ZoneOffset.UTC).minusDays(1L))
                 .clientId(client)
                 .build());
+    }
+
+    @AfterEach
+    public void cleanup() {
+        rentalsRepository.deleteAll();
+        clientsRepository.deleteAll();
+        carsRepository.deleteAll();
+        placesRepository.deleteAll();
     }
 }

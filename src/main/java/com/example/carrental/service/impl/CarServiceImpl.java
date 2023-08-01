@@ -16,6 +16,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
@@ -33,8 +34,8 @@ public class CarServiceImpl implements CarService {
         redirectAttributes
                 .addFlashAttribute("cars", cars)
                 .addFlashAttribute("rental", rental)
-                .addFlashAttribute("pickUpCities", places.stream().filter(place -> !place.equals(rental.getPickUpCity())))
-                .addFlashAttribute("dropOffCities", places.stream().filter(place -> !place.equals(rental.getDropOffCity())));
+                .addFlashAttribute("pickUpCities", getPlacesWithoutCity(places, rental.getPickUpCity()))
+                .addFlashAttribute("dropOffCities", getPlacesWithoutCity(places, rental.getDropOffCity()));
         return new RedirectView("/car-selection", true);
     }
 
@@ -77,5 +78,11 @@ public class CarServiceImpl implements CarService {
                 .map(Rentals::getCarId)
                 .map(Cars::getId)
                 .toList();
+    }
+
+    private List<Places> getPlacesWithoutCity(List<Places> places, Places city) {
+        return places.stream()
+                .filter(place -> !place.equals(city))
+                .collect(Collectors.toList());
     }
 }

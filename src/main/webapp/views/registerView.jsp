@@ -18,6 +18,7 @@
       <div class="row justify-content-center">
          <div class="col-md-12 heading-section text-center ftco-animate mb-5">
             <h2 class="mb-2">Register</h2>
+            <h3 class="mb-2" style="color:red;">${error}</h3>
          </div>
       </div>
       <div class="row">
@@ -25,27 +26,27 @@
             <form method="post" action='<c:url value="/register"/>'>
                <div class="form-group">
                   <label class="label">Nickname</label>
-                  <input type="text" class="form-control" placeholder="nickname" name="nick" required>
+                  <input type="text" class="form-control" placeholder="nickname" name="nick" value="${client.nick}" required>
                </div>
                <div class="form-group">
                   <label class="label">Password</label>
-                  <input type="password" class="form-control" placeholder="password" name="password" required>
+                  <input type="password" class="form-control" placeholder="password" name="password" value="${client.password}" required>
                </div>
                <div class="form-group">
                   <label class="label">E-mail</label>
-                  <input type="text" class="form-control" placeholder="e-mail" name="email" required>
+                  <input type="email" class="form-control" placeholder="e-mail" name="email" value="${client.email}" required>
                </div>
                <div class="form-group">
                   <label class="label">First Name</label>
-                  <input type="text" class="form-control" placeholder="First Name" name="firstName" required>
+                  <input type="text" class="form-control" placeholder="first Name" name="firstName" value="${client.firstName}" required>
                </div>
                <div class="form-group">
                   <label class="label">Last Name</label>
-                  <input type="text" class="form-control" placeholder="Last Name" name="lastName" required>
+                  <input type="text" class="form-control" placeholder="last Name" name="lastName" value="${client.lastName}" required>
                </div>
                <div class="form-group">
                   <label class="label">Phone number</label>
-                  <input type="text" class="form-control" placeholder="Phone number" name="phoneNumber" required>
+                  <input type="tel" class="form-control" placeholder="phone number" name="phoneNumber" value="${client.phoneNumber}" pattern="[0-9]{9}" maxlength="9" required>
                </div>
                <div class="form-group">
                   <input type="submit" value="Sign up" class="btn btn-secondary px-4">

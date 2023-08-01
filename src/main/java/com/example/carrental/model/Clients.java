@@ -9,7 +9,11 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "clients")
+@Table(name = "clients", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "phoneNumber"),
+        @UniqueConstraint(columnNames = "email"),
+        @UniqueConstraint(columnNames = "nick")
+})
 @Builder
 public class Clients {
     @Id

@@ -17,6 +17,7 @@
       <div class="row justify-content-center">
          <div class="col-md-12 heading-section text-center ftco-animate mb-5">
             <h2 class="mb-2">My account</h2>
+            <h3 class="mb-2" style="color:red;">${error}</h3>
          </div>
       </div>
       <form method="post" action='<c:url value="/edit-account"/>'>
@@ -52,7 +53,7 @@
             <h4 align="center">e-mail</h4>
          </div>
          <div class="col-md-7">
-            <input type="text" class="form-control" value="${client.email}" name="email" required>
+            <input type="email" class="form-control" value="${client.email}" name="email" required>
          </div>
       </div>
       <hr style="height:2px;border-width:0;color:gray;background-color:gray">
@@ -61,7 +62,7 @@
             <h4 align="center">Phone number</h4>
          </div>
          <div class="col-md-7">
-            <input type="text" class="form-control" value="${client.phoneNumber}" name="phoneNumber" required>
+            <input type="tel" class="form-control" value="${client.phoneNumber}" name="phoneNumber" pattern="[0-9]{9}" maxlength="9" required>
          </div>
       </div>
       <hr style="height:2px;border-width:0;color:gray;background-color:gray">
