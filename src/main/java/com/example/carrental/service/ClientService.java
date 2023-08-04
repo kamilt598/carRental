@@ -6,8 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.security.Principal;
-
 public interface ClientService {
 
     RedirectView registerClient(Clients client, RedirectAttributes redirectAttributes);

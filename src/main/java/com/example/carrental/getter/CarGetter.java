@@ -2,6 +2,7 @@ package com.example.carrental.getter;
 
 import com.example.carrental.dto.CarDto;
 import com.example.carrental.model.Cars;
+import com.example.carrental.model.Places;
 import com.example.carrental.repository.CarsRepository;
 import com.example.carrental.service.RateService;
 import lombok.RequiredArgsConstructor;
@@ -22,8 +23,12 @@ public class CarGetter {
         return mapToDto(carsRepository.findAll());
     }
 
-    public List<CarDto> getCarsWithoutIds(List<Long> ids) {
-        return mapToDto(carsRepository.findByIdNotIn(ids));
+    public List<CarDto> getCarsFromPlace(Places place) {
+        return mapToDto(carsRepository.findByPlace(place));
+    }
+
+    public List<CarDto> getCarsFromPlaceWithoutIds(Places place, List<Long> ids) {
+        return mapToDto(carsRepository.findByPlaceAndIdNotIn(place, ids));
     }
 
     private CarDto mapToDto(Cars cars) {
@@ -39,7 +44,6 @@ public class CarGetter {
                 .price(cars.getPrice().setScale(0, RoundingMode.HALF_UP))
                 .location(cars.getPlace().getCity())
                 .priceEur(cars.getPrice().divide(rateService.getRate("EUR"), 0, RoundingMode.HALF_UP))
-                .priceUsd(cars.getPrice().divide(rateService.getRate("USD"), 0, RoundingMode.HALF_UP))
                 .build();
     }
 

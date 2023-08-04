@@ -20,24 +20,23 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.ZoneOffset;
 
-import static org.mockito.ArgumentMatchers.any;
-
 @SpringBootTest
 public class TestSpecification {
 
     @Autowired
     private WebApplicationContext webApplicationContext;
     @Autowired
-    private RentalsRepository rentalsRepository;
+    private PlacesRepository placesRepository;
     @Autowired
-    private ClientsRepository clientsRepository;
+    protected ClientsRepository clientsRepository;
     @Autowired
     protected CarsRepository carsRepository;
     @Autowired
-    private PlacesRepository placesRepository;
+    protected RentalsRepository rentalsRepository;
     protected MockMvc mockMvc;
     protected Rentals rental;
     protected Cars car;
+    protected Cars car2;
 
     @BeforeEach
     public void setup() {
@@ -54,10 +53,21 @@ public class TestSpecification {
                 .place(place1)
                 .price(BigDecimal.ONE)
                 .build());
+        car2 = carsRepository.save(Cars.builder()
+                .place(place2)
+                .price(BigDecimal.ONE)
+                .build());
         final Clients client = clientsRepository.save(Clients.builder()
                 .nick("test")
                 .password("test")
                 .roles("ROLE_USER")
+                .build());
+        clientsRepository.save(Clients.builder()
+                .nick("nick")
+                .password("test")
+                .roles("ROLE_USER")
+                .phoneNumber("111111111")
+                .email("email@email.com")
                 .build());
         rental = rentalsRepository.save(Rentals.builder()
                 .carId(car)

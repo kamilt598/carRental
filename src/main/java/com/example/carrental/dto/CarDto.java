@@ -20,5 +20,4 @@ public class CarDto {
     private BigDecimal price;
     private String location;
     private BigDecimal priceEur;
-    private BigDecimal priceUsd;
 }

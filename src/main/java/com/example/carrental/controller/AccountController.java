@@ -34,7 +34,7 @@ public class AccountController {
         return clientService.saveAccount(principal.getName(), client, password, model);
     }
 
-    @PostMapping(value = {"/account"})
+    @PostMapping(value = {"/my-account"})
     public RedirectView deleteAccount(Principal principal) {
         return clientService.deleteAccount(principal.getName());
     }

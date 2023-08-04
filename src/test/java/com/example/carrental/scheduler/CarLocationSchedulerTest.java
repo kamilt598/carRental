@@ -2,13 +2,8 @@ package com.example.carrental.scheduler;
 
 import com.example.carrental.TestSpecification;
 import com.example.carrental.model.Cars;
-import com.example.carrental.model.Places;
-import com.example.carrental.model.Rentals;
-import com.example.carrental.repository.CarsRepository;
-import com.example.carrental.repository.PlacesRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.Optional;
 

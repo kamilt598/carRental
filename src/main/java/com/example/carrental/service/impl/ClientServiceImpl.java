@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.transaction.Transactional;
 import java.util.Objects;
 
 @Component
@@ -50,7 +51,6 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public String editAccount(String nickname, Model model) {
         final Clients client = clientsRepository.findByNick(nickname).orElseThrow();
-        ;
         model.addAttribute("client", ClientMapper.mapToDto(client));
         return "editAccount";
     }
@@ -80,9 +80,9 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
+    @Transactional
     public RedirectView deleteAccount(String nickname) {
         final Clients client = clientsRepository.findByNick(nickname).orElseThrow();
-        ;
         rentalsRepository.deleteByClientId(client);
         clientsRepository.delete(client);
         return new RedirectView("/logout");
@@ -92,13 +92,13 @@ public class ClientServiceImpl implements ClientService {
         String nick = null;
         String phoneNumber = null;
         String email = null;
-        if (!Objects.equals(client.getNick(), clientDto.getNick())) {
+        if (client.getNick() != clientDto.getNick()) {
             nick = clientDto.getNick();
         }
-        if (!Objects.equals(client.getPhoneNumber(), clientDto.getPhoneNumber())) {
+        if (client.getPhoneNumber() != clientDto.getPhoneNumber()) {
             phoneNumber = clientDto.getPhoneNumber();
         }
-        if (!Objects.equals(client.getEmail(), clientDto.getEmail())) {
+        if (client.getEmail() != clientDto.getEmail()) {
             email = clientDto.getEmail();
         }
         validateClient(nick, phoneNumber, email);

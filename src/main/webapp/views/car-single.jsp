@@ -288,7 +288,7 @@
                             <h2 class="mb-0"><a href="#">${carEach.brand} ${carEach.model}</a></h2>
                             <div class="d-flex mb-3">
                                                        <span class="cat">${carEach.type}</span>
-                                                       <p class="price ml-auto">${carEach.price}PLN(${carEach.priceUsd}$)
+                                                       <p class="price ml-auto">${carEach.price}PLN(${carEach.priceEur}&euro;)
                                                           <span>/day</span>
                                                        </p>
                                                     </div>

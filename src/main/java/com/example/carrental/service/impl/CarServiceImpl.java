@@ -29,7 +29,7 @@ public class CarServiceImpl implements CarService {
     @Override
     public RedirectView selectCars(Rentals rental, RedirectAttributes redirectAttributes) {
         final List<Long> rentedCarsIds = getRentedCarsIds(rental);
-        final List<CarDto> cars = getCars(rentedCarsIds);
+        final List<CarDto> cars = getCars(rental.getPickUpCity(), rentedCarsIds);
         final List<Places> places = placesRepository.findAll();
         redirectAttributes
                 .addFlashAttribute("cars", cars)
@@ -66,10 +66,10 @@ public class CarServiceImpl implements CarService {
         return "carSelection";
     }
 
-    private List<CarDto> getCars(List<Long> rentedCarsIds) {
+    private List<CarDto> getCars(Places place, List<Long> rentedCarsIds) {
         return rentedCarsIds.size() != 0
-                ? carGetter.getCarsWithoutIds(rentedCarsIds)
-                : carGetter.getCars();
+                ? carGetter.getCarsFromPlaceWithoutIds(place, rentedCarsIds)
+                : carGetter.getCarsFromPlace(place);
     }
 
     private List<Long> getRentedCarsIds(Rentals rental) {
