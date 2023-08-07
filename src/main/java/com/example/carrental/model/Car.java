@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @Entity
 @Table(name = "cars")
-public class Cars {
+public class Car {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,5 +27,5 @@ public class Cars {
     private BigDecimal price;
     @ManyToOne
     @JoinColumn(name = "place_id")
-    private Places place;
+    private Place place;
 }

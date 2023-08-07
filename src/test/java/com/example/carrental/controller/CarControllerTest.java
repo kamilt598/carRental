@@ -1,7 +1,7 @@
 package com.example.carrental.controller;
 
 import com.example.carrental.TestSpecification;
-import com.example.carrental.model.Rentals;
+import com.example.carrental.model.Rental;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -31,7 +31,7 @@ class CarControllerTest extends TestSpecification {
 
     @Test
     void selectCarsWithRentedCarsIds() throws Exception {
-        rentalsRepository.save(Rentals.builder()
+        rentalRepository.save(Rental.builder()
                 .carId(car2)
                 .startDate(LocalDate.of(2023, 1, 1))
                 .endDate(LocalDate.of(2023, 1, 2))

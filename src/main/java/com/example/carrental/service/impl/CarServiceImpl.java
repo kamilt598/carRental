@@ -2,11 +2,11 @@ package com.example.carrental.service.impl;
 
 import com.example.carrental.dto.CarDto;
 import com.example.carrental.getter.CarGetter;
-import com.example.carrental.model.Cars;
-import com.example.carrental.model.Places;
-import com.example.carrental.model.Rentals;
-import com.example.carrental.repository.PlacesRepository;
-import com.example.carrental.repository.RentalsRepository;
+import com.example.carrental.model.Car;
+import com.example.carrental.model.Place;
+import com.example.carrental.model.Rental;
+import com.example.carrental.repository.PlaceRepository;
+import com.example.carrental.repository.RentalRepository;
 import com.example.carrental.service.CarService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -23,14 +23,14 @@ import java.util.stream.Collectors;
 public class CarServiceImpl implements CarService {
 
     private final CarGetter carGetter;
-    private final RentalsRepository rentalsRepository;
-    private final PlacesRepository placesRepository;
+    private final RentalRepository rentalRepository;
+    private final PlaceRepository placeRepository;
 
     @Override
-    public RedirectView selectCars(Rentals rental, RedirectAttributes redirectAttributes) {
+    public RedirectView selectCars(Rental rental, RedirectAttributes redirectAttributes) {
         final List<Long> rentedCarsIds = getRentedCarsIds(rental);
         final List<CarDto> cars = getCars(rental.getPickUpCity(), rentedCarsIds);
-        final List<Places> places = placesRepository.findAll();
+        final List<Place> places = placeRepository.findAll();
         redirectAttributes
                 .addFlashAttribute("cars", cars)
                 .addFlashAttribute("rental", rental)
@@ -59,28 +59,28 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public String getCarSelection(Model model) {
-        final List<Places> places = placesRepository.findAll();
+        final List<Place> places = placeRepository.findAll();
         model
                 .addAttribute("pickUpCities", places)
                 .addAttribute("dropOffCities", places);
         return "carSelection";
     }
 
-    private List<CarDto> getCars(Places place, List<Long> rentedCarsIds) {
+    private List<CarDto> getCars(Place place, List<Long> rentedCarsIds) {
         return rentedCarsIds.size() != 0
                 ? carGetter.getCarsFromPlaceWithoutIds(place, rentedCarsIds)
                 : carGetter.getCarsFromPlace(place);
     }
 
-    private List<Long> getRentedCarsIds(Rentals rental) {
-        return rentalsRepository.findInDateRange(rental.getStartDate(), rental.getEndDate())
+    private List<Long> getRentedCarsIds(Rental rental) {
+        return rentalRepository.findInDateRange(rental.getStartDate(), rental.getEndDate())
                 .stream()
-                .map(Rentals::getCarId)
-                .map(Cars::getId)
+                .map(Rental::getCarId)
+                .map(Car::getId)
                 .toList();
     }
 
-    private List<Places> getPlacesWithoutCity(List<Places> places, Places city) {
+    private List<Place> getPlacesWithoutCity(List<Place> places, Place city) {
         return places.stream()
                 .filter(place -> !place.equals(city))
                 .collect(Collectors.toList());

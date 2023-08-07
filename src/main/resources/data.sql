@@ -33,4 +33,4 @@ INSERT INTO cars (id, brand, model, type, production_year, engine, color, pictur
 INSERT INTO cars (id, brand, model, type, production_year, engine, color, picture, price, place_id) VALUES (12, 'Audi', 'A1', 'Hatchback', '2015', '1.4 / 185KM', 'Black', '/resources/images/car-12.jpg', 400.00, 5) ON CONFLICT (id) DO NOTHING;
 
 --ADMIN
-INSERT INTO clients (id, first_name, last_name, phone_number, email, nick, password, roles, enable) VALUES (1, 'admin', 'admin', '123123123', 'admin@test.com', 'admin', '$2a$10$08Y9A88VL9OROhOBrIb9puJlrC9cYjM0hAMJ.JUVjMtc6f.5il8G2', 'ROLE_ADMIN', TRUE) ON CONFLICT (id) DO NOTHING;
+INSERT INTO users (id, first_name, last_name, phone_number, email, nick, password, role) VALUES (1, 'admin', 'admin', '123123123', 'admin@test.com', 'admin', '$2a$10$08Y9A88VL9OROhOBrIb9puJlrC9cYjM0hAMJ.JUVjMtc6f.5il8G2', 'ROLE_ADMIN') ON CONFLICT (id) DO NOTHING;

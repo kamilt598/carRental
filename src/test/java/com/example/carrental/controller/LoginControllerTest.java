@@ -22,7 +22,6 @@ class LoginControllerTest extends TestSpecification {
     @WithMockUser(username = "test")
     void login() throws Exception {
         mockMvc.perform(post("/login"))
-                .andExpect(view().name("index"))
-                .andExpect(status().isOk());
+                .andExpect(status().is3xxRedirection());
     }
 }

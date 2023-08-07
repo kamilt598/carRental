@@ -1,7 +1,7 @@
 package com.example.carrental.scheduler;
 
 import com.example.carrental.TestSpecification;
-import com.example.carrental.model.Cars;
+import com.example.carrental.model.Car;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -19,7 +19,7 @@ class CarLocationSchedulerTest extends TestSpecification {
     @Test
     void schedule() {
         carLocationScheduler.schedule();
-        final Optional<Cars> carsOptional = carsRepository.findById(car.getId());
+        final Optional<Car> carsOptional = carRepository.findById(car.getId());
         assertTrue(carsOptional.isPresent());
         assertEquals(carsOptional.get().getPlace().getCity(), "Krakow");
     }

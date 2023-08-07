@@ -31,6 +31,10 @@
                   <label class="label">Password</label>
                   <input type="password" class="form-control" placeholder="password" name="password" required>
                </div>
+               <div>
+                  <input type="checkbox" class="label" name="remember-me" id="remember_me">
+                  <label class="label">Remember me</label>
+               </div>
                <div class="form-group">
                   <input type="submit" value="Sign in" class="btn btn-secondary px-4">
                </div>

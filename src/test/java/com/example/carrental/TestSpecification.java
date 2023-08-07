@@ -1,13 +1,13 @@
 package com.example.carrental;
 
-import com.example.carrental.model.Cars;
-import com.example.carrental.model.Clients;
-import com.example.carrental.model.Places;
-import com.example.carrental.model.Rentals;
-import com.example.carrental.repository.CarsRepository;
-import com.example.carrental.repository.ClientsRepository;
-import com.example.carrental.repository.PlacesRepository;
-import com.example.carrental.repository.RentalsRepository;
+import com.example.carrental.model.Car;
+import com.example.carrental.model.User;
+import com.example.carrental.model.Place;
+import com.example.carrental.model.Rental;
+import com.example.carrental.repository.CarRepository;
+import com.example.carrental.repository.UserRepository;
+import com.example.carrental.repository.PlaceRepository;
+import com.example.carrental.repository.RentalRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,64 +26,64 @@ public class TestSpecification {
     @Autowired
     private WebApplicationContext webApplicationContext;
     @Autowired
-    private PlacesRepository placesRepository;
+    private PlaceRepository placeRepository;
     @Autowired
-    protected ClientsRepository clientsRepository;
+    protected UserRepository userRepository;
     @Autowired
-    protected CarsRepository carsRepository;
+    protected CarRepository carRepository;
     @Autowired
-    protected RentalsRepository rentalsRepository;
+    protected RentalRepository rentalRepository;
     protected MockMvc mockMvc;
-    protected Rentals rental;
-    protected Cars car;
-    protected Cars car2;
+    protected Rental rental;
+    protected Car car;
+    protected Car car2;
 
     @BeforeEach
     public void setup() {
         this.mockMvc = MockMvcBuilders
                 .webAppContextSetup(webApplicationContext)
                 .build();
-        final Places place1 = placesRepository.save(Places.builder()
+        final Place place1 = placeRepository.save(Place.builder()
                 .city("Rzeszow")
                 .build());
-        final Places place2 = placesRepository.save(Places.builder()
+        final Place place2 = placeRepository.save(Place.builder()
                 .city("Krakow")
                 .build());
-        car = carsRepository.save(Cars.builder()
+        car = carRepository.save(Car.builder()
                 .place(place1)
                 .price(BigDecimal.ONE)
                 .build());
-        car2 = carsRepository.save(Cars.builder()
+        car2 = carRepository.save(Car.builder()
                 .place(place2)
                 .price(BigDecimal.ONE)
                 .build());
-        final Clients client = clientsRepository.save(Clients.builder()
+        final User user = userRepository.save(User.builder()
                 .nick("test")
                 .password("test")
-                .roles("ROLE_USER")
+                .role("ROLE_USER")
                 .build());
-        clientsRepository.save(Clients.builder()
+        userRepository.save(User.builder()
                 .nick("nick")
                 .password("test")
-                .roles("ROLE_USER")
+                .role("ROLE_USER")
                 .phoneNumber("111111111")
                 .email("email@email.com")
                 .build());
-        rental = rentalsRepository.save(Rentals.builder()
+        rental = rentalRepository.save(Rental.builder()
                 .carId(car)
                 .pickUpCity(place1)
                 .dropOffCity(place2)
                 .startDate(LocalDate.now(ZoneOffset.UTC).minusDays(5L))
                 .endDate(LocalDate.now(ZoneOffset.UTC).minusDays(1L))
-                .clientId(client)
+                .userId(user)
                 .build());
     }
 
     @AfterEach
     public void cleanup() {
-        rentalsRepository.deleteAll();
-        clientsRepository.deleteAll();
-        carsRepository.deleteAll();
-        placesRepository.deleteAll();
+        rentalRepository.deleteAll();
+        userRepository.deleteAll();
+        carRepository.deleteAll();
+        placeRepository.deleteAll();
     }
 }

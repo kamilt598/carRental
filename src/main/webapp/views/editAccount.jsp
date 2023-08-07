@@ -26,7 +26,7 @@
             <h4 align="center">Nick</h4>
          </div>
          <div class="col-md-7">
-            <input type="text" class="form-control" value="${client.nick}" name="nick" required>
+            <input type="text" class="form-control" value="${user.nick}" name="nick" required>
          </div>
       </div>
       <hr style="height:2px;border-width:0;color:gray;background-color:gray">
@@ -35,7 +35,7 @@
             <h4 align="center">First name</h4>
          </div>
          <div class="col-md-7">
-            <input type="text" class="form-control" value="${client.firstName}" name="firstName" required>
+            <input type="text" class="form-control" value="${user.firstName}" name="firstName" required>
          </div>
       </div>
       <hr style="height:2px;border-width:0;color:gray;background-color:gray">
@@ -44,7 +44,7 @@
             <h4 align="center">Last name</h4>
          </div>
          <div class="col-md-7">
-            <input type="text" class="form-control" value="${client.lastName}" name="lastName" required>
+            <input type="text" class="form-control" value="${user.lastName}" name="lastName" required>
          </div>
       </div>
       <hr style="height:2px;border-width:0;color:gray;background-color:gray">
@@ -53,7 +53,7 @@
             <h4 align="center">e-mail</h4>
          </div>
          <div class="col-md-7">
-            <input type="email" class="form-control" value="${client.email}" name="email" required>
+            <input type="email" class="form-control" value="${user.email}" name="email" required>
          </div>
       </div>
       <hr style="height:2px;border-width:0;color:gray;background-color:gray">
@@ -62,7 +62,7 @@
             <h4 align="center">Phone number</h4>
          </div>
          <div class="col-md-7">
-            <input type="tel" class="form-control" value="${client.phoneNumber}" name="phoneNumber" pattern="[0-9]{9}" maxlength="9" required>
+            <input type="tel" class="form-control" value="${user.phoneNumber}" name="phoneNumber" pattern="[0-9]{9}" maxlength="9" required>
          </div>
       </div>
       <hr style="height:2px;border-width:0;color:gray;background-color:gray">

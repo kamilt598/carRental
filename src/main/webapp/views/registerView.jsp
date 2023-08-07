@@ -26,27 +26,27 @@
             <form method="post" action='<c:url value="/register"/>'>
                <div class="form-group">
                   <label class="label">Nickname</label>
-                  <input type="text" class="form-control" placeholder="nickname" name="nick" value="${client.nick}" required>
+                  <input type="text" class="form-control" placeholder="nickname" name="nick" value="${user.nick}" required>
                </div>
                <div class="form-group">
                   <label class="label">Password</label>
-                  <input type="password" class="form-control" placeholder="password" name="password" value="${client.password}" required>
+                  <input type="password" class="form-control" placeholder="password" name="password" value="${user.password}" required>
                </div>
                <div class="form-group">
                   <label class="label">E-mail</label>
-                  <input type="email" class="form-control" placeholder="e-mail" name="email" value="${client.email}" required>
+                  <input type="email" class="form-control" placeholder="e-mail" name="email" value="${user.email}" required>
                </div>
                <div class="form-group">
                   <label class="label">First Name</label>
-                  <input type="text" class="form-control" placeholder="first Name" name="firstName" value="${client.firstName}" required>
+                  <input type="text" class="form-control" placeholder="first Name" name="firstName" value="${user.firstName}" required>
                </div>
                <div class="form-group">
                   <label class="label">Last Name</label>
-                  <input type="text" class="form-control" placeholder="last Name" name="lastName" value="${client.lastName}" required>
+                  <input type="text" class="form-control" placeholder="last Name" name="lastName" value="${user.lastName}" required>
                </div>
                <div class="form-group">
                   <label class="label">Phone number</label>
-                  <input type="tel" class="form-control" placeholder="phone number" name="phoneNumber" value="${client.phoneNumber}" pattern="[0-9]{9}" maxlength="9" required>
+                  <input type="tel" class="form-control" placeholder="phone number" name="phoneNumber" value="${user.phoneNumber}" pattern="[0-9]{9}" maxlength="9" required>
                </div>
                <div class="form-group">
                   <input type="submit" value="Sign up" class="btn btn-secondary px-4">

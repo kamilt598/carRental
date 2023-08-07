@@ -1,6 +1,6 @@
 package com.example.carrental.controller;
 
-import com.example.carrental.model.Rentals;
+import com.example.carrental.model.Rental;
 import com.example.carrental.service.CarService;
 import com.example.carrental.service.RentService;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +23,7 @@ public class RentController {
     private final CarService carService;
 
     @PostMapping(value = {"/car-selection"})
-    public RedirectView createRentalOrSelectCars(Principal principal, Rentals rental,
+    public RedirectView createRentalOrSelectCars(Principal principal, Rental rental,
                                                  Long carId, RedirectAttributes redirectAttributes) {
         return carId != null
                 ? rentService.createRental(rental, principal.getName(), carId)

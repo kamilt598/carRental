@@ -1,7 +1,7 @@
 package com.example.carrental.controller;
 
 import com.example.carrental.TestSpecification;
-import com.example.carrental.model.Clients;
+import com.example.carrental.model.User;
 import org.junit.jupiter.api.Test;
 
 import java.security.Principal;
@@ -41,8 +41,8 @@ class AccountControllerTest extends TestSpecification {
                         .param("email", "test@test.com")
                         .param("phoneNumber", "111222333")
                         .param("firstName", "John"))
-                .andExpect(status().isOk());
-        final Optional<Clients> client = clientsRepository.findByNick("Nick");
+                .andExpect(status().is3xxRedirection());
+        final Optional<User> client = userRepository.findByNick("Nick");
         assertTrue(client.isPresent());
         assertEquals("test@test.com", client.get().getEmail());
         assertEquals("111222333", client.get().getPhoneNumber());
@@ -58,9 +58,9 @@ class AccountControllerTest extends TestSpecification {
                         .param("email", "test@test.com")
                         .param("phoneNumber", "111222333")
                         .param("firstName", "John"))
-                .andExpect(status().isOk())
-                .andExpect(model().attribute("error", "The nickname already exists"))
-                .andExpect(view().name("editAccount"));
+                .andExpect(status().is3xxRedirection())
+                .andExpect(flash().attribute("error", "The nickname already exists"))
+                .andExpect(redirectedUrl("/edit-account"));
     }
 
     @Test
@@ -72,9 +72,9 @@ class AccountControllerTest extends TestSpecification {
                         .param("email", "test@test.com")
                         .param("phoneNumber", "111111111")
                         .param("firstName", "John"))
-                .andExpect(status().isOk())
-                .andExpect(model().attribute("error", "The phone number is taken by another user"))
-                .andExpect(view().name("editAccount"));
+                .andExpect(status().is3xxRedirection())
+                .andExpect(flash().attribute("error", "The phone number is taken by another user"))
+                .andExpect(redirectedUrl("/edit-account"));
     }
 
     @Test
@@ -86,9 +86,9 @@ class AccountControllerTest extends TestSpecification {
                         .param("email", "email@email.com")
                         .param("phoneNumber", "111222333")
                         .param("firstName", "John"))
-                .andExpect(status().isOk())
-                .andExpect(model().attribute("error", "The e-mail is taken by another user"))
-                .andExpect(view().name("editAccount"));
+                .andExpect(status().is3xxRedirection())
+                .andExpect(flash().attribute("error", "The e-mail is taken by another user"))
+                .andExpect(redirectedUrl("/edit-account"));
     }
 
     @Test
@@ -97,8 +97,8 @@ class AccountControllerTest extends TestSpecification {
                         .principal(mockPrincipal()))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/logout"));
-        assertEquals(Collections.emptyList(), rentalsRepository.findByClientIdNick("test"));
-        assertEquals(Optional.empty(), clientsRepository.findByNick("test"));
+        assertEquals(Collections.emptyList(), rentalRepository.findByUserIdNick("test"));
+        assertEquals(Optional.empty(), userRepository.findByNick("test"));
     }
 
     private Principal mockPrincipal() {

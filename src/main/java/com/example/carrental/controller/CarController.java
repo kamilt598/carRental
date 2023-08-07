@@ -1,6 +1,6 @@
 package com.example.carrental.controller;
 
-import com.example.carrental.model.Rentals;
+import com.example.carrental.model.Rental;
 import com.example.carrental.service.CarService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +20,7 @@ public class CarController {
     private final CarService carService;
 
     @PostMapping(value = {"/", "/index"})
-    public RedirectView selectCars(Rentals rental, RedirectAttributes redirectAttributes) {
+    public RedirectView selectCars(Rental rental, RedirectAttributes redirectAttributes) {
         return carService.selectCars(rental, redirectAttributes);
     }
 

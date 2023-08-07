@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @Builder
 @Table(name = "rentals")
 @AllArgsConstructor
-public class Rentals {
+public class Rental {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -23,14 +23,14 @@ public class Rentals {
     private LocalDate endDate;
     @ManyToOne
     @JoinColumn(name = "pick_up_place_id")
-    private Places pickUpCity;
+    private Place pickUpCity;
     @ManyToOne
     @JoinColumn(name = "drop_off_place_id")
-    private Places dropOffCity;
+    private Place dropOffCity;
     @OneToOne
     @JoinColumn(name = "car_id")
-    private Cars carId;
+    private Car carId;
     @ManyToOne
-    @JoinColumn(name = "client_id")
-    private Clients clientId;
+    @JoinColumn(name = "user_id")
+    private User userId;
 }

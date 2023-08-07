@@ -25,7 +25,7 @@
             <h4 align="center">Nick</h4>
          </div>
          <div class="col-md-7">
-            <h4 align="center">${client.nick}</h4>
+            <h4 align="center">${user.nick}</h4>
          </div>
       </div>
       <hr style="height:2px;border-width:0;color:gray;background-color:gray">
@@ -34,7 +34,7 @@
             <h4 align="center">First name</h4>
          </div>
          <div class="col-md-7">
-            <h4 align="center">${client.firstName}</h4>
+            <h4 align="center">${user.firstName}</h4>
          </div>
       </div>
       <hr style="height:2px;border-width:0;color:gray;background-color:gray">
@@ -43,7 +43,7 @@
             <h4 align="center">Last name</h4>
          </div>
          <div class="col-md-7">
-            <h4 align="center">${client.lastName}</h4>
+            <h4 align="center">${user.lastName}</h4>
          </div>
       </div>
       <hr style="height:2px;border-width:0;color:gray;background-color:gray">
@@ -52,7 +52,7 @@
             <h4 align="center">e-mail</h4>
          </div>
          <div class="col-md-7">
-            <h4 align="center">${client.email}</h4>
+            <h4 align="center">${user.email}</h4>
          </div>
       </div>
       <hr style="height:2px;border-width:0;color:gray;background-color:gray">
@@ -61,7 +61,7 @@
             <h4 align="center">Phone number</h4>
          </div>
          <div class="col-md-7">
-            <h4 align="center">${client.phoneNumber}</h4>
+            <h4 align="center">${user.phoneNumber}</h4>
          </div>
       </div>
       <hr style="height:2px;border-width:0;color:gray;background-color:gray">

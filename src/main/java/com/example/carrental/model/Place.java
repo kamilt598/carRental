@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Setter
 @Entity
 @Table(name = "places")
-public class Places {
+public class Place {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

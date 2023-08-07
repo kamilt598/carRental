@@ -1,6 +1,6 @@
 package com.example.carrental.service.impl;
 
-import com.example.carrental.repository.PlacesRepository;
+import com.example.carrental.repository.PlaceRepository;
 import com.example.carrental.service.IndexService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -10,11 +10,11 @@ import org.springframework.ui.Model;
 @RequiredArgsConstructor
 public class IndexServiceImpl implements IndexService {
 
-    private final PlacesRepository placesRepository;
+    private final PlaceRepository placeRepository;
 
     @Override
     public String getIndex(Model model) {
-        model.addAttribute("placesList", placesRepository.findAll());
+        model.addAttribute("placesList", placeRepository.findAll());
         return "./index";
     }
 }

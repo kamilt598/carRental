@@ -1,20 +1,20 @@
 package com.example.carrental.service;
 
-import com.example.carrental.dto.ClientDto;
-import com.example.carrental.model.Clients;
+import com.example.carrental.dto.UserDto;
+import com.example.carrental.model.User;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
-public interface ClientService {
+public interface UserService {
 
-    RedirectView registerClient(Clients client, RedirectAttributes redirectAttributes);
+    RedirectView register(User user, RedirectAttributes redirectAttributes);
 
     String getAccount(String nickname, Model model);
 
     String editAccount(String nickname, Model model);
 
-    String saveAccount(String nickname, ClientDto clientDto, String password, Model model);
+    RedirectView saveAccount(String nickname, UserDto userDto, String password, RedirectAttributes redirectAttributes);
 
     RedirectView deleteAccount(String nickname);
 }

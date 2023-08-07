@@ -2,6 +2,7 @@ package com.example.carrental.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -19,6 +20,8 @@ import javax.sql.DataSource;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final DataSource dataSource;
+    @Value("${spring.security.rememberMe.durationInSeconds}")
+    private int durationInSeconds;
 
     @Bean
     protected PasswordEncoder passwordEncoder() {
@@ -28,8 +31,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication().dataSource(dataSource)
-                .usersByUsernameQuery("select nick,password,enable from clients where nick=?")
-                .authoritiesByUsernameQuery("select nick, roles from clients where nick=?");
+                .usersByUsernameQuery("select nick,password,true from users where nick=?")
+                .authoritiesByUsernameQuery("select nick, role from users where nick=?");
     }
 
     @Override
@@ -39,8 +42,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticated()
                 .and()
                 .csrf().disable()
-                .headers().frameOptions().disable()
-                .and()
                 .formLogin()
                 .loginPage("/login")
                 .usernameParameter("nick")
@@ -50,6 +51,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/")
                 .and()
                 .logout()
-                .logoutSuccessUrl("/");
+                .logoutSuccessUrl("/")
+                .and()
+                .rememberMe()
+                .tokenValiditySeconds(durationInSeconds);
     }
 }

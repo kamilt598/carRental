@@ -1,55 +1,30 @@
 package com.example.carrental.getter;
 
 import com.example.carrental.dto.CarDto;
-import com.example.carrental.model.Cars;
-import com.example.carrental.model.Places;
-import com.example.carrental.repository.CarsRepository;
-import com.example.carrental.service.RateService;
+import com.example.carrental.mapper.CarMapper;
+import com.example.carrental.model.Place;
+import com.example.carrental.repository.CarRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.math.RoundingMode;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
 public class CarGetter {
 
-    private final CarsRepository carsRepository;
-    private final RateService rateService;
+    private final CarRepository carRepository;
+    private final CarMapper carMapper;
 
     public List<CarDto> getCars() {
-        return mapToDto(carsRepository.findAll());
+        return carMapper.mapToDto(carRepository.findAll());
     }
 
-    public List<CarDto> getCarsFromPlace(Places place) {
-        return mapToDto(carsRepository.findByPlace(place));
+    public List<CarDto> getCarsFromPlace(Place place) {
+        return carMapper.mapToDto(carRepository.findByPlace(place));
     }
 
-    public List<CarDto> getCarsFromPlaceWithoutIds(Places place, List<Long> ids) {
-        return mapToDto(carsRepository.findByPlaceAndIdNotIn(place, ids));
-    }
-
-    private CarDto mapToDto(Cars cars) {
-        return CarDto.builder()
-                .id(cars.getId())
-                .brand(cars.getBrand())
-                .model(cars.getModel())
-                .type(cars.getType())
-                .productionYear(cars.getProductionYear())
-                .engine(cars.getEngine())
-                .color(cars.getColor())
-                .picture(cars.getPicture())
-                .price(cars.getPrice().setScale(0, RoundingMode.HALF_UP))
-                .location(cars.getPlace().getCity())
-                .priceEur(cars.getPrice().divide(rateService.getRate("EUR"), 0, RoundingMode.HALF_UP))
-                .build();
-    }
-
-    private List<CarDto> mapToDto(List<Cars> carsList) {
-        return carsList.stream()
-                .map(this::mapToDto)
-                .collect(Collectors.toList());
+    public List<CarDto> getCarsFromPlaceWithoutIds(Place place, List<Long> ids) {
+        return carMapper.mapToDto(carRepository.findByPlaceAndIdNotIn(place, ids));
     }
 }

@@ -1,8 +1,8 @@
 package com.example.carrental.controller;
 
 
-import com.example.carrental.model.Clients;
-import com.example.carrental.service.ClientService;
+import com.example.carrental.model.User;
+import com.example.carrental.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +16,7 @@ import org.springframework.web.servlet.view.RedirectView;
 @RequiredArgsConstructor
 public class RegisterController {
 
-    private final ClientService clientService;
+    private final UserService userService;
 
     @GetMapping(value = {"/register"})
     public String getRegisterView() {
@@ -24,7 +24,7 @@ public class RegisterController {
     }
 
     @PostMapping(value = {"/register"})
-    public RedirectView register(@ModelAttribute Clients client, RedirectAttributes redirectAttributes) {
-        return clientService.registerClient(client, redirectAttributes);
+    public RedirectView register(@ModelAttribute User user, RedirectAttributes redirectAttributes) {
+        return userService.register(user, redirectAttributes);
     }
 }

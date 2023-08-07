@@ -9,13 +9,13 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "clients", uniqueConstraints = {
+@Table(name = "users", uniqueConstraints = {
         @UniqueConstraint(columnNames = "phoneNumber"),
         @UniqueConstraint(columnNames = "email"),
         @UniqueConstraint(columnNames = "nick")
 })
 @Builder
-public class Clients {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -25,6 +25,5 @@ public class Clients {
     private String email;
     private String nick;
     private String password;
-    private String roles = "ROLE_USER";
-    private Boolean enable = true;
+    private String role = "ROLE_USER";
 }
