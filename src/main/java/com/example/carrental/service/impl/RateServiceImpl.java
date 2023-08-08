@@ -7,14 +7,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.math.BigDecimal;
 import java.net.URI;
 import java.util.Map;
+import java.util.Objects;
 
 @Slf4j
 @Component
@@ -27,23 +30,33 @@ public class RateServiceImpl implements RateService {
     private String nbpApiUrl;
 
     @Override
+    @Cacheable("currencyRate")
     public BigDecimal getRate(String currency) {
+        if (Objects.nonNull(currency)) {
+            try {
+                final JsonNode rate = getRateFromNBP(currency);
+                return BigDecimal.valueOf(rate.get(0).path("mid").asDouble());
+            } catch (JsonProcessingException e) {
+                log.error("Error while processing JSON response for currency: {}", currency, e);
+            } catch (RestClientException e) {
+                log.error("Error while getting rates for currency: {}", currency, e);
+            }
+        }
+        return BigDecimal.ZERO;
+    }
+
+    private JsonNode getRateFromNBP(String currency) throws JsonProcessingException {
+        final URI uri = buildUri(currency);
         try {
-            final JsonNode rate = getRateFromNBP(currency);
-            return BigDecimal.valueOf(rate.get(0).path("mid").asDouble());
-        } catch (Exception e) {
-            log.error("Exception while getting rates for currency: {}", currency, e);
-            return BigDecimal.ZERO;
+            final ResponseEntity<String> response = restTemplate.getForEntity(uri, String.class);
+            return objectMapper.readTree(response.getBody()).path("rates");
+        } catch (RestClientException e) {
+            log.error("Error while sending request to NBP API for currency: {}", currency, e);
+            throw e;
         }
     }
 
-    public JsonNode getRateFromNBP(String currency) throws JsonProcessingException {
-        final URI uri = buildUri(currency);
-        final ResponseEntity<String> response = restTemplate.getForEntity(uri, String.class);
-        return objectMapper.readTree(response.getBody()).path("rates");
-    }
-
-    public URI buildUri(String currency) {
+    private URI buildUri(String currency) {
         return UriComponentsBuilder.fromUriString(nbpApiUrl)
                 .queryParam("format", "json")
                 .buildAndExpand(Map.of("currency", currency))

@@ -9,6 +9,8 @@ import com.example.carrental.repository.PlaceRepository;
 import com.example.carrental.repository.RentalRepository;
 import com.example.carrental.service.CarService;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -20,11 +22,14 @@ import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
+@ConfigurationProperties(prefix = "car-rental.endpoint")
 public class CarServiceImpl implements CarService {
 
     private final CarGetter carGetter;
     private final RentalRepository rentalRepository;
     private final PlaceRepository placeRepository;
+    @Setter
+    private String carSelection;
 
     @Override
     public RedirectView selectCars(Rental rental, RedirectAttributes redirectAttributes) {
@@ -36,7 +41,7 @@ public class CarServiceImpl implements CarService {
                 .addFlashAttribute("rental", rental)
                 .addFlashAttribute("pickUpCities", getPlacesWithoutCity(places, rental.getPickUpCity()))
                 .addFlashAttribute("dropOffCities", getPlacesWithoutCity(places, rental.getDropOffCity()));
-        return new RedirectView("/car-selection", true);
+        return new RedirectView(carSelection, true);
     }
 
     @Override
@@ -58,7 +63,7 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public String getCarSelection(Model model) {
+    public String getCarSelectionView(Model model) {
         final List<Place> places = placeRepository.findAll();
         model
                 .addAttribute("pickUpCities", places)
@@ -67,7 +72,7 @@ public class CarServiceImpl implements CarService {
     }
 
     private List<CarDto> getCars(Place place, List<Long> rentedCarsIds) {
-        return rentedCarsIds.size() != 0
+        return !rentedCarsIds.isEmpty()
                 ? carGetter.getCarsFromPlaceWithoutIds(place, rentedCarsIds)
                 : carGetter.getCarsFromPlace(place);
     }

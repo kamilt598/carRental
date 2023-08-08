@@ -9,10 +9,10 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
-class IndexControllerTest extends TestSpecification {
+class HomeControllerTest extends TestSpecification {
     @Test
     void getIndex() throws Exception {
-        mockMvc.perform(get("/index"))
+        mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("placesList", hasSize(notNullValue())));
     }

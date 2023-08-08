@@ -35,7 +35,7 @@ class RegisterControllerTest extends TestSpecification {
                         .param("firstName", "John"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/register"))
-                .andExpect(flash().attribute("error", "The nickname already exists"));
+                .andExpect(flash().attribute("error", "The nickname nick already exists"));
     }
 
     @Test
@@ -48,7 +48,7 @@ class RegisterControllerTest extends TestSpecification {
                         .param("firstName", "John"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/register"))
-                .andExpect(flash().attribute("error", "The phone number is taken by another user"));
+                .andExpect(flash().attribute("error", "The phone number 111111111 is taken by another user"));
     }
 
     @Test
@@ -60,6 +60,6 @@ class RegisterControllerTest extends TestSpecification {
                         .param("firstName", "John"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/register"))
-                .andExpect(flash().attribute("error", "The e-mail is taken by another user"));
+                .andExpect(flash().attribute("error", "The e-mail email@email.com is taken by another user"));
     }
 }

@@ -8,7 +8,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 public interface UserService {
 
-    RedirectView register(User user, RedirectAttributes redirectAttributes);
+    RedirectView registerUser(User user);
 
     String getAccount(String nickname, Model model);
 

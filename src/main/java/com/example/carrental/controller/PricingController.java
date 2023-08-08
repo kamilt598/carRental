@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 @RequiredArgsConstructor
 public class PricingController {
-    
-    @GetMapping(value = {"/pricing"})
+    @GetMapping(value = "${car-rental.endpoint.pricing}")
     public String getPricing() {
         return "pricing";
     }

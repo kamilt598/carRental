@@ -23,7 +23,7 @@ class RateServiceTest {
     }
 
     @Test
-    void handleExceptionWhileGettingRates() throws JsonProcessingException {
+    void handleExceptionWhileGettingRates() {
         assertThat(rateService.getRate(null))
                 .isEqualTo(BigDecimal.ZERO)
                 .isNotNull();

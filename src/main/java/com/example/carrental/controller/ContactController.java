@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 @RequiredArgsConstructor
 public class ContactController {
-    
-    @GetMapping(value = {"/contact"})
+    @GetMapping(value = "${car-rental.endpoint.contact}")
     public String getContact() {
         return "contact";
     }

@@ -2,7 +2,7 @@ package com.example.carrental.service;
 
 import org.springframework.ui.Model;
 
-public interface IndexService {
+public interface HomeService {
 
-    String getIndex(Model model);
+    String getHomeView(Model model);
 }

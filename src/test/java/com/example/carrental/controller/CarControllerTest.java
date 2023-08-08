@@ -16,7 +16,7 @@ class CarControllerTest extends TestSpecification {
 
     @Test
     void selectCars() throws Exception {
-        mockMvc.perform(post("/index")
+        mockMvc.perform(post("/")
                         .param("pickUpCity", "1", "Rzeszow")
                         .param("dropOffCity", "2", "Krakow")
                         .param("startDate", "2023-01-01")
@@ -36,7 +36,7 @@ class CarControllerTest extends TestSpecification {
                 .startDate(LocalDate.of(2023, 1, 1))
                 .endDate(LocalDate.of(2023, 1, 2))
                 .build());
-        mockMvc.perform(post("/index")
+        mockMvc.perform(post("/")
                         .param("pickUpCity", "1", "Rzeszow")
                         .param("dropOffCity", "2", "Krakow")
                         .param("startDate", "2023-01-01")
@@ -51,7 +51,7 @@ class CarControllerTest extends TestSpecification {
 
     @Test
     void selectCarsWhenRentalsExists() throws Exception {
-        mockMvc.perform(post("/index")
+        mockMvc.perform(post("/")
                         .param("pickUpCity", "1", "Rzeszow")
                         .param("dropOffCity", "2", "Krakow")
                         .param("startDate", "2023-01-01")

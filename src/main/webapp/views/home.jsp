@@ -23,7 +23,7 @@
             <div class="col-md-12	featured-top">
                 <div class="row no-gutters">
                     <div class="col-md-4 d-flex align-items-center">
-                        <form method="post" action='<c:url value="/index"/>' class="request-form ftco-animate bg-primary">
+                        <form method="post" action='<c:url value="/"/>' class="request-form ftco-animate bg-primary">
                             <h2>Make your trip</h2>
                             <div class="form-group">
                                 <label class="label">Pick-up location</label>

@@ -1,6 +1,6 @@
 package com.example.carrental.controller;
 
-import com.example.carrental.service.impl.IndexServiceImpl;
+import com.example.carrental.service.HomeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Slf4j
 @Controller
 @RequiredArgsConstructor
-public class IndexController {
+public class HomeController {
 
-    private final IndexServiceImpl indexServiceImpl;
+    private final HomeService homeService;
 
-    @GetMapping(value = {"/", "/index"})
-    public String getIndex(Model model) {
-        return indexServiceImpl.getIndex(model);
+    @GetMapping(value = "${car-rental.endpoint.home}")
+    public String getHomeView(Model model) {
+        return homeService.getHomeView(model);
     }
 }

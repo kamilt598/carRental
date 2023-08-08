@@ -8,7 +8,7 @@ public interface RentService {
 
     RedirectView createRental(Rental rental, String nickname, Long carId);
 
-    String getRentals(Model model, String nickname);
+    String getRentalsView(Model model, String nickname);
 
     void cancelRental(Long rentalId);
 }

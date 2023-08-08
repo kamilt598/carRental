@@ -20,22 +20,22 @@ public class AccountController {
 
     private final UserService userService;
 
-    @GetMapping(value = {"/my-account"})
+    @GetMapping(value = "${car-rental.endpoint.myAccount}")
     public String getAccount(Principal principal, Model model) {
         return userService.getAccount(principal.getName(), model);
     }
 
-    @GetMapping(value = {"/edit-account"})
+    @GetMapping(value = "${car-rental.endpoint.editAccount}")
     public String editAccount(Principal principal, Model model) {
         return userService.editAccount(principal.getName(), model);
     }
 
-    @PostMapping(value = {"/edit-account"})
+    @PostMapping(value = "${car-rental.endpoint.editAccount}")
     public RedirectView saveAccount(Principal principal, UserDto userDto, String password, RedirectAttributes redirectAttributes) {
         return userService.saveAccount(principal.getName(), userDto, password, redirectAttributes);
     }
 
-    @PostMapping(value = {"/my-account"})
+    @PostMapping(value = "${car-rental.endpoint.myAccount}")
     public RedirectView deleteAccount(Principal principal) {
         return userService.deleteAccount(principal.getName());
     }

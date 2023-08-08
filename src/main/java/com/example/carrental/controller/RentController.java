@@ -22,7 +22,7 @@ public class RentController {
     private final RentService rentService;
     private final CarService carService;
 
-    @PostMapping(value = {"/car-selection"})
+    @PostMapping(value = "${car-rental.endpoint.carSelection}")
     public RedirectView createRentalOrSelectCars(Principal principal, Rental rental,
                                                  Long carId, RedirectAttributes redirectAttributes) {
         return carId != null
@@ -30,12 +30,12 @@ public class RentController {
                 : carService.selectCars(rental, redirectAttributes);
     }
 
-    @GetMapping(value = "/my-rentals")
+    @GetMapping(value = "${car-rental.endpoint.myRentals}")
     public String getRentals(Principal principal, Model model) {
-        return rentService.getRentals(model, principal.getName());
+        return rentService.getRentalsView(model, principal.getName());
     }
 
-    @PostMapping(value = "/my-rentals")
+    @PostMapping(value = "${car-rental.endpoint.myRentals}")
     public String cancelRental(Principal principal, Model model, Long rentalId) {
         rentService.cancelRental(rentalId);
         return getRentals(principal, model);

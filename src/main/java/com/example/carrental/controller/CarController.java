@@ -19,22 +19,22 @@ public class CarController {
 
     private final CarService carService;
 
-    @PostMapping(value = {"/", "/index"})
+    @PostMapping(value = "${car-rental.endpoint.home}")
     public RedirectView selectCars(Rental rental, RedirectAttributes redirectAttributes) {
         return carService.selectCars(rental, redirectAttributes);
     }
 
-    @GetMapping(value = "/car-selection")
+    @GetMapping(value = "${car-rental.endpoint.carSelection}")
     public String getCarSelection(Model model) {
-        return carService.getCarSelection(model);
+        return carService.getCarSelectionView(model);
     }
 
-    @GetMapping(value = "/car")
+    @GetMapping(value = "${car-rental.endpoint.cars}")
     public String getCars(Model model) {
         return carService.getAllCars(model);
     }
 
-    @GetMapping(value = "/car-details/{carId}")
+    @GetMapping(value = "${car-rental.endpoint.carDetails}")
     public String getCarDetails(Model model, @PathVariable("carId") Long carId) {
         return carService.getCarDetails(model, carId);
     }
