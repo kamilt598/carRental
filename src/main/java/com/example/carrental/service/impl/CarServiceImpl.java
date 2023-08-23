@@ -62,19 +62,17 @@ public class CarServiceImpl implements CarService {
         return "car-single";
     }
 
-    @Override
-    public String getCarSelectionView(Model model) {
-        final List<Place> places = placeRepository.findAll();
-        model
-                .addAttribute("pickUpCities", places)
-                .addAttribute("dropOffCities", places);
-        return "carSelection";
+    private List<CarDto> getCars(Place place, List<Long> rentedCarsIds) {
+        final List<CarDto> cars = carGetter.getCarsFromPlace(place);
+        return rentedCarsIds.isEmpty()
+                ? cars
+                : getCarsNotRented(rentedCarsIds, cars);
     }
 
-    private List<CarDto> getCars(Place place, List<Long> rentedCarsIds) {
-        return !rentedCarsIds.isEmpty()
-                ? carGetter.getCarsFromPlaceWithoutIds(place, rentedCarsIds)
-                : carGetter.getCarsFromPlace(place);
+    private List<CarDto> getCarsNotRented(List<Long> rentedCarsIds, List<CarDto> cars) {
+        return cars.stream()
+                .filter(car -> !rentedCarsIds.contains(car.getId()))
+                .toList();
     }
 
     private List<Long> getRentedCarsIds(Rental rental) {
@@ -87,7 +85,7 @@ public class CarServiceImpl implements CarService {
 
     private List<Place> getPlacesWithoutCity(List<Place> places, Place city) {
         return places.stream()
-                .filter(place -> !place.equals(city))
+                .filter(place -> !Objects.equals(place.getCity(), city.getCity()))
                 .collect(Collectors.toList());
     }
 }

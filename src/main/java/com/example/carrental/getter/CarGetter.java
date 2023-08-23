@@ -23,8 +23,4 @@ public class CarGetter {
     public List<CarDto> getCarsFromPlace(Place place) {
         return carMapper.mapToDto(carRepository.findByPlace(place));
     }
-
-    public List<CarDto> getCarsFromPlaceWithoutIds(Place place, List<Long> ids) {
-        return carMapper.mapToDto(carRepository.findByPlaceAndIdNotIn(place, ids));
-    }
 }

@@ -37,16 +37,18 @@ public class TestSpecification {
     protected Rental rental;
     protected Car car;
     protected Car car2;
+    protected Place place1;
+    protected Place place2;
 
     @BeforeEach
     public void setup() {
         this.mockMvc = MockMvcBuilders
                 .webAppContextSetup(webApplicationContext)
                 .build();
-        final Place place1 = placeRepository.save(Place.builder()
+        place1 = placeRepository.save(Place.builder()
                 .city("Rzeszow")
                 .build());
-        final Place place2 = placeRepository.save(Place.builder()
+        place2 = placeRepository.save(Place.builder()
                 .city("Krakow")
                 .build());
         car = carRepository.save(Car.builder()

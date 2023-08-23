@@ -7,7 +7,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClientException;
@@ -30,7 +29,6 @@ public class RateServiceImpl implements RateService {
     private String nbpApiUrl;
 
     @Override
-    @Cacheable("currencyRate")
     public BigDecimal getRate(String currency) {
         if (Objects.nonNull(currency)) {
             try {

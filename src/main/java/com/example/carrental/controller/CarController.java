@@ -25,8 +25,8 @@ public class CarController {
     }
 
     @GetMapping(value = "${car-rental.endpoint.carSelection}")
-    public String getCarSelection(Model model) {
-        return carService.getCarSelectionView(model);
+    public String getCarSelection() {
+        return "carSelection";
     }
 
     @GetMapping(value = "${car-rental.endpoint.cars}")

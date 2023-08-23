@@ -19,7 +19,7 @@
             <h2 class="mb-2">My account</h2>
          </div>
       </div>
-      <form method="post" action='<c:url value="/account"/>'>
+      <form method="post" action='<c:url value="/my-account"/>'>
       <div class="row" style="display: flex;justify-content: center;align-items: center;">
          <div class="col-md-5">
             <h4 align="center">Nick</h4>

@@ -11,7 +11,5 @@ public interface CarService {
 
     String getAllCars(Model model);
 
-    String getCarDetails(Model model, Long carIdid);
-
-    String getCarSelectionView(Model model);
+    String getCarDetails(Model model, Long carId);
 }
