@@ -8,27 +8,25 @@ import com.example.carrental.repository.UserRepository;
 import com.example.carrental.service.RentService;
 import com.example.carrental.service.UserDataValidator;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.util.List;
 import java.util.Map;
 
 @Component
 @RequiredArgsConstructor
-@ConfigurationProperties(prefix = "car-rental.endpoint")
 public class RentServiceImpl implements RentService {
 
     private final RentalRepository rentalRepository;
     private final UserRepository userRepository;
     private final CarRepository carRepository;
     private final UserDataValidator userDataValidator;
-    @Setter
+    @Value("${car-rental.endpoint.carSelection}")
     private String carSelection;
-    @Setter
+    @Value("${car-rental.endpoint.myRentals}")
     private String myRentals;
 
     @Override
@@ -42,10 +40,15 @@ public class RentServiceImpl implements RentService {
     }
 
     @Override
-    public String getRentalsView(Model model, String nickname) {
-        final List<Rental> rentalList = rentalRepository.findByUserIdNick(nickname);
-        model.addAttribute("rentalsList", rentalList);
+    public String getRentalsByNickname(Model model, String nickname) {
+        model.addAttribute("rentalsList", rentalRepository.findByNick(nickname));
         return "myRentals";
+    }
+
+    @Override
+    public String getRentals(Model model) {
+        model.addAttribute("rentalsList", rentalRepository.findAll(Sort.by("startDate")));
+        return "rentalManagement";
     }
 
     @Override

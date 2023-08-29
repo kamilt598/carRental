@@ -40,7 +40,7 @@ public class RateServiceImpl implements RateService {
                 log.error("Error while getting rates for currency: {}", currency, e);
             }
         }
-        return BigDecimal.ZERO;
+        return BigDecimal.ONE;
     }
 
     private JsonNode getRateFromNBP(String currency) throws JsonProcessingException {

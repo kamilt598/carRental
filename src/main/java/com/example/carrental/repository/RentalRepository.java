@@ -1,7 +1,7 @@
 package com.example.carrental.repository;
 
-import com.example.carrental.model.User;
 import com.example.carrental.model.Rental;
+import com.example.carrental.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -13,7 +13,8 @@ public interface RentalRepository extends JpaRepository<Rental, Long> {
 
     List<Rental> findByEndDate(LocalDate endDate);
 
-    List<Rental> findByUserIdNick(String nick);
+    @Query("select r from Rental r where r.userId.nick = ?1 order by r.startDate")
+    List<Rental> findByNick(String nick);
 
     @Query("""
             select r from Rental r

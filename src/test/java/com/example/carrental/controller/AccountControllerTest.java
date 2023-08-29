@@ -97,7 +97,7 @@ class AccountControllerTest extends TestSpecification {
                         .principal(mockPrincipal()))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/logout"));
-        assertEquals(Collections.emptyList(), rentalRepository.findByUserIdNick("test"));
+        assertEquals(Collections.emptyList(), rentalRepository.findByNick("test"));
         assertEquals(Optional.empty(), userRepository.findByNick("test"));
     }
 

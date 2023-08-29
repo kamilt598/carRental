@@ -1,35 +1,39 @@
 package com.example.carrental.service.impl;
 
 import com.example.carrental.dto.CarDto;
+import com.example.carrental.exception.CustomException;
 import com.example.carrental.getter.CarGetter;
 import com.example.carrental.model.Car;
 import com.example.carrental.model.Place;
 import com.example.carrental.model.Rental;
+import com.example.carrental.repository.CarRepository;
 import com.example.carrental.repository.PlaceRepository;
 import com.example.carrental.repository.RentalRepository;
 import com.example.carrental.service.CarService;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
-@ConfigurationProperties(prefix = "car-rental.endpoint")
 public class CarServiceImpl implements CarService {
 
     private final CarGetter carGetter;
     private final RentalRepository rentalRepository;
     private final PlaceRepository placeRepository;
-    @Setter
+    @Value("${car-rental.endpoint.carSelection}")
     private String carSelection;
+    @Value("${car-rental.endpoint.carManagement}")
+    private String carManagement;
+    private final CarRepository carRepository;
 
     @Override
     public RedirectView selectCars(Rental rental, RedirectAttributes redirectAttributes) {
@@ -45,9 +49,9 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public String getAllCars(Model model) {
+    public String getAllCars(Model model, Boolean admin) {
         model.addAttribute("cars", carGetter.getCars());
-        return "carView";
+        return admin ? "carManagement" : "carView";
     }
 
     @Override
@@ -60,6 +64,29 @@ public class CarServiceImpl implements CarService {
                         .findFirst()
                         .orElseThrow());
         return "car-single";
+    }
+
+    @Override
+    public RedirectView createCar(Car car, String city) {
+        try {
+            final Place place = placeRepository.findByCity(city);
+            car.setPlace(place);
+            carRepository.save(car);
+            return new RedirectView(carManagement);
+        } catch (Exception e) {
+            throw new CustomException(Map.of("error", e.getMessage()), carManagement);
+        }
+    }
+
+    @Override
+    public RedirectView deleteCar(Long carId) {
+        try {
+            final Car car = carRepository.findById(carId).orElseThrow();
+            carRepository.delete(car);
+            return new RedirectView(carManagement);
+        } catch (Exception e) {
+            throw new CustomException(Map.of("error", e.getMessage()), carManagement);
+        }
     }
 
     private List<CarDto> getCars(Place place, List<Long> rentedCarsIds) {

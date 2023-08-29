@@ -31,7 +31,7 @@ public class CarController {
 
     @GetMapping(value = "${car-rental.endpoint.cars}")
     public String getCars(Model model) {
-        return carService.getAllCars(model);
+        return carService.getAllCars(model, false);
     }
 
     @GetMapping(value = "${car-rental.endpoint.carDetails}")

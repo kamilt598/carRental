@@ -1,4 +1,4 @@
-package com.example.carrental.controller;
+package com.example.carrental.controller.auth;
 
 
 import com.example.carrental.model.User;

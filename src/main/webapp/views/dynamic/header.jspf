@@ -47,9 +47,14 @@
                         onmouseover="this.style.color='#fff'"
                         onmouseleave="this.style.color='#01d28e'">Sign Up</a></li>
                   </sec:authorize>
-                  <sec:authorize access="isAuthenticated()">
+                  <sec:authorize access="hasRole('ROLE_USER')">
                      <li class="nav-item"><a href='<c:url value="/my-rentals"/>' class="nav-link">My Rentals</a></li>
                      <li class="nav-item"><a href='<c:url value="/my-account"/>' class="nav-link">My Account</a></li>
+                  </sec:authorize>
+                  <sec:authorize access="hasRole('ROLE_ADMIN')">
+                     <li class="nav-item"><a href='<c:url value="/maintenance"/>' class="nav-link">Maintenance</a></li>
+                  </sec:authorize>
+                  <sec:authorize access="isAuthenticated()">
                      <li class="nav-item"><a href='<c:url value="/logout"/>' class="nav-link" style="color: #01d28e"
                         onmouseover="this.style.color='#fff'"
                         onmouseleave="this.style.color='#01d28e'">Log Out</a></li>

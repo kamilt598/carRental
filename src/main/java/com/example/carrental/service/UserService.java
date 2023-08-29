@@ -10,11 +10,12 @@ public interface UserService {
 
     RedirectView registerUser(User user);
 
-    String getAccount(String nickname, Model model);
+    String getAccountByNickname(String nickname, Model model);
+    String getAccounts(Model model);
 
-    String editAccount(String nickname, Model model);
+    String editAccount(String nickname, Model model, Boolean admin);
 
-    RedirectView saveAccount(String nickname, UserDto userDto, String password, RedirectAttributes redirectAttributes);
+    RedirectView saveAccount(String nickname, UserDto userDto, String password, RedirectAttributes redirectAttributes, Boolean admin);
 
-    RedirectView deleteAccount(String nickname);
+    RedirectView deleteAccount(String nickname, Boolean admin);
 }

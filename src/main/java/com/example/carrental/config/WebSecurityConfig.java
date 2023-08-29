@@ -20,6 +20,7 @@ import javax.sql.DataSource;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final DataSource dataSource;
+    private final Endpoints endpoints;
     @Value("${spring.security.rememberMe.durationInSeconds}")
     private int durationInSeconds;
 
@@ -38,8 +39,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/car-selection", "/my-account", "/edit-account", "/edit-account", "/account", "/my-rentals")
+                .antMatchers(endpoints.getAuthenticated())
                 .authenticated()
+                .antMatchers(endpoints.getAdminOnly())
+                .hasRole("ADMIN")
                 .and()
                 .csrf().disable()
                 .formLogin()

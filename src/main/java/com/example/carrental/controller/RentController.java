@@ -32,7 +32,7 @@ public class RentController {
 
     @GetMapping(value = "${car-rental.endpoint.myRentals}")
     public String getRentals(Principal principal, Model model) {
-        return rentService.getRentalsView(model, principal.getName());
+        return rentService.getRentalsByNickname(model, principal.getName());
     }
 
     @PostMapping(value = "${car-rental.endpoint.myRentals}")

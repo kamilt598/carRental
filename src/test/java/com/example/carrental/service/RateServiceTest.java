@@ -1,6 +1,5 @@
 package com.example.carrental.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,7 +24,7 @@ class RateServiceTest {
     @Test
     void handleExceptionWhileGettingRates() {
         assertThat(rateService.getRate(null))
-                .isEqualTo(BigDecimal.ZERO)
+                .isEqualTo(BigDecimal.ONE)
                 .isNotNull();
     }
 }
