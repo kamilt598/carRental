@@ -24,7 +24,7 @@ public class PlaceServiceImpl implements PlaceService {
     @Override
     public String getPlacesMaintenanceView(Model model) {
         model.addAttribute("placeList", placeRepository.findAll(Sort.by("city")));
-        return "placeManagement";
+        return "admin/placeManagement";
     }
 
     @Override

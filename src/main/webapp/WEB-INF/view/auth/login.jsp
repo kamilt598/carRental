@@ -1,4 +1,4 @@
-<%@include file="dynamic/header.jspf" %>
+<%@include file="/WEB-INF/view/dynamic/header.jspf" %>
 <div class="hero-wrap ftco-degree-bg" style="background-image: url('/resources/images/bg_1.jpg');"
    data-stellar-background-ratio="0.5">
    <div class="overlay"></div>
@@ -47,4 +47,4 @@
       </div>
    </div>
 </section>
-<%@include file="dynamic/footer.jspf" %>
+<%@include file="/WEB-INF/view/dynamic/footer.jspf" %>

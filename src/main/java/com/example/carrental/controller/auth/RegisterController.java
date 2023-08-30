@@ -19,7 +19,7 @@ public class RegisterController {
 
     @GetMapping(value = "${car-rental.endpoint.register}")
     public String getRegisterView() {
-        return "registerView";
+        return "auth/register";
     }
 
     @PostMapping(value = "${car-rental.endpoint.register}")

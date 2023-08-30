@@ -19,52 +19,32 @@
          </div>
       </div>
       <div class="row">
-         <div class="col-md-3">
+         <div class="col-md-4">
             <div class="services services-2 w-100 text-center">
                <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-route"></span></div>
                <div class="text w-100">
                   <h3 class="heading mb-2">Wedding Ceremony</h3>
-                  <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+                  <p>Make your special day even more memorable with our wedding ceremony car rental service, ensuring you arrive in style and elegance.</p>
                </div>
             </div>
          </div>
-         <div class="col-md-3">
+         <div class="col-md-4">
             <div class="services services-2 w-100 text-center">
                <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-route"></span></div>
                <div class="text w-100">
                   <h3 class="heading mb-2">City Transfer</h3>
-                  <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+                  <p>Seamlessly travel between cities with our city transfer service, providing you with the convenience of having your chosen vehicle delivered to your desired destination.</p>
                </div>
             </div>
          </div>
-         <div class="col-md-3">
+         <div class="col-md-4">
             <div class="services services-2 w-100 text-center">
                <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-route"></span></div>
                <div class="text w-100">
                   <h3 class="heading mb-2">Airport Transfer</h3>
-                  <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+                  <p>Begin or end your journey stress-free with our airport transfer service, offering the convenience of having a car waiting for you at your chosen airport.</p>
                </div>
             </div>
-         </div>
-         <div class="col-md-3">
-            <div class="services services-2 w-100 text-center">
-               <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-route"></span></div>
-               <div class="text w-100">
-                  <h3 class="heading mb-2">Whole City Tour</h3>
-                  <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-</section>
-<section class="ftco-section ftco-intro" style="background-image: url(/resources/images/bg_3.jpg);">
-   <div class="overlay"></div>
-   <div class="container">
-      <div class="row justify-content-end">
-         <div class="col-md-6 heading-section heading-section-white ftco-animate">
-            <h2 class="mb-3">Do You Want To Earn With Us? So Don't Be Late.</h2>
-            <a href="#" class="btn btn-primary btn-lg">Become A Driver</a>
          </div>
       </div>
    </div>

@@ -12,6 +12,6 @@ public class MaintenanceController {
 
     @GetMapping(value = "${car-rental.endpoint.maintenance}")
     public String getMaintenanceView() {
-        return "maintenance";
+        return "admin/maintenance";
     }
 }

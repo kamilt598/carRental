@@ -51,7 +51,7 @@ public class CarServiceImpl implements CarService {
     @Override
     public String getAllCars(Model model, Boolean admin) {
         model.addAttribute("cars", carGetter.getCars());
-        return admin ? "carManagement" : "carView";
+        return admin ? "admin/carManagement" : "cars";
     }
 
     @Override
@@ -63,7 +63,7 @@ public class CarServiceImpl implements CarService {
                         .filter(car -> Objects.equals(car.getId(), carId))
                         .findFirst()
                         .orElseThrow());
-        return "car-single";
+        return "carDetails";
     }
 
     @Override

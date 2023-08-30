@@ -48,7 +48,7 @@ public class RentServiceImpl implements RentService {
     @Override
     public String getRentals(Model model) {
         model.addAttribute("rentalsList", rentalRepository.findAll(Sort.by("startDate")));
-        return "rentalManagement";
+        return "admin/rentalManagement";
     }
 
     @Override

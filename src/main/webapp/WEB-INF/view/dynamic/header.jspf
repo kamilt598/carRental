@@ -36,7 +36,6 @@
                   <li class="nav-item"><a href='<c:url value="/"/>' class="nav-link">Home</a></li>
                   <li class="nav-item"><a href='<c:url value="/about"/>' class="nav-link">About</a></li>
                   <li class="nav-item"><a href='<c:url value="/services"/>' class="nav-link">Services</a></li>
-                  <li class="nav-item"><a href='<c:url value="/pricing"/>' class="nav-link">Pricing</a></li>
                   <li class="nav-item"><a href='<c:url value="/car"/>' class="nav-link">Cars</a></li>
                   <li class="nav-item"><a href='<c:url value="/contact"/>' class="nav-link">Contact</a></li>
                   <sec:authorize access="!isAuthenticated()">

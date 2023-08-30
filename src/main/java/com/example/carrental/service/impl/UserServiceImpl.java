@@ -47,7 +47,7 @@ public class UserServiceImpl implements UserService {
     public String getAccounts(Model model) {
         final List<UserDto> userList = userRepository.findAll().stream().map(UserMapper::mapToDto).toList();
         model.addAttribute("userList", userList);
-        return "accountManagement";
+        return "admin/accountManagement";
     }
 
     @Override

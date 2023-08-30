@@ -12,6 +12,6 @@ public class LoginController {
 
     @GetMapping(value = "${car-rental.endpoint.login}")
     public String getLoginView() {
-        return "loginView";
+        return "auth/login";
     }
 }
