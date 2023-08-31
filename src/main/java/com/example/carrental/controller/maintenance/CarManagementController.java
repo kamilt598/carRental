@@ -1,5 +1,6 @@
 package com.example.carrental.controller.maintenance;
 
+import com.example.carrental.dto.CarDto;
 import com.example.carrental.model.Car;
 import com.example.carrental.service.CarService;
 import lombok.RequiredArgsConstructor;
@@ -31,5 +32,15 @@ public class CarManagementController {
     @GetMapping(value = "${car-rental.endpoint.deleteCar}")
     public RedirectView deleteCar(@PathVariable Long carId) {
         return carService.deleteCar(carId);
+    }
+
+    @GetMapping(value = "${car-rental.endpoint.editCar}")
+    public String editCar(@PathVariable Long carId, Model model) {
+        return carService.editCar(carId, model);
+    }
+
+    @PostMapping(value = "${car-rental.endpoint.editCar}")
+    public RedirectView saveCar(@PathVariable Long carId, CarDto carDto) {
+        return carService.saveCar(carDto, carId);
     }
 }

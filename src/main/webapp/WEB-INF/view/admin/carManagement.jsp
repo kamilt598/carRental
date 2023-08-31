@@ -14,6 +14,7 @@
 </div>
 <section class="ftco-section ftco-no-pt bg-light">
    <div class="container">
+      <a href='<c:url value="/maintenance"/>' class="nav-link">&#8592; Back</a>
       <div class="row justify-content-center">
          <div class="col-md-12 heading-section text-center ftco-animate mb-5">
             <h2 class="mb-2">Cars</h2>
@@ -33,6 +34,7 @@
                <th scope="col">Picture</th>
                <th scope="col">Place</th>
                <th scope="col"></th>
+               <th scope="col"></th>
             </tr>
          </thead>
          <tbody>
@@ -47,6 +49,7 @@
                   <td>${carEach.type}</td>
                   <td>${carEach.picture}</td>
                   <td>${carEach.location}</td>
+                  <td><a href='<c:url value="/edit-car/${carEach.id}"/>' class="btn btn-secondary btn-lg btn-block">Edit</a></td>
                   <td><a href='<c:url value="/delete-car/${carEach.id}"/>' class="btn btn-danger btn-lg btn-block">Delete</a></td>
                </tr>
             </d:forEach>

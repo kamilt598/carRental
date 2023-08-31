@@ -12,7 +12,7 @@ class LoginControllerTest extends TestSpecification {
     @Test
     void getLoginView() throws Exception {
         mockMvc.perform(get("/login"))
-                .andExpect(view().name("login"))
+                .andExpect(view().name("auth/login"))
                 .andExpect(status().isOk());
     }
 }

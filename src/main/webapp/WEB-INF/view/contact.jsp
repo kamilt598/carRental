@@ -12,6 +12,7 @@
 </section>
 <section class="ftco-section contact-section">
    <div class="container">
+      <a href='<c:url value="/"/>' class="nav-link">&#8592; Back</a>
       <div class="row d-flex mb-5 contact-info">
          <div class="col-md-4">
             <div class="row mb-5">

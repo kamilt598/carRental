@@ -14,65 +14,92 @@
 </div>
 <section class="ftco-section ftco-no-pt bg-light">
    <div class="container">
-      <a href='<c:url value="/account-management"/>' class="nav-link">&#8592; Back</a>
+      <a href='<c:url value="/car-management"/>' class="nav-link">&#8592; Back</a>
       <div class="row justify-content-center">
          <div class="col-md-12 heading-section text-center ftco-animate mb-5">
-            <h2 class="mb-2">Account</h2>
+            <h2 class="mb-2">Car</h2>
             <h3 class="mb-2" style="color:red;">${error}</h3>
          </div>
       </div>
-      <form method="post" action='<c:url value="/edit-account-by-admin/${user.nick}"/>'>
+      <form method="post" action='<c:url value="/edit-car/${car.id}"/>'>
          <div class="row" style="display: flex;justify-content: center;align-items: center;">
             <div class="col-md-5">
-               <h4 align="center">Nick</h4>
+               <h4 align="center">Brand</h4>
             </div>
             <div class="col-md-7">
-               <input type="text" class="form-control" value="${user.nick}" name="nick" required>
+               <input type="text" class="form-control" value="${car.brand}" name="brand" required>
             </div>
          </div>
          <hr style="height:2px;border-width:0;color:gray;background-color:gray">
          <div class="row" style="display: flex;justify-content: center;align-items: center;">
             <div class="col-md-5">
-               <h4 align="center">First name</h4>
+               <h4 align="center">Model</h4>
             </div>
             <div class="col-md-7">
-               <input type="text" class="form-control" value="${user.firstName}" name="firstName" required>
+               <input type="text" class="form-control" value="${car.model}" name="model" required>
             </div>
          </div>
          <hr style="height:2px;border-width:0;color:gray;background-color:gray">
          <div class="row" style="display: flex;justify-content: center;align-items: center;">
             <div class="col-md-5">
-               <h4 align="center">Last name</h4>
+               <h4 align="center">Color</h4>
             </div>
             <div class="col-md-7">
-               <input type="text" class="form-control" value="${user.lastName}" name="lastName" required>
+               <input type="text" class="form-control" value="${car.color}" name="color" required>
             </div>
          </div>
          <hr style="height:2px;border-width:0;color:gray;background-color:gray">
          <div class="row" style="display: flex;justify-content: center;align-items: center;">
             <div class="col-md-5">
-               <h4 align="center">e-mail</h4>
+               <h4 align="center">Engine</h4>
             </div>
             <div class="col-md-7">
-               <input type="email" class="form-control" value="${user.email}" name="email" required>
+               <input type="text" class="form-control" value="${car.engine}" name="engine" required>
             </div>
          </div>
          <hr style="height:2px;border-width:0;color:gray;background-color:gray">
          <div class="row" style="display: flex;justify-content: center;align-items: center;">
             <div class="col-md-5">
-               <h4 align="center">Phone number</h4>
+               <h4 align="center">Price</h4>
             </div>
             <div class="col-md-7">
-               <input type="tel" class="form-control" value="${user.phoneNumber}" name="phoneNumber" pattern="[0-9]{9}" maxlength="9" required>
+               <input type="number" class="form-control" value="${car.price}" name="price" required>
             </div>
          </div>
          <hr style="height:2px;border-width:0;color:gray;background-color:gray">
          <div class="row" style="display: flex;justify-content: center;align-items: center;">
             <div class="col-md-5">
-               <h4 align="center">Password</h4>
+               <h4 align="center">Production year</h4>
             </div>
             <div class="col-md-7">
-               <input type="password" class="form-control" name="password">
+               <input type="text" class="form-control" value="${car.productionYear}" name="productionYear" required>
+            </div>
+         </div>
+         <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+         <div class="row" style="display: flex;justify-content: center;align-items: center;">
+            <div class="col-md-5">
+               <h4 align="center">Type</h4>
+            </div>
+            <div class="col-md-7">
+               <input type="text" class="form-control" value="${car.type}" name="type" required>
+            </div>
+         </div>
+         <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+         <div class="row" style="display: flex;justify-content: center;align-items: center;">
+            <div class="col-md-5">
+               <h4 align="center">Picture</h4>
+            </div>
+            <div class="col-md-7">
+               <input type="text" class="form-control" value="${car.picture}" name="picture" required>
+            </div>
+         </div>
+         <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+         <div class="row" style="display: flex;justify-content: center;align-items: center;">
+            <div class="col-md-5">
+               <h4 align="center">Location</h4>
+            </div>
+            <div class="col-md-7">
+               <input type="text" class="form-control" value="${car.location}" name="location" required>
             </div>
          </div>
          <hr style="height:2px;border-width:0;color:gray;background-color:gray">

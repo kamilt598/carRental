@@ -58,7 +58,7 @@ public class UserServiceImpl implements UserService {
                         : endpoints.getMyAccount()));
         model.addAttribute("user", UserMapper.mapToDto(user));
         return admin
-                ? "editAccountByAdmin"
+                ? "admin/editAccountByAdmin"
                 : "editAccount";
     }
 

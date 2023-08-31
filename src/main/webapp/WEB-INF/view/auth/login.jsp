@@ -15,6 +15,7 @@
 </div>
 <section class="ftco-section ftco-no-pt bg-light">
    <div class="container">
+      <a href='<c:url value="/"/>' class="nav-link">&#8592; Back</a>
       <div class="row justify-content-center">
          <div class="col-md-12 heading-section text-center ftco-animate mb-5">
             <h2 class="mb-2">Sign in</h2>
@@ -25,11 +26,11 @@
             <form method="post" action='<c:url value="/login"/>'>
                <div class="form-group">
                   <label class="label">Nickname</label>
-                  <input type="text" class="form-control" placeholder="nickname" name="nick" required>
+                  <input type="text" class="form-control" placeholder="nickname" name="nick" required autocomplete="off">
                </div>
                <div class="form-group">
                   <label class="label">Password</label>
-                  <input type="password" class="form-control" placeholder="password" name="password" required>
+                  <input type="password" class="form-control" placeholder="password" name="password" required  autocomplete="off">
                </div>
                <div>
                   <input type="checkbox" class="label" name="remember-me" id="remember_me">

@@ -12,6 +12,7 @@
 </section>
 <section class="ftco-section">
    <div class="container">
+      <a href='<c:url value="/"/>' class="nav-link">&#8592; Back</a>
       <div class="row justify-content-center mb-5">
          <div class="col-md-7 text-center heading-section ftco-animate">
             <span class="subheading">Services</span>

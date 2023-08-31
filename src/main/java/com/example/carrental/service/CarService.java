@@ -1,5 +1,6 @@
 package com.example.carrental.service;
 
+import com.example.carrental.dto.CarDto;
 import com.example.carrental.model.Car;
 import com.example.carrental.model.Rental;
 import org.springframework.ui.Model;
@@ -17,4 +18,8 @@ public interface CarService {
     RedirectView createCar(Car car, String city);
 
     RedirectView deleteCar(Long carId);
+
+    String editCar(Long carId, Model model);
+
+    RedirectView saveCar(CarDto car, Long carId);
 }

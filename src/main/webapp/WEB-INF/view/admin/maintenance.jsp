@@ -14,6 +14,7 @@
 </div>
 <section class="ftco-section ftco-no-pt bg-light">
    <div class="container">
+      <a href='<c:url value="/"/>' class="nav-link">&#8592; Back</a>
       <div class="row justify-content-center">
          <div class="col-md-12 heading-section text-center ftco-animate mb-5">
             <h2 class="mb-2">Maintenance</h2>

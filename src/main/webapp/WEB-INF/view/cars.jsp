@@ -15,6 +15,7 @@
       <input type="hidden" id="carId" name="carId">
       <br>
       <div class="container">
+         <a href='<c:url value="/"/>' class="nav-link">&#8592; Back</a>
          <div class="row">
             <d:forEach items="${cars}" var="carEach">
                <div class="col-md-4">

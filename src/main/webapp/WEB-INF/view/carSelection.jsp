@@ -13,6 +13,7 @@
 <section class="ftco-section bg-light">
    <form method="post" action='<c:url value="/car-selection"/>'>
       <div class="container">
+         <a href='<c:url value="/"/>' class="nav-link">&#8592; Back</a>
          <div class="row">
             <div class="col-md-6">
                <div class="form-group">
@@ -63,19 +64,21 @@
             <div class="col-md-6">
                <div class="form-group">
                   <input type="text" class="form-control" id="book_pick_date" value="${rental.startDate}"
-                     name="startDate" required>
+                     name="startDate" required autocomplete="off">
                </div>
             </div>
             <div class="col-md-6">
                <div class="form-group">
                   <input type="text" class="form-control" id="book_off_date" value="${rental.endDate}"
-                     name="endDate" required>
+                     name="endDate" required autocomplete="off">
                </div>
             </div>
          </div>
          <div class="row">
-            <div class="form-group">
-               <input type="submit" value="Change rent details" class="btn btn-secondary py-3 px-4">
+            <div class="col-md-12">
+               <div class="form-group">
+                  <input type="submit" value="Change rent details" class="btn btn-secondary btn-lg btn-block">
+               </div>
             </div>
          </div>
       </div>
@@ -96,10 +99,14 @@
                               <span>/day</span>
                            </p>
                         </div>
-                        <p class="d-flex mb-0 d-block">
-                           <input type="submit" value="Book now" class="btn btn-primary py-2 mr-1" onclick="setvar('${carEach.id}');">
-                           <input type="button" value="Details" class="btn btn-secondary py-2 ml-1" onclick="window.open('/car-details/${carEach.id}')">
-                        </p>
+                        <div class="row">
+                           <div class="col-md-6">
+                              <input type="submit" value="Book now" class="btn btn-primary btn-lg btn-block" onclick="setvar('${carEach.id}');">
+                           </div>
+                           <div class="col-md-6">
+                              <input type="button" value="Details" class="btn btn-secondary btn-lg btn-block" onclick="window.open('/car-details/${carEach.id}')">
+                           </div>
+                        </div>
                      </div>
                   </div>
                </div>

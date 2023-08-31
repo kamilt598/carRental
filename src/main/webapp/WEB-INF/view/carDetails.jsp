@@ -12,6 +12,7 @@
 </section>
 <section class="ftco-section ftco-car-details">
    <div class="container">
+      <a href='<c:url value="/car"/>' class="nav-link">&#8592; Back</a>
       <div class="row justify-content-center">
          <div class="col-md-12">
             <div class="car-details">

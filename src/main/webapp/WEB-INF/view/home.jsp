@@ -44,12 +44,12 @@
                                 <div class="form-group mr-2">
                                     <label class="label">Pick-up date</label>
                                     <input type="text" class="form-control" id="book_pick_date" placeholder="Date"
-                                           name="startDate" required>
+                                           name="startDate" required autocomplete="off">
                                 </div>
                                 <div class="form-group ml-2">
                                     <label class="label">Drop-off date</label>
                                     <input type="text" class="form-control" id="book_off_date" placeholder="Date"
-                                           name="endDate" required>
+                                           name="endDate" required autocomplete="off">
                                 </div>
                             </div>
                             <sec:authorize access="!isAuthenticated()">

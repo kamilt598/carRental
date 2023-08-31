@@ -23,13 +23,13 @@ public class AccountManagementController {
         return userService.getAccounts(model);
     }
 
-    @GetMapping(value = "${car-rental.endpoint.editAccountByAdmin}/{userNickname}")
+    @GetMapping(value = "${car-rental.endpoint.editAccountByAdmin}")
     public String editAccount(Model model, @PathVariable String userNickname) {
         return userService.editAccount(userNickname, model, true);
     }
 
     @PostMapping(value = "${car-rental.endpoint.editAccountByAdmin}")
-    public RedirectView saveAccount(String userNickname, UserDto userDto, String password) {
+    public RedirectView saveAccount(@PathVariable String userNickname, UserDto userDto, String password) {
         return userService.saveAccount(userNickname, userDto, password, null, true);
     }
 

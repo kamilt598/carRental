@@ -29,11 +29,11 @@ public class CarServiceImpl implements CarService {
     private final CarGetter carGetter;
     private final RentalRepository rentalRepository;
     private final PlaceRepository placeRepository;
+    private final CarRepository carRepository;
     @Value("${car-rental.endpoint.carSelection}")
     private String carSelection;
     @Value("${car-rental.endpoint.carManagement}")
     private String carManagement;
-    private final CarRepository carRepository;
 
     @Override
     public RedirectView selectCars(Rental rental, RedirectAttributes redirectAttributes) {
@@ -87,6 +87,40 @@ public class CarServiceImpl implements CarService {
         } catch (Exception e) {
             throw new CustomException(Map.of("error", e.getMessage()), carManagement);
         }
+    }
+
+    @Override
+    public String editCar(Long carId, Model model) {
+        try {
+            model.addAttribute("car", carGetter.getCarById(carId));
+            return "admin/editCar";
+        } catch (Exception e) {
+            throw new CustomException(Map.of("error", e.getMessage()), carManagement);
+        }
+    }
+
+    @Override
+    public RedirectView saveCar(CarDto carDto, Long carId) {
+        try {
+            updateCar(carDto, carId);
+            return new RedirectView(carManagement);
+        } catch (Exception e) {
+            throw new CustomException(Map.of("error", e.getMessage()), carManagement);
+        }
+    }
+
+    private void updateCar(CarDto carDto, Long carId) {
+        final Car car = carRepository.findById(carId).orElseThrow();
+        car.setBrand(carDto.getBrand());
+        car.setModel(carDto.getModel());
+        car.setEngine(carDto.getEngine());
+        car.setColor(carDto.getColor());
+        car.setProductionYear(carDto.getProductionYear());
+        car.setPrice(carDto.getPrice());
+        car.setType(carDto.getType());
+        car.setPicture(carDto.getPicture());
+        car.setPlace(placeRepository.findByCity(carDto.getLocation()));
+        carRepository.save(car);
     }
 
     private List<CarDto> getCars(Place place, List<Long> rentedCarsIds) {

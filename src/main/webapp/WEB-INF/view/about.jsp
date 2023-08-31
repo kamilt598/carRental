@@ -12,6 +12,7 @@
 </section>
 <section class="ftco-section ftco-about">
    <div class="container">
+      <a href='<c:url value="/"/>' class="nav-link">&#8592; Back</a>
       <div class="row no-gutters">
          <div class="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center" style="background-image: url(/resources/images/about.jpg);">
          </div>

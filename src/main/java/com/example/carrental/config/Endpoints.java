@@ -31,6 +31,7 @@ public class Endpoints {
     private String deleteAccount;
     private String deletePlace;
     private String deleteCar;
+    private String editCar;
 
     public String[] getAuthenticated() {
         return new String[]{carSelection, myAccount, editAccount, myRentals};
@@ -38,6 +39,6 @@ public class Endpoints {
 
     public String[] getAdminOnly() {
         return new String[]{maintenance, editAccountByAdmin, rentalManagement, accountManagement, carManagement,
-                placeManagement, deletePlace, deleteCar};
+                placeManagement, deletePlace, deleteCar, editCar};
     }
 }
