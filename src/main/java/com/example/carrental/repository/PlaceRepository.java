@@ -7,10 +7,11 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface PlaceRepository extends JpaRepository<Place, Long> {
     @Cacheable("places")
-    Place findByCity(String city);
+    Optional<Place> findByCity(String city);
 
     @Cacheable("places")
     List<Place> findAll();

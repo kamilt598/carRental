@@ -1,6 +1,7 @@
 package com.example.carrental.controller;
 
 import com.example.carrental.TestSpecification;
+import com.example.carrental.mapper.UserMapper;
 import com.example.carrental.model.User;
 import org.junit.jupiter.api.Test;
 
@@ -20,21 +21,25 @@ class AccountControllerTest extends TestSpecification {
 
     @Test
     void getAccount() throws Exception {
-        mockMvc.perform(get("/my-account")
+        mockMvc.perform(get(endpoints.getMyAccount())
                         .principal(mockPrincipal()))
+                .andExpect(model().attribute("user", UserMapper.mapToDto(user)))
+                .andExpect(view().name("account"))
                 .andExpect(status().isOk());
     }
 
     @Test
     void editAccount() throws Exception {
-        mockMvc.perform(get("/edit-account")
+        mockMvc.perform(get(endpoints.getEditAccount())
                         .principal(mockPrincipal()))
+                .andExpect(model().attribute("user", UserMapper.mapToDto(user)))
+                .andExpect(view().name("editAccount"))
                 .andExpect(status().isOk());
     }
 
     @Test
     void saveAccount() throws Exception {
-        mockMvc.perform(post("/edit-account")
+        mockMvc.perform(post(endpoints.getEditAccount())
                         .principal(mockPrincipal())
                         .param("nick", "Nick")
                         .param("password", "pass")
@@ -51,7 +56,7 @@ class AccountControllerTest extends TestSpecification {
 
     @Test
     void throwExceptionWhenSaveAccountIfNickExists() throws Exception {
-        mockMvc.perform(post("/edit-account")
+        mockMvc.perform(post(endpoints.getEditAccount())
                         .principal(mockPrincipal())
                         .param("nick", "nick")
                         .param("password", "pass")
@@ -60,12 +65,12 @@ class AccountControllerTest extends TestSpecification {
                         .param("firstName", "John"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(flash().attribute("error", "The nickname nick already exists"))
-                .andExpect(redirectedUrl("/edit-account"));
+                .andExpect(redirectedUrl(endpoints.getEditAccount()));
     }
 
     @Test
     void throwExceptionWhenSaveAccountIfPhoneNumberIsTaken() throws Exception {
-        mockMvc.perform(post("/edit-account")
+        mockMvc.perform(post(endpoints.getEditAccount())
                         .principal(mockPrincipal())
                         .param("nick", "test")
                         .param("password", "pass")
@@ -74,12 +79,12 @@ class AccountControllerTest extends TestSpecification {
                         .param("firstName", "John"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(flash().attribute("error", "The phone number 111111111 is taken by another user"))
-                .andExpect(redirectedUrl("/edit-account"));
+                .andExpect(redirectedUrl(endpoints.getEditAccount()));
     }
 
     @Test
     void throwExceptionWhenSaveAccountIfEmailIsTaken() throws Exception {
-        mockMvc.perform(post("/edit-account")
+        mockMvc.perform(post(endpoints.getEditAccount())
                         .principal(mockPrincipal())
                         .param("nick", "test")
                         .param("password", "pass")
@@ -88,15 +93,15 @@ class AccountControllerTest extends TestSpecification {
                         .param("firstName", "John"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(flash().attribute("error", "The e-mail email@email.com is taken by another user"))
-                .andExpect(redirectedUrl("/edit-account"));
+                .andExpect(redirectedUrl(endpoints.getEditAccount()));
     }
 
     @Test
     void deleteAccount() throws Exception {
-        mockMvc.perform(post("/my-account")
+        mockMvc.perform(post(endpoints.getMyAccount())
                         .principal(mockPrincipal()))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/logout"));
+                .andExpect(redirectedUrl(endpoints.getLogout()));
         assertEquals(Collections.emptyList(), rentalRepository.findByNick("test"));
         assertEquals(Optional.empty(), userRepository.findByNick("test"));
     }

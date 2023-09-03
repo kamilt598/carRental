@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RequiredArgsConstructor
 public class ContactController {
     @GetMapping(value = "${car-rental.endpoint.contact}")
-    public String getContact() {
+    public String getContactView() {
         return "contact";
     }
 }

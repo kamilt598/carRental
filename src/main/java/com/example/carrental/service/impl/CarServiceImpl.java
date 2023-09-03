@@ -56,20 +56,16 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public String getCarDetails(Model model, Long carId) {
-        final List<CarDto> cars = carGetter.getCars();
         model
-                .addAttribute("cars", cars)
-                .addAttribute("car", cars.stream()
-                        .filter(car -> Objects.equals(car.getId(), carId))
-                        .findFirst()
-                        .orElseThrow());
+                .addAttribute("cars", carGetter.getCars())
+                .addAttribute("car", carGetter.getCarById(carId));
         return "carDetails";
     }
 
     @Override
     public RedirectView createCar(Car car, String city) {
         try {
-            final Place place = placeRepository.findByCity(city);
+            final Place place = placeRepository.findByCity(city).orElseThrow();
             car.setPlace(place);
             carRepository.save(car);
             return new RedirectView(carManagement);
@@ -119,7 +115,7 @@ public class CarServiceImpl implements CarService {
         car.setPrice(carDto.getPrice());
         car.setType(carDto.getType());
         car.setPicture(carDto.getPicture());
-        car.setPlace(placeRepository.findByCity(carDto.getLocation()));
+        car.setPlace(placeRepository.findByCity(carDto.getLocation()).orElseThrow());
         carRepository.save(car);
     }
 

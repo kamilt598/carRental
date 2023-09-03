@@ -3,8 +3,6 @@ package com.example.carrental.controller;
 import com.example.carrental.TestSpecification;
 import org.junit.jupiter.api.Test;
 
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.notNullValue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -12,8 +10,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class HomeControllerTest extends TestSpecification {
     @Test
     void getIndex() throws Exception {
-        mockMvc.perform(get("/"))
+        mockMvc.perform(get(endpoints.getHome()))
                 .andExpect(status().isOk())
-                .andExpect(model().attribute("placesList", hasSize(notNullValue())));
+                .andExpect(view().name("home"))
+                .andExpect(model().attribute("placesList", placeRepository.findAll()));
     }
 }

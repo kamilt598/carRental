@@ -1,5 +1,7 @@
 package com.example.carrental;
 
+import com.example.carrental.config.Endpoints;
+import com.example.carrental.getter.CarGetter;
 import com.example.carrental.model.Car;
 import com.example.carrental.model.User;
 import com.example.carrental.model.Place;
@@ -26,19 +28,24 @@ public class TestSpecification {
     @Autowired
     private WebApplicationContext webApplicationContext;
     @Autowired
-    private PlaceRepository placeRepository;
+    protected PlaceRepository placeRepository;
     @Autowired
     protected UserRepository userRepository;
     @Autowired
     protected CarRepository carRepository;
     @Autowired
     protected RentalRepository rentalRepository;
+    @Autowired
+    protected Endpoints endpoints;
+    @Autowired
+    protected CarGetter carGetter;
     protected MockMvc mockMvc;
     protected Rental rental;
     protected Car car;
     protected Car car2;
     protected Place place1;
     protected Place place2;
+    protected User user;
 
     @BeforeEach
     public void setup() {
@@ -59,7 +66,7 @@ public class TestSpecification {
                 .place(place2)
                 .price(BigDecimal.ONE)
                 .build());
-        final User user = userRepository.save(User.builder()
+        user = userRepository.save(User.builder()
                 .nick("test")
                 .password("test")
                 .role("ROLE_USER")

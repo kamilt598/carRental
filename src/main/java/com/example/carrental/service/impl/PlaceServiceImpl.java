@@ -42,7 +42,7 @@ public class PlaceServiceImpl implements PlaceService {
     @Override
     public RedirectView deletePlace(String city) {
         try {
-            final Place place = placeRepository.findByCity(city);
+            final Place place = placeRepository.findByCity(city).orElseThrow();
             placeRepository.delete(place);
             return new RedirectView(placeManagement);
         } catch (Exception e) {

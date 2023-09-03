@@ -13,7 +13,6 @@ public class Endpoints {
     private String home;
     private String about;
     private String services;
-    private String pricing;
     private String login;
     private String logout;
     private String register;
@@ -23,6 +22,7 @@ public class Endpoints {
     private String editAccountByAdmin;
     private String carSelection;
     private String carDetails;
+    private String cars;
     private String maintenance;
     private String rentalManagement;
     private String accountManagement;
@@ -32,6 +32,7 @@ public class Endpoints {
     private String deletePlace;
     private String deleteCar;
     private String editCar;
+    private String contact;
 
     public String[] getAuthenticated() {
         return new String[]{carSelection, myAccount, editAccount, myRentals};

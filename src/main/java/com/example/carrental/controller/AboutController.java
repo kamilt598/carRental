@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class AboutController {
 
     @GetMapping(value = "${car-rental.endpoint.about}")
-    public String getAbout() {
+    public String getAboutView() {
         return "about";
     }
 }
